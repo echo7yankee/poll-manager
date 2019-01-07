@@ -1,5 +1,5 @@
 import React from "react";
-import CreatePolls from "./CreatePolls";
+import CreatePolls from "./CreatePolls.jsx";
 
 import "./polls.css";
 

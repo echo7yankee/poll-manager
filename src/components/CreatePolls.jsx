@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./polls.css";
 
-import CreateChoices from "./CreateChoices";
+import Choices from "./Choices.jsx";
 
 class CreatePolls extends Component {
   handleSubmit = e => {
@@ -32,7 +32,7 @@ class CreatePolls extends Component {
               </div>
             </div>
           </div>
-          <CreateChoices />
+          <Choices />
           <div className="button_container">
             <button className="add_poll" type="submit">
               Add Poll
