@@ -2,11 +2,10 @@ import React from "react";
 import "./polls.css";
 
 const ChoiceItem = ({
-  deleteNewChoice,
+  renderDeleteButton,
   handleChoiceInput,
   choiceInput,
-  index,
-  ChoicesLength
+  index
 }) => {
   return (
     <div className="polls_choices">
@@ -17,11 +16,7 @@ const ChoiceItem = ({
         value={choiceInput}
         onChange={handleChoiceInput}
       />
-      {index > 2 && (
-        <span className="btn-trash" onClick={deleteNewChoice}>
-          <i className="fas fa-trash" />
-        </span>
-      )}
+      {renderDeleteButton}
     </div>
   );
 };

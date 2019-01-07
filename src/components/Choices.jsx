@@ -52,19 +52,27 @@ class Choices extends Component {
     }
   };
 
+  renderDeleteButton = (index, id) => {
+    return index >= 2 ? (
+      <span className="btn-trash" onClick={() => this.deleteNewChoice(id)}>
+        <i className="fas fa-trash" />
+      </span>
+    ) : null;
+  };
+
   render() {
     return (
       <div className="polls_choices-container">
         {this.state.newChoices.map((newChoice, index) => {
           console.log(newChoice.id);
+
           return (
             <ChoiceItem
               key={newChoice.id}
               choiceInput={this.state.choiceInput[newChoice.id]}
               handleChoiceInput={this.handleChoiceInput}
-              deleteNewChoice={() => this.deleteNewChoice(newChoice.id)}
+              renderDeleteButton={this.renderDeleteButton(index, newChoice.id)}
               index={index + 1}
-              ChoicesLength={this.state.newChoices.length}
             />
           );
         })}
@@ -83,3 +91,5 @@ class Choices extends Component {
 }
 
 export default Choices;
+
+//[...this.state.choices.slice(0, i - 1), value];
