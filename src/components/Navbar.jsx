@@ -2,19 +2,27 @@ import React from "react";
 import auth from "../Auth";
 import GoogleAuth from "./GoogleAuth.jsx";
 
+import "./navbar.css";
+
 const Navbar = props => {
   return (
-    <div>
-      <span
-        onClick={() => {
-          auth.login(() => {
-            props.history.push("/createPolls");
-          });
-        }}
-      >
+    <nav className="nav">
+      <ul className="nav-elements">
+        <li>Polls</li>
+        <li
+          onClick={() => {
+            auth.login(() => {
+              props.history.push("/pollCreator");
+            });
+          }}
+        >
+          Create Polls
+        </li>
+      </ul>
+      <span>
         <GoogleAuth />
       </span>
-    </div>
+    </nav>
   );
 };
 
