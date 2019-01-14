@@ -36,6 +36,16 @@ class PollCreator extends Component {
     });
   };
   renderChoices = () => {
+  handleDeleteResult = id => {
+    const { newResults } = this.state;
+    const filteredResults = newResults.filter(result => {
+      return result.id !== id;
+    });
+
+    this.setState({
+      newResults: filteredResults
+    });
+  };
     if (this.state.visible) {
       return <Choices />;
     } else if (this.state.invisible) {
@@ -111,6 +121,8 @@ class PollCreator extends Component {
       </div>
             {this.renderChoices()}
         <PollResults value={this.state.value} />
+              handleDeleteResult={() => this.handleDeleteResult(result.id)}
+              index={index + 1}
     );
   }
 }
