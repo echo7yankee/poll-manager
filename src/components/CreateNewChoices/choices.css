@@ -47,15 +47,9 @@
   color: #619dbd;
 }
 
-.btn__choices-delete {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  right: 30px;
-  transform: translateY(-50%);
-  color: rgb(200, 200, 200);
-}
-
-.btn__choices-delete:hover {
-  color: red;
+.btn-delete-position {
+  position: absolute !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  right: 30px !important;
 }

@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { signIn, signOut } from "../actions";
+import { withRouter } from "react-router-dom";
 
+import auth from "../auth";
 import SignIn from "./SignIn.jsx";
 import SignOut from "./SignOut.jsx";
 
@@ -32,10 +34,18 @@ class GoogleAuth extends Component {
 
   onSignInClick = () => {
     this.auth.signIn();
+
+    auth.login(() => {
+      this.props.history.push("/pollCreatorLink");
+    });
   };
 
   onSignOutClick = () => {
     this.auth.signOut();
+
+    auth.logout(() => {
+      this.props.history.push("/");
+    });
   };
 
   renderAuthButton() {
@@ -49,6 +59,7 @@ class GoogleAuth extends Component {
   }
 
   render() {
+    console.log(this.props.isSignedIn);
     return <div>{this.renderAuthButton()}</div>;
   }
 }
@@ -59,7 +70,9 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { signIn, signOut }
-)(GoogleAuth);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { signIn, signOut }
+  )(GoogleAuth)
+);

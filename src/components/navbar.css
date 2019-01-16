@@ -1,0 +1,27 @@
+.nav {
+  width: 100%;
+  background: #393939;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-elements {
+  width: 100%;
+}
+
+.nav-item {
+  margin-right: 30px;
+}
+
+.nav-el:link,
+.nav-el:visited {
+  font-size: 16px;
+  color: #ffffff;
+}
+
+.google-button {
+  height: 40px !important;
+  margin-left: 30px !important;
+}
