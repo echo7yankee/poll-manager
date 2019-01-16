@@ -1,5 +1,5 @@
 import React from "react";
-import PollResultItem from "./PollResultItem";
+import PollResultItemMultiple from "./PollResultItemMultiple";
 
 import "../polls.css";
 import "./pollsResult.css";
@@ -23,7 +23,7 @@ const PollResult = ({ question, answers, index, handleDeleteResult }) => {
     } else {
       return (
         <div className="polls-list-container">
-          <PollResultItem answers={answers} />
+          <PollResultItemMultiple answers={answers} />
         </div>
       );
     }
