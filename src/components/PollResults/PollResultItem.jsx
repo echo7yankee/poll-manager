@@ -7,9 +7,11 @@ const PollResultItem = ({ answers }) => {
       {answers.map(answer => {
         return (
           <li key={answer.id}>
-            <label>
-              <input type="checkbox" /> {answer.value}
-            </label>
+            {answer.value === "" ? null : (
+              <label>
+                <input type="checkbox" /> {answer.value}
+              </label>
+            )}
           </li>
         );
       })}
