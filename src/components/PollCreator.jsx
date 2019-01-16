@@ -62,6 +62,18 @@ class PollCreator extends Component {
         newResults: updatedNewResults
       });
     } else if (this.state.selected === "radio-3") {
+      const updatedCreatedResult = {
+        ...createResult(),
+        valueQuestion: this.question.current.value,
+        valueAnswers: this.state.newChoices
+      };
+
+      const updatedNewResults = [...newResults, updatedCreatedResult];
+
+      this.setState({
+        newChoices: [createChoice(), createChoice()],
+        newResults: updatedNewResults
+      });
     }
   };
 
@@ -265,6 +277,7 @@ class PollCreator extends Component {
               key={result.id}
               question={result.valueQuestion}
               answers={result.valueAnswers}
+              PollResultSelected={this.state.selected}
               handleDeleteResult={() => this.handleDeleteResult(result.id)}
               index={index + 1}
             />

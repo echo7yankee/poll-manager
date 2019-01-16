@@ -5,7 +5,13 @@ import "../polls.css";
 import "./pollsResult.css";
 import "../reusableStyle.css";
 
-const PollResult = ({ question, answers, index, handleDeleteResult }) => {
+const PollResult = ({
+  question,
+  answers,
+  index,
+  handleDeleteResult,
+  PollResultSelected
+}) => {
   console.log(answers);
 
   const renderAnswers = () => {
@@ -23,7 +29,10 @@ const PollResult = ({ question, answers, index, handleDeleteResult }) => {
     } else {
       return (
         <div className="polls-list-container">
-          <PollResultItemMultiple answers={answers} />
+          <PollResultItemMultiple
+            answers={answers}
+            PollResultSelected={PollResultSelected}
+          />
         </div>
       );
     }
