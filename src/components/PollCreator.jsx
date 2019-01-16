@@ -266,7 +266,7 @@ class PollCreator extends Component {
                 type="button"
                 onClick={this.clearAllPolls}
               >
-                Delete all Polls
+                Clear Posts
               </button>
             </div>
           </form>
