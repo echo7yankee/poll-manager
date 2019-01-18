@@ -9,7 +9,10 @@ function createResult() {
   return {
     id: uuid(),
     valueQuestion: "",
-    valueAnswers: ""
+    //valueAnswers: ""
+    answersYN: "",
+    answersMultiple: "",
+    answersSingle: ""
   };
 }
 
@@ -40,7 +43,7 @@ class PollCreator extends Component {
       const updatedCreatedResult = {
         ...createResult(),
         valueQuestion: this.question.current.value,
-        valueAnswers: "This will be an Yes/No"
+        answersYN: "This will be an Yes/No"
       };
 
       const updatedNewResults = [...newResults, updatedCreatedResult];
@@ -52,7 +55,7 @@ class PollCreator extends Component {
       const updatedCreatedResult = {
         ...createResult(),
         valueQuestion: this.question.current.value,
-        valueAnswers: this.state.newChoices
+        answersMultiple: this.state.newChoices
       };
 
       const updatedNewResults = [...newResults, updatedCreatedResult];
@@ -65,7 +68,7 @@ class PollCreator extends Component {
       const updatedCreatedResult = {
         ...createResult(),
         valueQuestion: this.question.current.value,
-        valueAnswers: this.state.newChoices
+        answersSingle: this.state.newChoices
       };
 
       const updatedNewResults = [...newResults, updatedCreatedResult];
@@ -95,12 +98,6 @@ class PollCreator extends Component {
   };
 
   handleRadioChange = e => {
-    // this.setState({
-    //   invisible: !this.state.invisible,
-    //   singleChoice: !this.state.singleChoice,
-    //   visible: !this.state.visible
-    // });
-
     this.setState({
       selected: e.target.value
     });
@@ -199,7 +196,6 @@ class PollCreator extends Component {
   };
 
   render() {
-    console.log(this.state.newResults);
     const { newResults } = this.state;
 
     return (
@@ -276,8 +272,10 @@ class PollCreator extends Component {
             <PollResult
               key={result.id}
               question={result.valueQuestion}
-              answers={result.valueAnswers}
-              PollResultSelected={this.state.selected}
+              //answers={result.valueAnswers}
+              answersYN={result.answersYN}
+              answersMultiple={result.answersMultiple}
+              answersSingle={result.answersSingle}
               handleDeleteResult={() => this.handleDeleteResult(result.id)}
               index={index + 1}
             />
