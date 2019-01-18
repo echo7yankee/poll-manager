@@ -28,11 +28,19 @@ const PollResultItem = ({ answers, PollResultSelected }) => {
 
   return (
     <ul className="polls-list">
-      {answers.map(answer => {
-        return renderPollResultSelected(answer.id, answer.value);
+      {answersMultiple.map(answer => {
+        return (
+          <li key={answer.id}>
+            {answer.value === "" ? null : (
+              <label>
+                <input type="checkbox" /> {answer.value}
+              </label>
+            )}
+          </li>
+        );
       })}
     </ul>
   );
 };
 
-export default PollResultItem;
+export default PollResultItemMultiple;
