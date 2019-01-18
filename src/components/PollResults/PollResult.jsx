@@ -1,5 +1,6 @@
 import React from "react";
 import PollResultItemMultiple from "./PollResultItemMultiple";
+import PollResultItemSingle from "./PollResultItemSingle";
 
 import "../polls.css";
 import "./pollsResult.css";
@@ -10,12 +11,14 @@ const PollResult = ({
   answers,
   index,
   handleDeleteResult,
-  PollResultSelected
+  answersYN,
+  answersMultiple,
+  answersSingle
 }) => {
   console.log(answers);
 
   const renderAnswers = () => {
-    if (typeof answers === "string") {
+    if (answersYN) {
       return (
         <div>
           <label>
@@ -26,13 +29,16 @@ const PollResult = ({
           </label>
         </div>
       );
-    } else {
+    } else if (answersMultiple) {
       return (
         <div className="polls-list-container">
-          <PollResultItemMultiple
-            answers={answers}
-            PollResultSelected={PollResultSelected}
-          />
+          <PollResultItemMultiple answersMultiple={answersMultiple} />
+        </div>
+      );
+    } else if (answersSingle) {
+      return (
+        <div className="polls-list-container">
+          <PollResultItemSingle answersSingle={answersSingle} />
         </div>
       );
     }
