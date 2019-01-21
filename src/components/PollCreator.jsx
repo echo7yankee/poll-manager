@@ -54,9 +54,7 @@ class PollCreator extends Component {
     } else if (this.state.selected === "radio-2") {
       this.state.newChoices.forEach(choice => {
         if (choice.value === "") {
-          this.setState({
-            renderError: true
-          });
+          alert("Choices Value is empty");
         } else {
           const updatedCreatedResult = {
             ...createResult(),
@@ -75,9 +73,7 @@ class PollCreator extends Component {
     } else if (this.state.selected === "radio-3") {
       this.state.newChoices.forEach(choice => {
         if (choice.value === "") {
-          this.setState({
-            renderError: true
-          });
+          alert("Choices Value is empty");
         } else {
           const updatedCreatedResult = {
             ...createResult(),
