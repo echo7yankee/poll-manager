@@ -52,30 +52,46 @@ class PollCreator extends Component {
         newResults: updatedNewResults
       });
     } else if (this.state.selected === "radio-2") {
-      const updatedCreatedResult = {
-        ...createResult(),
-        valueQuestion: this.question.current.value,
-        answersMultiple: this.state.newChoices
-      };
+      this.state.newChoices.forEach(choice => {
+        if (choice.value === "") {
+          this.setState({
+            renderError: true
+          });
+        } else {
+          const updatedCreatedResult = {
+            ...createResult(),
+            valueQuestion: this.question.current.value,
+            answersMultiple: this.state.newChoices
+          };
 
-      const updatedNewResults = [...newResults, updatedCreatedResult];
+          const updatedNewResults = [...newResults, updatedCreatedResult];
 
-      this.setState({
-        newChoices: [createChoice(), createChoice()],
-        newResults: updatedNewResults
+          this.setState({
+            newChoices: [createChoice(), createChoice()],
+            newResults: updatedNewResults
+          });
+        }
       });
     } else if (this.state.selected === "radio-3") {
-      const updatedCreatedResult = {
-        ...createResult(),
-        valueQuestion: this.question.current.value,
-        answersSingle: this.state.newChoices
-      };
+      this.state.newChoices.forEach(choice => {
+        if (choice.value === "") {
+          this.setState({
+            renderError: true
+          });
+        } else {
+          const updatedCreatedResult = {
+            ...createResult(),
+            valueQuestion: this.question.current.value,
+            answersSingle: this.state.newChoices
+          };
 
-      const updatedNewResults = [...newResults, updatedCreatedResult];
+          const updatedNewResults = [...newResults, updatedCreatedResult];
 
-      this.setState({
-        newChoices: [createChoice(), createChoice()],
-        newResults: updatedNewResults
+          this.setState({
+            newChoices: [createChoice(), createChoice()],
+            newResults: updatedNewResults
+          });
+        }
       });
     }
   };
