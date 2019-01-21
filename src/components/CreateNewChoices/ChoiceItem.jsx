@@ -16,6 +16,7 @@ const ChoiceItem = ({
         type="text"
         value={InputValue}
         onChange={handleChoiceInput}
+        placeholder={index === 1 ? "Enter a choice" : null}
       />
       {index >= 3 ? (
         <span

@@ -9,7 +9,6 @@ function createResult() {
   return {
     id: uuid(),
     valueQuestion: "",
-    //valueAnswers: ""
     answersYN: "",
     answersMultiple: "",
     answersSingle: ""
@@ -49,6 +48,7 @@ class PollCreator extends Component {
       const updatedNewResults = [...newResults, updatedCreatedResult];
 
       this.setState({
+        newChoices: [createChoice(), createChoice()],
         newResults: updatedNewResults
       });
     } else if (this.state.selected === "radio-2") {
@@ -206,7 +206,12 @@ class PollCreator extends Component {
           <form className="polls-form" onSubmit={this.handleSubmit}>
             <div className="polls__inputs-container">
               <label className="polls-label">Question:</label>
-              <input className="polls-input" type="text" ref={this.question} />
+              <input
+                className="polls-input"
+                type="text"
+                placeholder="Enter a question"
+                ref={this.question}
+              />
             </div>
             {this.state.renderError && <p>Please insert a value</p>}
             <div className="polls__inputs-container">
@@ -272,7 +277,6 @@ class PollCreator extends Component {
             <PollResult
               key={result.id}
               question={result.valueQuestion}
-              //answers={result.valueAnswers}
               answersYN={result.answersYN}
               answersMultiple={result.answersMultiple}
               answersSingle={result.answersSingle}
