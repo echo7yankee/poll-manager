@@ -9,7 +9,7 @@ const PollResultItemSingle = ({ answersSingle }) => {
           <li key={answer.id}>
             {answer.value === "" ? null : (
               <label>
-                <input type="radio" /> {answer.value}
+                <input type="radio" disabled /> {answer.value}
               </label>
             )}
           </li>

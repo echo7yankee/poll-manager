@@ -8,24 +8,21 @@ import "../reusableStyle.css";
 
 const PollResult = ({
   question,
-  answers,
   index,
   handleDeleteResult,
   answersYN,
   answersMultiple,
   answersSingle
 }) => {
-  console.log(answers);
-
   const renderAnswers = () => {
     if (answersYN) {
       return (
         <div>
           <label>
-            <input type="radio" /> Yes
+            <input type="radio" disabled /> Yes
           </label>
           <label>
-            <input type="radio" /> No
+            <input type="radio" disabled /> No
           </label>
         </div>
       );
