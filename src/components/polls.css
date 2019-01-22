@@ -10,6 +10,10 @@
   border-radius: 5px;
 }
 
+.polls-container-edit {
+  margin: 5px auto !important;
+}
+
 .polls-header {
   color: #12223b;
   font-size: 25px;
@@ -82,6 +86,22 @@
   cursor: pointer;
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
   outline: none;
+}
+
+.edit-poll {
+  background-color: #32cd32 !important;
+}
+
+.cancel-poll {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: #82bfe0 !important;
+  font-weight: 400 !important;
+}
+
+.cancel-poll:hover {
+  color: #619dbd !important;
 }
 
 .add-poll:focus {
