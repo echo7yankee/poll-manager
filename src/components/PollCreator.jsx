@@ -4,6 +4,7 @@ import "./polls.css";
 import Choices from "./CreateNewChoices/Choices.jsx";
 import PollResult from "./PollResults/PollResult";
 import uuid from "uuid";
+import PollResultEdit from "./PollResults/PollResultEdit";
 
 function createResult() {
   return {
@@ -11,7 +12,8 @@ function createResult() {
     valueQuestion: "",
     answersYN: "",
     answersMultiple: "",
-    answersSingle: ""
+    answersSingle: "",
+    isEdit: false
   };
 }
 
@@ -129,6 +131,26 @@ class PollCreator extends Component {
   clearAllPolls = () => {
     this.setState({
       newResults: []
+    });
+  };
+
+  isEditable = id => {
+    this.setState(prevState => {
+      const newResults = [...prevState.newResults];
+      const indexResults = newResults.findIndex((result, index) => {
+        return result.id === id;
+      });
+
+      console.log(indexResults);
+
+      newResults[indexResults] = {
+        ...newResults[indexResults],
+        isEdit: !newResults[indexResults].isEdit
+      };
+
+      console.log(newResults[indexResults].isEdit);
+
+      return { newResults };
     });
   };
 
@@ -285,15 +307,22 @@ class PollCreator extends Component {
           </form>
         </div>
         {newResults.map((result, index) => {
-          return (
+          return result.isEdit === false ? (
             <PollResult
               key={result.id}
+              isEditable={() => this.isEditable(result.id)}
               question={result.valueQuestion}
               answersYN={result.answersYN}
               answersMultiple={result.answersMultiple}
               answersSingle={result.answersSingle}
               handleDeleteResult={() => this.handleDeleteResult(result.id)}
               index={index + 1}
+            />
+          ) : (
+            <PollResultEdit
+              key={result.id}
+              handleSubmit={this.handleSubmit}
+              isEditable={() => this.isEditable(result.id)}
             />
           );
         })}
