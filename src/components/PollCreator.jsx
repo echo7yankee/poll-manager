@@ -135,20 +135,55 @@ class PollCreator extends Component {
   };
 
   isEditable = id => {
+    // this.setState(prevState => {
+    //   const newResults = [...prevState.newResults];
+    //   const indexResults = newResults.findIndex((result, index) => {
+    //     return result.id === id;
+    //   });
+
+    //   newResults[indexResults] = {
+    //     ...newResults[indexResults],
+    //     isEdit: !newResults[indexResults].isEdit
+    //   };
+
+    //   return { newResults };
+    // });
+
     this.setState(prevState => {
       const newResults = [...prevState.newResults];
       const indexResults = newResults.findIndex((result, index) => {
         return result.id === id;
       });
 
-      console.log(indexResults);
+      console.log(newResults[indexResults].isEdit);
 
       newResults[indexResults] = {
         ...newResults[indexResults],
         isEdit: !newResults[indexResults].isEdit
       };
 
+      console.log(newResults[indexResults]);
       console.log(newResults[indexResults].isEdit);
+
+      return { newResults };
+    });
+  };
+
+  handleSubmitEdit = (e, id) => {
+    e.preventDefault();
+
+    this.setState(prevState => {
+      const newResults = [...prevState.newResults];
+      const indexResults = newResults.findIndex((result, index) => {
+        return result.id === id;
+      });
+
+      newResults[indexResults] = {
+        ...newResults[indexResults],
+        isEdit: false
+      };
+
+      console.log(indexResults);
 
       return { newResults };
     });
@@ -239,6 +274,12 @@ class PollCreator extends Component {
 
           <form className="polls-form" onSubmit={this.handleSubmit}>
             <div className="polls__inputs-container">
+              {this.state.newResults >= 0 ? null : (
+                <span className="polls-header-counter">
+                  {this.state.newResults.length}
+                </span>
+              )}
+
               <label className="polls-label">Question:</label>
               <input
                 className="polls-input"
@@ -321,7 +362,9 @@ class PollCreator extends Component {
           ) : (
             <PollResultEdit
               key={result.id}
-              handleSubmit={this.handleSubmit}
+              handleSubmitEdit={e => this.handleSubmitEdit(e, result.id)}
+              questionRef={this.question}
+              question={result.valueQuestion}
               isEditable={() => this.isEditable(result.id)}
             />
           );
