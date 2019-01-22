@@ -9,6 +9,7 @@ import "../reusableStyle.css";
 const PollResult = ({
   question,
   index,
+  isEditable,
   handleDeleteResult,
   answersYN,
   answersMultiple,
@@ -57,7 +58,7 @@ const PollResult = ({
       </div>
 
       <div className="btn-icons">
-        <span className="btn-edit">
+        <span className="btn-edit" onClick={isEditable}>
           <i className="fas fa-pencil-alt pencil-size" />
         </span>
 
