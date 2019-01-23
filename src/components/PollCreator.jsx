@@ -18,24 +18,33 @@ function createResult() {
 }
 
 function createChoice() {
-  return { id: uuid(), value: "" };
+  return {
+    id: uuid(),
+    value: ""
+  };
 }
 
 class PollCreator extends Component {
   constructor(props) {
     super(props);
-    this.question = React.createRef();
     this.state = {
       newChoices: [createChoice(), createChoice()],
       newResults: [],
       renderError: false,
       selected: "radio-1",
-      id: uuid()
+      id: uuid(),
+      value: ""
     };
   }
 
   //////////////////////////////
   // Methods for the Poll Components
+
+  handleInputChange = e => {
+    this.setState({
+      value: e.target.value
+    });
+  };
 
   createNewResult = () => {
     const { newResults } = this.state;
@@ -43,7 +52,7 @@ class PollCreator extends Component {
     if (this.state.selected === "radio-1") {
       const updatedCreatedResult = {
         ...createResult(),
-        valueQuestion: this.question.current.value,
+        valueQuestion: this.state.value,
         answersYN: "This will be an Yes/No"
       };
 
@@ -60,7 +69,7 @@ class PollCreator extends Component {
         } else {
           const updatedCreatedResult = {
             ...createResult(),
-            valueQuestion: this.question.current.value,
+            valueQuestion: this.state.value,
             answersMultiple: this.state.newChoices
           };
 
@@ -79,7 +88,7 @@ class PollCreator extends Component {
         } else {
           const updatedCreatedResult = {
             ...createResult(),
-            valueQuestion: this.question.current.value,
+            valueQuestion: this.state.value,
             answersSingle: this.state.newChoices
           };
 
@@ -97,18 +106,17 @@ class PollCreator extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    if (this.question.current.value === "") {
+    if (this.state.value === "") {
       this.setState({
         renderError: true
       });
     } else {
       this.setState({
-        renderError: false
+        renderError: false,
+        value: ""
       });
       this.createNewResult();
     }
-
-    this.question.current.value = "";
   };
 
   handleRadioChange = e => {
@@ -134,36 +142,25 @@ class PollCreator extends Component {
     });
   };
 
+  //////////////////////////////
+  // Methods for the Poll Components
+
+  //-----------------------------------//
+
+  ////////////////////////////////////////
+  //Edit Component
+
   isEditable = id => {
-    // this.setState(prevState => {
-    //   const newResults = [...prevState.newResults];
-    //   const indexResults = newResults.findIndex((result, index) => {
-    //     return result.id === id;
-    //   });
-
-    //   newResults[indexResults] = {
-    //     ...newResults[indexResults],
-    //     isEdit: !newResults[indexResults].isEdit
-    //   };
-
-    //   return { newResults };
-    // });
-
     this.setState(prevState => {
       const newResults = [...prevState.newResults];
       const indexResults = newResults.findIndex((result, index) => {
         return result.id === id;
       });
 
-      console.log(newResults[indexResults].isEdit);
-
       newResults[indexResults] = {
         ...newResults[indexResults],
         isEdit: !newResults[indexResults].isEdit
       };
-
-      console.log(newResults[indexResults]);
-      console.log(newResults[indexResults].isEdit);
 
       return { newResults };
     });
@@ -180,17 +177,18 @@ class PollCreator extends Component {
 
       newResults[indexResults] = {
         ...newResults[indexResults],
+        valueQuestion: this.question.current.value,
         isEdit: false
       };
 
-      console.log(indexResults);
+      console.log(newResults[indexResults]);
 
       return { newResults };
     });
   };
 
-  //////////////////////////////
-  // Methods for the Poll Components
+  ////////////////////////////////////////
+  //Edit Component
 
   //-------------------------------------//
 
@@ -285,7 +283,9 @@ class PollCreator extends Component {
                 className="polls-input"
                 type="text"
                 placeholder="Enter a question"
-                ref={this.question}
+                //ref={this.question}
+                value={this.state.value}
+                onChange={this.handleInputChange}
               />
             </div>
             {this.state.renderError && <p>Please insert a value</p>}
@@ -363,7 +363,6 @@ class PollCreator extends Component {
             <PollResultEdit
               key={result.id}
               handleSubmitEdit={e => this.handleSubmitEdit(e, result.id)}
-              questionRef={this.question}
               question={result.valueQuestion}
               isEditable={() => this.isEditable(result.id)}
             />
