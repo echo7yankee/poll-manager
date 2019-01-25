@@ -167,17 +167,18 @@ class PollCreator extends Component {
     });
   };
 
-  handleSubmitEdit = (e, updatedResult) => {
-    e.preventDefault();
+  handleSubmitEdit = updatedResult => {
+    //e.preventDefault();
 
     this.setState(prevState => {
-      const newResults = [updatedResult];
+      const newResults = [...prevState.newResults];
+      //const newResults = [updatedResult];
       const indexResults = newResults.findIndex((result, index) => {
         return result.id === updatedResult.id;
       });
 
       newResults[indexResults] = {
-        ...newResults[indexResults],
+        ...updatedResult,
         isEdit: false
       };
 
