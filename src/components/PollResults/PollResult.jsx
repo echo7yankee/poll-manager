@@ -7,9 +7,9 @@ import "./pollsResult.css";
 import "../reusableStyle.css";
 
 const PollResult = ({
-  question,
+  valueQuestion,
   index,
-  isEditable,
+  toggleEditable,
   handleDeleteResult,
   answersYN,
   answersMultiple,
@@ -50,7 +50,7 @@ const PollResult = ({
       <div className="polls__results">
         <label className="polls-label">Question:</label>
         <div className="polls-text-container">
-          <p className="polls-text">{question}</p>
+          <p className="polls-text">{valueQuestion}</p>
         </div>
       </div>
       <div className="polls__inputs-container">
@@ -58,7 +58,7 @@ const PollResult = ({
       </div>
 
       <div className="btn-icons">
-        <span className="btn-edit" onClick={isEditable}>
+        <span className="btn-edit" onClick={toggleEditable}>
           <i className="fas fa-pencil-alt pencil-size" />
         </span>
 
