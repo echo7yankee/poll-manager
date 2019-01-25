@@ -22,14 +22,10 @@ class PollResultEdit extends React.Component {
   render() {
     const { toggleEditable, handleSubmitEdit } = this.props;
     console.log(this.state.updatedResult.valueQuestion);
-    console.log(this.state.updatedResult);
 
     return (
       <div className="polls-container polls-container-edit">
-        <form
-          className="polls-form"
-          onSubmit={e => handleSubmitEdit(e, this.state.updatedResult)}
-        >
+        <form className="polls-form">
           <div className="polls__inputs-container">
             <label className="polls-label">Question:</label>
             <input
@@ -68,7 +64,11 @@ class PollResultEdit extends React.Component {
           </div>
 
           <div className="button-container">
-            <button className="add-poll edit-poll" type="submit">
+            <button
+              className="add-poll edit-poll"
+              type="button"
+              onClick={() => handleSubmitEdit(this.state.updatedResult)}
+            >
               Edit Poll
             </button>
             <button
