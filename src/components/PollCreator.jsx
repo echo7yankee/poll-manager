@@ -150,7 +150,8 @@ class PollCreator extends Component {
   ////////////////////////////////////////
   //Edit Component
 
-  isEditable = id => {
+  //toggleEditable
+  toggleEditable = id => {
     this.setState(prevState => {
       const newResults = [...prevState.newResults];
       const indexResults = newResults.findIndex((result, index) => {
@@ -166,22 +167,22 @@ class PollCreator extends Component {
     });
   };
 
-  handleSubmitEdit = (e, id) => {
+  handleSubmitEdit = (e, updatedResult) => {
     e.preventDefault();
 
     this.setState(prevState => {
-      const newResults = [...prevState.newResults];
+      const newResults = [updatedResult];
       const indexResults = newResults.findIndex((result, index) => {
-        return result.id === id;
+        return result.id === updatedResult.id;
       });
 
       newResults[indexResults] = {
         ...newResults[indexResults],
-        valueQuestion: this.question.current.value,
         isEdit: false
       };
 
-      console.log(newResults[indexResults]);
+      console.log(updatedResult, "from parent, but child parameter");
+      console.log(newResults[indexResults], "from parent");
 
       return { newResults };
     });
@@ -283,7 +284,6 @@ class PollCreator extends Component {
                 className="polls-input"
                 type="text"
                 placeholder="Enter a question"
-                //ref={this.question}
                 value={this.state.value}
                 onChange={this.handleInputChange}
               />
@@ -351,8 +351,8 @@ class PollCreator extends Component {
           return result.isEdit === false ? (
             <PollResult
               key={result.id}
-              isEditable={() => this.isEditable(result.id)}
-              question={result.valueQuestion}
+              toggleEditable={() => this.toggleEditable(result.id)}
+              valueQuestion={result.valueQuestion}
               answersYN={result.answersYN}
               answersMultiple={result.answersMultiple}
               answersSingle={result.answersSingle}
@@ -362,9 +362,10 @@ class PollCreator extends Component {
           ) : (
             <PollResultEdit
               key={result.id}
-              handleSubmitEdit={e => this.handleSubmitEdit(e, result.id)}
-              question={result.valueQuestion}
-              isEditable={() => this.isEditable(result.id)}
+              newResults={result}
+              renderError={this.state.renderError}
+              handleSubmitEdit={this.handleSubmitEdit}
+              toggleEditable={() => this.toggleEditable(result.id)}
             />
           );
         })}
