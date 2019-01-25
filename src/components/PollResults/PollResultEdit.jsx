@@ -3,29 +3,44 @@ import React from "react";
 class PollResultEdit extends React.Component {
   constructor(props) {
     super(props);
-    this.questionEdit = React.createRef();
     this.state = {
-      questionEdit: ""
+      updatedResult: this.props.newResults
     };
   }
 
+  handleInputChange = e => {
+    const updatedNewResults = {
+      ...this.state.updatedResult,
+      valueQuestion: e.target.value
+    };
+
+    this.setState({
+      updatedResult: updatedNewResults
+    });
+  };
+
   render() {
-    const { isEditable, handleSubmitEdit, question, questionRef } = this.props;
+    const { toggleEditable, handleSubmitEdit } = this.props;
+    console.log(this.state.updatedResult.valueQuestion);
+    console.log(this.state.updatedResult);
 
     return (
       <div className="polls-container polls-container-edit">
-        <form className="polls-form" onSubmit={handleSubmitEdit}>
+        <form
+          className="polls-form"
+          onSubmit={e => handleSubmitEdit(e, this.state.updatedResult)}
+        >
           <div className="polls__inputs-container">
             <label className="polls-label">Question:</label>
             <input
               className="polls-input"
               type="text"
               placeholder="Enter a question"
-              ref={this.questionEdit}
-              defaultValue={question}
+              value={this.state.updatedResult.valueQuestion}
+              onChange={this.handleInputChange}
             />
           </div>
-
+          {this.state.renderError && <p>Please insert a value</p>}
           <div className="polls__inputs-container">
             <label className="polls-label">Answers:</label>
             <div className="polls__radio-container">
@@ -59,7 +74,7 @@ class PollResultEdit extends React.Component {
             <button
               className="add-poll cancel-poll"
               type="button"
-              onClick={isEditable}
+              onClick={toggleEditable}
             >
               Cancel
             </button>
