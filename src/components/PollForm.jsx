@@ -2,66 +2,12 @@ import React, { Component } from "react";
 import "./polls.css";
 
 import Choices from "./CreateNewChoices/Choices.jsx";
-import uuid from "uuid";
-
-function createChoice() {
-  return {
-    id: uuid(),
-    value: ""
-  };
-}
 
 class PollForm extends Component {
   state = {
-    newChoices: [createChoice(), createChoice()],
     selected: "radio-1",
     renderError: false,
     updatedResults: this.props.updatedResults
-  };
-
-  addNewChoice = () => {
-    const updatedChoices = [...this.state.newChoices, createChoice()];
-    this.setState({
-      newChoices: updatedChoices
-    });
-  };
-
-  deleteNewChoice = id => {
-    if (this.state.newChoices.length > 2) {
-      const filteredChoices = this.state.newChoices.filter(newChoice => {
-        return newChoice.id !== id;
-      });
-
-      this.setState({
-        newChoices: filteredChoices
-      });
-    }
-  };
-
-  clearNewChoices = () => {
-    this.setState({
-      newChoices: [createChoice(), createChoice()]
-    });
-  };
-
-  getInputValue = (value, id, prevState) => {
-    const newChoices = [...prevState.newChoices];
-    const indexChoices = newChoices.findIndex((choice, index) => {
-      return choice.id === id;
-    });
-
-    newChoices[indexChoices] = {
-      ...newChoices[indexChoices],
-      value: value
-    };
-
-    return newChoices;
-  };
-
-  handleChoiceInput = (value, id) => {
-    this.setState(prevState => ({
-      newChoices: this.getInputValue(value, id, prevState)
-    }));
   };
 
   handleRadioChange = e => {
@@ -77,11 +23,11 @@ class PollForm extends Component {
     ) {
       return (
         <Choices
-          newChoices={this.state.newChoices}
-          deleteNewChoice={this.deleteNewChoice}
-          clearNewChoices={this.clearNewChoices}
-          addNewChoice={this.addNewChoice}
-          handleChoiceInput={this.handleChoiceInput}
+          newChoices={this.props.newChoices}
+          deleteNewChoice={this.props.deleteNewChoice}
+          clearNewChoices={this.props.clearNewChoices}
+          addNewChoice={this.props.addNewChoice}
+          handleChoiceInput={this.props.handleChoiceInput}
         />
       );
     } else if (this.state.selected === "radio-1") {
@@ -102,7 +48,7 @@ class PollForm extends Component {
       isEdit,
       toggleEdit
     } = this.props;
-    const { newChoices, selected } = this.state;
+    const { selected } = this.state;
 
     console.log(this.state.updatedResults, " From PollForm");
 
@@ -115,9 +61,7 @@ class PollForm extends Component {
 
           <form
             className="polls-form"
-            onSubmit={e =>
-              handleAddSubmit(e, createChoice(), newChoices, selected)
-            }
+            onSubmit={e => handleAddSubmit(e, selected)}
           >
             <div className="polls__inputs-container">
               {newResults >= 0 ? null : (
