@@ -4,7 +4,6 @@ import ChoiceItem from "./ChoiceItem.jsx";
 class Choices extends Component {
   render() {
     const { newChoices } = this.props;
-    console.log(newChoices);
 
     return (
       <div className="polls__choices-container">
