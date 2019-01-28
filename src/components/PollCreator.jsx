@@ -195,12 +195,6 @@ class PollCreator extends Component {
   ////////////////////////////////////////
   //Edit Methods
 
-  toggleEdit = () => {
-    this.setState({
-      toggleEdit: !this.state.toggleEdit
-    });
-  };
-
   toggleEditable = id => {
     this.setState(prevState => {
       const newResults = [...prevState.newResults];
@@ -217,20 +211,18 @@ class PollCreator extends Component {
     });
   };
 
-  handleSubmitEdit = updatedResult => {
+  handleSubmitEdit = updatedResults => {
     this.setState(prevState => {
       const newResults = [...prevState.newResults];
       const indexResults = newResults.findIndex((result, index) => {
-        return result.id === updatedResult.id;
+        return result.id === updatedResults.id;
       });
 
       newResults[indexResults] = {
-        ...updatedResult,
+        ...updatedResults,
         isEdit: false
       };
-
-      // console.log(updatedResult, "from parent, but child parameter");
-      // console.log(newResults[indexResults], "from parent");
+      console.log(updatedResults);
 
       return { newResults };
     });
@@ -276,7 +268,7 @@ class PollCreator extends Component {
             <PollForm
               handleSubmitEdit={this.handleSubmitEdit}
               newResults={this.state.newResults}
-              newChoice={this.state.newChoices}
+              newChoices={this.state.newChoices}
               updatedResults={result}
               key={result.id}
               value={result.valueQuestion}
