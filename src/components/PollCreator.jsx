@@ -5,6 +5,13 @@ import uuid from "uuid";
 import PollResult from "./PollResults/PollResult";
 import PollForm from "./PollForm";
 
+function createChoice() {
+  return {
+    id: uuid(),
+    value: ""
+  };
+}
+
 function createResult() {
   return {
     id: uuid(),
@@ -20,6 +27,7 @@ class PollCreator extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      newChoices: [createChoice(), createChoice()],
       newResults: [],
       renderError: false,
       selected: "radio-1",
@@ -28,6 +36,55 @@ class PollCreator extends Component {
       toggleEdit: false
     };
   }
+
+  ////////////////////////////
+  //
+  addNewChoice = () => {
+    const updatedChoices = [...this.state.newChoices, createChoice()];
+    this.setState({
+      newChoices: updatedChoices
+    });
+  };
+
+  deleteNewChoice = id => {
+    if (this.state.newChoices.length > 2) {
+      const filteredChoices = this.state.newChoices.filter(newChoice => {
+        return newChoice.id !== id;
+      });
+
+      this.setState({
+        newChoices: filteredChoices
+      });
+    }
+  };
+
+  clearNewChoices = () => {
+    this.setState({
+      newChoices: [createChoice(), createChoice()]
+    });
+  };
+
+  getInputValue = (value, id, prevState) => {
+    const newChoices = [...prevState.newChoices];
+    const indexChoices = newChoices.findIndex((choice, index) => {
+      return choice.id === id;
+    });
+
+    newChoices[indexChoices] = {
+      ...newChoices[indexChoices],
+      value: value
+    };
+
+    return newChoices;
+  };
+
+  handleChoiceInput = (value, id) => {
+    this.setState(prevState => ({
+      newChoices: this.getInputValue(value, id, prevState)
+    }));
+  };
+  ///////////////////////////
+  //
 
   //////////////////////////////
   // Methods for the Poll Components
@@ -38,7 +95,7 @@ class PollCreator extends Component {
     });
   };
 
-  handleAddSubmit = (e, createChoice, newChoices, selected) => {
+  handleAddSubmit = (e, selected) => {
     e.preventDefault();
 
     if (this.state.value === "") {
@@ -62,44 +119,44 @@ class PollCreator extends Component {
         const updatedNewResults = [...newResults, updatedCreatedResult];
 
         this.setState({
-          newChoices: [createChoice, createChoice],
-          newResults: updatedNewResults
+          newResults: updatedNewResults,
+          newChoices: [createChoice(), createChoice()]
         });
       } else if (selected === "radio-2") {
-        newChoices.forEach(choice => {
+        this.state.newChoices.forEach(choice => {
           if (choice.value === "") {
             alert("Choices Value is empty");
           } else {
             const updatedCreatedResult = {
               ...createResult(),
               valueQuestion: this.state.value,
-              answersMultiple: newChoices
+              answersMultiple: this.state.newChoices
             };
 
             const updatedNewResults = [...newResults, updatedCreatedResult];
 
             this.setState({
-              newChoices: [createChoice, createChoice],
-              newResults: updatedNewResults
+              newResults: updatedNewResults,
+              newChoices: [createChoice(), createChoice()]
             });
           }
         });
       } else if (selected === "radio-3") {
-        newChoices.forEach(choice => {
+        this.state.newChoices.forEach(choice => {
           if (choice.value === "") {
             alert("Choices Value is empty");
           } else {
             const updatedCreatedResult = {
               ...createResult(),
               valueQuestion: this.state.value,
-              answersSingle: newChoices
+              answersSingle: this.state.newChoices
             };
 
             const updatedNewResults = [...newResults, updatedCreatedResult];
 
             this.setState({
-              newChoices: [createChoice, createChoice],
-              newResults: updatedNewResults
+              newResults: updatedNewResults,
+              newChoices: [createChoice(), createChoice()]
             });
           }
         });
@@ -191,7 +248,12 @@ class PollCreator extends Component {
           handleAddSubmit={this.handleAddSubmit}
           renderError={this.state.renderError}
           handleInputChange={this.handleInputChange}
+          handleChoiceInput={this.handleChoiceInput}
+          addNewChoice={this.addNewChoice}
+          deleteNewChoice={this.deleteNewChoice}
+          clearNewChoices={this.clearNewChoices}
           newResults={this.state.newResults}
+          newChoices={this.state.newChoices}
           toggleEditable={this.toggleEditable}
           handleDeleteResult={this.handleDeleteResult}
           clearAllPolls={this.clearAllPolls}
@@ -214,10 +276,15 @@ class PollCreator extends Component {
             <PollForm
               handleSubmitEdit={this.handleSubmitEdit}
               newResults={this.state.newResults}
+              newChoice={this.state.newChoices}
               updatedResults={result}
               key={result.id}
               value={result.valueQuestion}
               handleInputChange={this.handleInputChange}
+              handleChoiceInput={this.handleChoiceInput}
+              addNewChoice={this.addNewChoice}
+              deleteNewChoice={this.deleteNewChoice}
+              clearNewChoices={this.clearNewChoices}
               toggleEditable={() => this.toggleEditable(result.id)}
               // renderError={this.state.renderError}
             />
