@@ -2,12 +2,163 @@ import React, { Component } from "react";
 import "./polls.css";
 
 import Choices from "./CreateNewChoices/Choices.jsx";
+import uuid from "uuid";
+
+function createChoice() {
+  return {
+    id: uuid(),
+    value: ""
+  };
+}
 
 class PollForm extends Component {
-  state = {
-    selected: "radio-1",
-    renderError: false,
-    updatedResults: this.props.updatedResults
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      newChoices: [createChoice(), createChoice()],
+      selected: props.results.selected,
+      results: props.results,
+      renderError: false,
+      valueQ: props.results.valueQuestion,
+      valueC: ""
+    };
+  }
+
+  ///////////////////////////////
+  // New choices methods
+  addNewChoice = () => {
+    const updatedChoices = [...this.state.newChoices, createChoice()];
+    this.setState({
+      newChoices: updatedChoices
+    });
+  };
+
+  deleteNewChoice = id => {
+    if (this.state.newChoices.length > 2) {
+      const filteredChoices = this.state.newChoices.filter(newChoice => {
+        return newChoice.id !== id;
+      });
+
+      this.setState({
+        newChoices: filteredChoices
+      });
+    }
+  };
+
+  clearNewChoices = () => {
+    this.setState({
+      newChoices: [createChoice(), createChoice()]
+    });
+  };
+
+  getInputValue = (value, id, prevState) => {
+    const newChoices = [...prevState.newChoices];
+    const indexChoices = newChoices.findIndex((choice, index) => {
+      return choice.id === id;
+    });
+
+    newChoices[indexChoices] = {
+      ...newChoices[indexChoices],
+      value: value
+    };
+
+    return newChoices;
+  };
+
+  handleChoiceInput = (value, id) => {
+    this.setState(prevState => ({
+      newChoices: this.getInputValue(value, id, prevState)
+    }));
+  };
+
+  ///////////////////////////////
+  // New choices methods
+
+  handleInputChange = e => {
+    this.setState({
+      valueQ: e.target.value
+    });
+  };
+
+  submitResult = e => {
+    e.preventDefault();
+
+    const { results, selected } = this.state;
+    const { handleSubmit } = this.props;
+
+    if (this.state.valueQ === "") {
+      this.setState({
+        renderError: true
+      });
+    } else {
+      this.setState({
+        renderError: false,
+        valueQ: ""
+      });
+
+      if (selected === "radio-1") {
+        const updatedNewResults = {
+          ...this.props.results,
+          valueQuestion: this.state.valueQ,
+          answersYN: "Yes/No",
+          answersMultiple: "",
+          answersSingle: "",
+          selected
+        };
+
+        this.setState({
+          results: updatedNewResults,
+          newChoices: [createChoice(), createChoice()]
+        });
+
+        handleSubmit(updatedNewResults);
+      } else if (selected === "radio-2") {
+        this.state.newChoices.forEach(choice => {
+          if (choice.value === "") {
+            alert("Choices Value is empty");
+          } else {
+            const updatedNewResults = {
+              ...this.props.results,
+              valueQuestion: this.state.valueQ,
+              answersMultiple: this.state.newChoices,
+              answersSingle: "",
+              answersYN: "",
+              selected
+            };
+
+            this.setState({
+              results: updatedNewResults,
+              newChoices: [createChoice(), createChoice()]
+            });
+
+            handleSubmit(updatedNewResults);
+          }
+        });
+      } else if (selected === "radio-3") {
+        this.state.newChoices.forEach(choice => {
+          if (choice.value === "") {
+            alert("Choices Value is empty");
+          } else {
+            const updatedNewResults = {
+              ...this.props.results,
+              valueQuestion: this.state.valueQ,
+              answersSingle: this.state.newChoices,
+              answersMultiple: "",
+              answersYN: "",
+              selected
+            };
+
+            this.setState({
+              results: updatedNewResults,
+              newChoices: [createChoice(), createChoice()]
+            });
+
+            handleSubmit(updatedNewResults);
+          }
+        });
+      }
+    }
   };
 
   handleRadioChange = e => {
@@ -23,11 +174,11 @@ class PollForm extends Component {
     ) {
       return (
         <Choices
-          newChoices={this.props.newChoices}
-          deleteNewChoice={this.props.deleteNewChoice}
-          clearNewChoices={this.props.clearNewChoices}
-          addNewChoice={this.props.addNewChoice}
-          handleChoiceInput={this.props.handleChoiceInput}
+          newChoices={this.state.newChoices}
+          deleteNewChoice={this.deleteNewChoice}
+          clearNewChoices={this.clearNewChoices}
+          addNewChoice={this.addNewChoice}
+          handleChoiceInput={this.handleChoiceInput}
         />
       );
     } else if (this.state.selected === "radio-1") {
@@ -37,20 +188,12 @@ class PollForm extends Component {
 
   render() {
     const {
-      handleAddSubmit,
-      handleInputChange,
-      value,
-      renderError,
       newResults,
       toggleEditable,
-      handleSubmitEdit,
       clearAllPolls,
-      isEdit,
       toggleEdit
     } = this.props;
-    const { selected } = this.state;
-
-    console.log(this.state.updatedResults, " From PollForm");
+    const { selected, renderError, valueQ } = this.state;
 
     return (
       <>
@@ -59,10 +202,7 @@ class PollForm extends Component {
             <h1 className="polls-header">ADD POLLS</h1>
           ) : null}
 
-          <form
-            className="polls-form"
-            onSubmit={e => handleAddSubmit(e, selected)}
-          >
+          <form className="polls-form" onSubmit={this.submitResult}>
             <div className="polls__inputs-container">
               {newResults >= 0 ? null : (
                 <span className="polls-header-counter">
@@ -75,8 +215,8 @@ class PollForm extends Component {
                 className="polls-input"
                 type="text"
                 placeholder="Enter a question"
-                value={value}
-                onChange={handleInputChange}
+                value={valueQ}
+                onChange={this.handleInputChange}
               />
             </div>
             {renderError && <p>Please insert a value</p>}
@@ -89,7 +229,7 @@ class PollForm extends Component {
                       className="polls-radio"
                       type="radio"
                       value="radio-1"
-                      checked={this.state.selected === "radio-1"}
+                      checked={selected === "radio-1"}
                       onChange={this.handleRadioChange}
                     />
                     Yes/No Form
@@ -115,7 +255,7 @@ class PollForm extends Component {
                       className="polls-radio"
                       type="radio"
                       value="radio-3"
-                      checked={this.state.selected === "radio-3"}
+                      checked={selected === "radio-3"}
                       onChange={this.handleRadioChange}
                     />
                     Single choice
@@ -130,11 +270,7 @@ class PollForm extends Component {
                   Add Poll
                 </button>
               ) : (
-                <button
-                  className="add-poll edit-poll"
-                  type="button"
-                  onClick={() => handleSubmitEdit(this.state.updatedResults)}
-                >
+                <button className="add-poll edit-poll" type="submit">
                   Edit Poll
                 </button>
               )}
