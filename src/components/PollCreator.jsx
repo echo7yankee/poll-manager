@@ -32,9 +32,6 @@ class PollCreator extends Component {
     };
   }
 
-  //////////////////////////////
-  // Methods for the PollResult Component
-
   //@todo rename func to addQuestion
   handleAddSubmit = updatedResults => {
     const updatedCreatedResult = {
@@ -67,14 +64,6 @@ class PollCreator extends Component {
       newResults: []
     });
   };
-
-  //////////////////////////////
-  // Methods for the PollResult Component
-
-  //-----------------------------------//
-
-  ////////////////////////////////////////
-  //Edit Methods
 
   toggleEditable = id => {
     this.setState(prevState => {
@@ -109,9 +98,6 @@ class PollCreator extends Component {
       return { newResults };
     });
   };
-
-  ////////////////////////////////////////
-  //Edit methods
 
   render() {
     const { newResults } = this.state;
