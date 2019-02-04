@@ -25,7 +25,7 @@ function question() {
     answersSingle: "",
     // @todo rename selected -> type
     // @todo type values: "YES_NO", "MULTIPLE_CHOICE", ...
-    selected: "radio-1",
+    type: "radio-1",
     isEdit: false,
     // @todo remove (astea-s answers)
     newChoices: [createChoice(), createChoice()]

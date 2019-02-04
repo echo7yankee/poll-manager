@@ -17,7 +17,7 @@ class PollForm extends Component {
 
     this.state = {
       newChoices: props.choices,
-      selected: props.results.selected,
+      type: props.results.type,
       results: props.results,
       renderError: false,
       valueQ: props.results.value
@@ -81,7 +81,7 @@ class PollForm extends Component {
   submitResult = e => {
     e.preventDefault();
 
-    const { selected } = this.state;
+    const { type } = this.state;
     const { handleSubmit } = this.props;
 
     if (this.state.valueQ === "") {
@@ -94,7 +94,7 @@ class PollForm extends Component {
         valueQ: ""
       });
 
-      if (selected === "radio-1") {
+      if (type === "radio-1") {
         const updatedNewResults = {
           ...this.props.results,
           value: this.state.valueQ,
@@ -102,7 +102,7 @@ class PollForm extends Component {
           answersMultiple: "",
           answersSingle: "",
           newChoices: [createChoice(), createChoice()],
-          selected
+          type
         };
 
         this.setState({
@@ -111,7 +111,7 @@ class PollForm extends Component {
         });
 
         handleSubmit(updatedNewResults);
-      } else if (selected === "radio-2") {
+      } else if (type === "radio-2") {
         this.state.newChoices.forEach(choice => {
           if (choice.value === "") {
             alert("Choices Value is empty");
@@ -123,7 +123,7 @@ class PollForm extends Component {
               answersSingle: "",
               answersYN: "",
               newChoices: this.state.newChoices,
-              selected
+              type
             };
 
             this.setState({
@@ -134,7 +134,7 @@ class PollForm extends Component {
             handleSubmit(updatedNewResults);
           }
         });
-      } else if (selected === "radio-3") {
+      } else if (type === "radio-3") {
         this.state.newChoices.forEach(choice => {
           if (choice.value === "") {
             alert("Choices Value is empty");
@@ -146,7 +146,7 @@ class PollForm extends Component {
               answersMultiple: "",
               answersYN: "",
               newChoices: this.state.newChoices,
-              selected
+              type
             };
 
             this.setState({
@@ -163,14 +163,14 @@ class PollForm extends Component {
 
   handleRadioInput = e => {
     this.setState({
-      selected: e.target.value
+      type: e.target.value
     });
   };
 
   renderChoicesComponent = () => {
-    const { selected } = this.state;
+    const { type } = this.state;
 
-    if (selected === "radio-2" || selected === "radio-3") {
+    if (type === "radio-2" || type === "radio-3") {
       return (
         <Choices
           results={this.state.results}
@@ -181,7 +181,7 @@ class PollForm extends Component {
           handleChoiceInput={this.handleChoiceInput}
         />
       );
-    } else if (selected === "radio-1") {
+    } else if (type === "radio-1") {
       return null;
     }
   };
@@ -196,7 +196,7 @@ class PollForm extends Component {
       clearAllResults,
       toggleEdit
     } = this.props;
-    const { selected, renderError, valueQ } = this.state;
+    const { type, renderError, valueQ } = this.state;
 
     return (
       <>
@@ -232,7 +232,7 @@ class PollForm extends Component {
                       className="polls-radio"
                       type="radio"
                       value="radio-1"
-                      checked={selected === "radio-1"}
+                      checked={type === "radio-1"}
                       onChange={this.handleRadioInput}
                     />
                     Yes/No Form
@@ -245,7 +245,7 @@ class PollForm extends Component {
                       className="polls-radio"
                       type="radio"
                       value="radio-2"
-                      checked={this.state.selected === "radio-2"}
+                      checked={this.state.type === "radio-2"}
                       onChange={this.handleRadioInput}
                     />
                     Multiple choice form
@@ -258,7 +258,7 @@ class PollForm extends Component {
                       className="polls-radio"
                       type="radio"
                       value="radio-3"
-                      checked={selected === "radio-3"}
+                      checked={type === "radio-3"}
                       onChange={this.handleRadioInput}
                     />
                     Single choice
