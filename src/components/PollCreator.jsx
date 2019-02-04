@@ -110,6 +110,7 @@ class PollCreator extends Component {
         <PollForm
           choices={createQuestion().answers}
           results={createQuestion()}
+          handleSubmit={this.addQuestion}
           newResults={this.state.newResults}
           toggleEditable={this.toggleEditable}
           clearAllResults={this.clearAllResults}
