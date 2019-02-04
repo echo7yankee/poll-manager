@@ -63,7 +63,7 @@ class PollCreator extends Component {
     });
   };
 
-  clearAllPolls = () => {
+  clearAllResults = () => {
     this.setState({
       newResults: []
     });
@@ -126,7 +126,7 @@ class PollCreator extends Component {
           newResults={this.state.newResults}
           toggleEditable={this.toggleEditable}
           handleDeleteResult={this.handleDeleteResult}
-          clearAllPolls={this.clearAllPolls}
+          clearAllResults={this.clearAllResults}
           toggleEdit={false}
         />
         {newResults.map((result, index) => {
