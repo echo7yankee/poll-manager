@@ -141,6 +141,8 @@ class PollCreator extends Component {
               key={result.id}
               toggleEditable={() => this.toggleEditable(result.id)}
               value={result.value}
+              type={result.type}
+              answers={result.answers}
               answersYN={result.answersYN}
               answersMultiple={result.answersMultiple}
               answersSingle={result.answersSingle}
