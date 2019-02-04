@@ -6,6 +6,13 @@ import uuid from "uuid";
 import PollResult from "./PollResults/PollResult";
 import PollForm from "./PollForm";
 
+function createChoice() {
+  return {
+    id: uuid(),
+    value: ""
+  };
+}
+
 function createResult() {
   return {
     id: uuid(),
@@ -14,7 +21,8 @@ function createResult() {
     answersMultiple: "",
     answersSingle: "",
     selected: "radio-1",
-    isEdit: false
+    isEdit: false,
+    newChoices: [createChoice(), createChoice()]
   };
 }
 
@@ -40,7 +48,7 @@ class PollCreator extends Component {
       newResults: updatedNewResults
     });
 
-    console.log(updatedResults, "from poll creator");
+    // console.log(updatedResults, "from poll creator");
     console.log("From poll creator", updatedNewResults);
   };
 
@@ -98,8 +106,6 @@ class PollCreator extends Component {
         isEdit: false
       };
 
-      //console.log(updatedResults);
-
       return { newResults };
     });
   };
@@ -113,6 +119,7 @@ class PollCreator extends Component {
     return (
       <>
         <PollForm
+          choices={createResult().newChoices}
           results={createResult()}
           handleSubmit={this.handleAddSubmit}
           renderError={this.state.renderError}
@@ -121,7 +128,6 @@ class PollCreator extends Component {
           handleDeleteResult={this.handleDeleteResult}
           clearAllPolls={this.clearAllPolls}
           toggleEdit={false}
-          value={this.state.value}
         />
         {newResults.map((result, index) => {
           return result.isEdit === false ? (
@@ -140,6 +146,7 @@ class PollCreator extends Component {
               key={result.id}
               handleSubmit={this.handleEditSubmit}
               newResults={this.state.newResults}
+              choices={result.newChoices}
               results={result}
               value={result.valueQuestion}
               toggleEditable={() => this.toggleEditable(result.id)}
