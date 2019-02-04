@@ -13,15 +13,21 @@ function createChoice() {
   };
 }
 
+// @todo rename result -> question
 function question() {
   return {
     id: uuid(),
+    // @todo rename -> value
     valueQuestion: "",
+    // @todo have only 1 answers arr
     answersYN: "",
     answersMultiple: "",
     answersSingle: "",
+    // @todo rename selected -> type
+    // @todo type values: "YES_NO", "MULTIPLE_CHOICE", ...
     selected: "radio-1",
     isEdit: false,
+    // @todo remove (astea-s answers)
     newChoices: [createChoice(), createChoice()]
   };
 }
