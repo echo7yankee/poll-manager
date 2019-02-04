@@ -13,7 +13,7 @@ function createChoice() {
   };
 }
 
-function question() {
+function createQuestion() {
   return {
     id: uuid(),
     value: "",
@@ -116,8 +116,8 @@ class PollCreator extends Component {
     return (
       <>
         <PollForm
-          choices={question().answers}
-          results={question()}
+          choices={createQuestion().answers}
+          results={createQuestion()}
           handleSubmit={this.handleAddSubmit}
           renderError={this.state.renderError}
           newResults={this.state.newResults}
