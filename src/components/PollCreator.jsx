@@ -82,7 +82,7 @@ class PollCreator extends Component {
   };
 
   // @todo rename func to editQuestion
-  handleEditSubmit = updatedResults => {
+  editQuestion = updatedResults => {
     console.log("From edit submit", updatedResults);
     this.setState(prevState => {
       const newResults = [...prevState.newResults];
@@ -135,7 +135,7 @@ class PollCreator extends Component {
           ) : (
             <PollForm
               key={result.id}
-              handleSubmit={this.handleEditSubmit}
+              handleSubmit={this.editQuestion}
               newResults={this.state.newResults}
               choices={result.answers}
               results={result}
