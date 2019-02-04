@@ -13,19 +13,13 @@ function createChoice() {
   };
 }
 
-// @todo rename result -> question
 function question() {
   return {
     id: uuid(),
-    // @todo rename -> value
     value: "",
-    // @todo have only 1 answers arr
     answers: [createChoice(), createChoice()],
-    // @todo rename selected -> type
-    // @todo type values: "YES_NO", "MULTIPLE_CHOICE", ...
     type: "YES_NO",
     isEdit: false
-    // @todo remove (astea-s answers)
   };
 }
 
