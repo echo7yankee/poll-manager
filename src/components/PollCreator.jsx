@@ -18,7 +18,7 @@ function question() {
   return {
     id: uuid(),
     // @todo rename -> value
-    valueQuestion: "",
+    value: "",
     // @todo have only 1 answers arr
     answersYN: "",
     answersMultiple: "",
@@ -140,7 +140,7 @@ class PollCreator extends Component {
             <PollResult
               key={result.id}
               toggleEditable={() => this.toggleEditable(result.id)}
-              valueQuestion={result.valueQuestion}
+              value={result.value}
               answersYN={result.answersYN}
               answersMultiple={result.answersMultiple}
               answersSingle={result.answersSingle}
@@ -154,7 +154,7 @@ class PollCreator extends Component {
               newResults={this.state.newResults}
               choices={result.newChoices}
               results={result}
-              value={result.valueQuestion}
+              value={result.value}
               toggleEditable={() => this.toggleEditable(result.id)}
             />
           );

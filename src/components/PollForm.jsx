@@ -20,7 +20,7 @@ class PollForm extends Component {
       selected: props.results.selected,
       results: props.results,
       renderError: false,
-      valueQ: props.results.valueQuestion
+      valueQ: props.results.value
     };
   }
 
@@ -97,7 +97,7 @@ class PollForm extends Component {
       if (selected === "radio-1") {
         const updatedNewResults = {
           ...this.props.results,
-          valueQuestion: this.state.valueQ,
+          value: this.state.valueQ,
           answersYN: "Yes/No",
           answersMultiple: "",
           answersSingle: "",
@@ -118,7 +118,7 @@ class PollForm extends Component {
           } else {
             const updatedNewResults = {
               ...this.props.results,
-              valueQuestion: this.state.valueQ,
+              value: this.state.valueQ,
               answersMultiple: this.state.newChoices,
               answersSingle: "",
               answersYN: "",
@@ -141,7 +141,7 @@ class PollForm extends Component {
           } else {
             const updatedNewResults = {
               ...this.props.results,
-              valueQuestion: this.state.valueQ,
+              value: this.state.valueQ,
               answersSingle: this.state.newChoices,
               answersMultiple: "",
               answersYN: "",

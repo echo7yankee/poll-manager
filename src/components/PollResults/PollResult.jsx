@@ -7,7 +7,7 @@ import "./pollsResult.css";
 import "../reusableStyle.css";
 
 const PollResult = ({
-  valueQuestion,
+  value,
   index,
   toggleEditable,
   handleDeleteResult,
@@ -50,7 +50,7 @@ const PollResult = ({
       <div className="polls__results">
         <label className="polls-label">Question:</label>
         <div className="polls-text-container">
-          <p className="polls-text">{valueQuestion}</p>
+          <p className="polls-text">{value}</p>
         </div>
       </div>
       <div className="polls__inputs-container">
