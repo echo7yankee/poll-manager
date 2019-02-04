@@ -5,16 +5,18 @@ import "../reusableStyle.css";
 const ChoiceItem = ({
   deleteNewChoice,
   handleChoiceInput,
-  InputValue,
+  inputValue,
   index
 }) => {
+  console.log(inputValue, " input value ");
+
   return (
     <div className="polls__choices">
       <label className="polls__choices-label">Choice # {index}</label>
       <input
         className="polls__choices-input"
         type="text"
-        value={InputValue}
+        value={inputValue}
         onChange={handleChoiceInput}
         placeholder={index === 1 ? "Enter a choice" : null}
       />
