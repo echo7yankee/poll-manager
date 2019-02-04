@@ -33,7 +33,7 @@ class Choices extends Component {
           + Add new choice
         </button>
         {newChoices.length > 2 && (
-          <button className="add-choice" onClick={this.props.clearNewChoices}>
+          <button className="add-choice" onClick={this.props.clearAllChoices}>
             Clear Choices
           </button>
         )}

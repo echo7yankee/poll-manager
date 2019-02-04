@@ -45,7 +45,7 @@ class PollForm extends Component {
     }
   };
 
-  clearNewChoices = () => {
+  clearAllChoices = () => {
     this.setState({
       newChoices: [createChoice(), createChoice()]
     });
