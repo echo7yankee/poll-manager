@@ -33,7 +33,7 @@ class PollCreator extends Component {
   }
 
   //@todo rename func to addQuestion
-  handleAddSubmit = updatedResults => {
+  addQuestion = updatedResults => {
     const updatedCreatedResult = {
       ...updatedResults
     };
@@ -110,7 +110,7 @@ class PollCreator extends Component {
         <PollForm
           choices={createQuestion().answers}
           results={createQuestion()}
-          handleSubmit={this.handleAddSubmit}
+          handleSubmit={this.addQuestion}
           renderError={this.state.renderError}
           newResults={this.state.newResults}
           toggleEditable={this.toggleEditable}
