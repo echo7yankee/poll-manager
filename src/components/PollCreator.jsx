@@ -110,11 +110,8 @@ class PollCreator extends Component {
         <PollForm
           choices={createQuestion().answers}
           results={createQuestion()}
-          handleSubmit={this.addQuestion}
-          renderError={this.state.renderError}
           newResults={this.state.newResults}
           toggleEditable={this.toggleEditable}
-          handleDeleteResult={this.handleDeleteResult}
           clearAllResults={this.clearAllResults}
           toggleEdit={false}
         />
@@ -126,9 +123,6 @@ class PollCreator extends Component {
               value={result.value}
               type={result.type}
               answers={result.answers}
-              answersYN={result.answersYN}
-              answersMultiple={result.answersMultiple}
-              answersSingle={result.answersSingle}
               handleDeleteResult={() => this.handleDeleteResult(result.id)}
               index={index + 1}
             />
