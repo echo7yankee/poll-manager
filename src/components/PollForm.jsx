@@ -16,12 +16,11 @@ class PollForm extends Component {
     super(props);
 
     this.state = {
-      newChoices: [createChoice(), createChoice()],
+      newChoices: props.choices,
       selected: props.results.selected,
       results: props.results,
       renderError: false,
-      valueQ: props.results.valueQuestion,
-      valueC: ""
+      valueQ: props.results.valueQuestion
     };
   }
 
@@ -52,24 +51,22 @@ class PollForm extends Component {
     });
   };
 
-  getInputValue = (value, id, prevState) => {
-    const newChoices = [...prevState.newChoices];
-    const indexChoices = newChoices.findIndex((choice, index) => {
-      return choice.id === id;
-    });
-
-    newChoices[indexChoices] = {
-      ...newChoices[indexChoices],
-      value: value
-    };
-
-    return newChoices;
-  };
+  //getInputValue = (value, id, prevState) => {};
 
   handleChoiceInput = (value, id) => {
-    this.setState(prevState => ({
-      newChoices: this.getInputValue(value, id, prevState)
-    }));
+    this.setState(prevState => {
+      const newChoices = [...prevState.newChoices];
+      const indexChoices = newChoices.findIndex((choice, index) => {
+        return choice.id === id;
+      });
+
+      newChoices[indexChoices] = {
+        ...newChoices[indexChoices],
+        value: value
+      };
+
+      return { newChoices };
+    });
   };
 
   ///////////////////////////////
@@ -84,7 +81,7 @@ class PollForm extends Component {
   submitResult = e => {
     e.preventDefault();
 
-    const { results, selected } = this.state;
+    const { selected } = this.state;
     const { handleSubmit } = this.props;
 
     if (this.state.valueQ === "") {
@@ -104,6 +101,7 @@ class PollForm extends Component {
           answersYN: "Yes/No",
           answersMultiple: "",
           answersSingle: "",
+          newChoices: [createChoice(), createChoice()],
           selected
         };
 
@@ -124,6 +122,7 @@ class PollForm extends Component {
               answersMultiple: this.state.newChoices,
               answersSingle: "",
               answersYN: "",
+              newChoices: this.state.newChoices,
               selected
             };
 
@@ -146,6 +145,7 @@ class PollForm extends Component {
               answersSingle: this.state.newChoices,
               answersMultiple: "",
               answersYN: "",
+              newChoices: this.state.newChoices,
               selected
             };
 
@@ -174,6 +174,7 @@ class PollForm extends Component {
     ) {
       return (
         <Choices
+          results={this.state.results}
           newChoices={this.state.newChoices}
           deleteNewChoice={this.deleteNewChoice}
           clearNewChoices={this.clearNewChoices}
@@ -187,6 +188,9 @@ class PollForm extends Component {
   };
 
   render() {
+    // console.log(this.props.choices, "from props");
+    // console.log(this.state.newChoices, "from state");
+
     const {
       newResults,
       toggleEditable,
