@@ -1,6 +1,5 @@
 import React from "react";
-import PollResultItemMultiple from "./PollResultItemMultiple";
-import PollResultItemSingle from "./PollResultItemSingle";
+import PollResultChoices from "./PollResultChoices";
 
 import "../polls.css";
 import "./pollsResult.css";
@@ -11,12 +10,11 @@ const PollResult = ({
   index,
   toggleEditable,
   handleDeleteResult,
-  answersYN,
-  answersMultiple,
-  answersSingle
+  answers,
+  type
 }) => {
   const renderAnswers = () => {
-    if (answersYN) {
+    if (type === "YES_NO") {
       return (
         <div>
           <label>
@@ -27,18 +25,8 @@ const PollResult = ({
           </label>
         </div>
       );
-    } else if (answersMultiple) {
-      return (
-        <div className="polls-list-container">
-          <PollResultItemMultiple answersMultiple={answersMultiple} />
-        </div>
-      );
-    } else if (answersSingle) {
-      return (
-        <div className="polls-list-container">
-          <PollResultItemSingle answersSingle={answersSingle} />
-        </div>
-      );
+    } else {
+      return <PollResultChoices type={type} answers={answers} />;
     }
   };
 

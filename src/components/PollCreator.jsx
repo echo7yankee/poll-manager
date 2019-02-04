@@ -21,12 +21,9 @@ function question() {
     value: "",
     // @todo have only 1 answers arr
     answers: [createChoice(), createChoice()],
-    answersYN: "",
-    answersMultiple: "",
-    answersSingle: "",
     // @todo rename selected -> type
     // @todo type values: "YES_NO", "MULTIPLE_CHOICE", ...
-    type: "radio-1",
+    type: "YES_NO",
     isEdit: false
     // @todo remove (astea-s answers)
   };

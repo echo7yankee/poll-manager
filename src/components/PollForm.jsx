@@ -94,7 +94,7 @@ class PollForm extends Component {
         valueQ: ""
       });
 
-      if (type === "radio-1") {
+      if (type === "YES_NO") {
         const updatedNewResults = {
           ...this.props.results,
           value: this.state.valueQ,
@@ -108,7 +108,7 @@ class PollForm extends Component {
         });
 
         handleSubmit(updatedNewResults);
-      } else if (type === "radio-2") {
+      } else if (type === "MULTIPLE_CHOICE") {
         this.state.answers.forEach(choice => {
           if (choice.value === "") {
             alert("Choices Value is empty");
@@ -128,7 +128,7 @@ class PollForm extends Component {
             handleSubmit(updatedNewResults);
           }
         });
-      } else if (type === "radio-3") {
+      } else if (type === "SINGLE_CHOICE") {
         this.state.answers.forEach(choice => {
           if (choice.value === "") {
             alert("Choices Value is empty");
@@ -161,7 +161,7 @@ class PollForm extends Component {
   renderChoicesComponent = () => {
     const { type } = this.state;
 
-    if (type === "radio-2" || type === "radio-3") {
+    if (type === "MULTIPLE_CHOICE" || type === "SINGLE_CHOICE") {
       return (
         <Choices
           results={this.state.results}
@@ -172,7 +172,7 @@ class PollForm extends Component {
           handleChoiceInput={this.handleChoiceInput}
         />
       );
-    } else if (type === "radio-1") {
+    } else if (type === "YES_NO") {
       return null;
     }
   };
@@ -222,8 +222,8 @@ class PollForm extends Component {
                     <input
                       className="polls-radio"
                       type="radio"
-                      value="radio-1"
-                      checked={type === "radio-1"}
+                      value="YES_NO"
+                      checked={type === "YES_NO"}
                       onChange={this.handleRadioInput}
                     />
                     Yes/No Form
@@ -235,8 +235,8 @@ class PollForm extends Component {
                     <input
                       className="polls-radio"
                       type="radio"
-                      value="radio-2"
-                      checked={this.state.type === "radio-2"}
+                      value="MULTIPLE_CHOICE"
+                      checked={this.state.type === "MULTIPLE_CHOICE"}
                       onChange={this.handleRadioInput}
                     />
                     Multiple choice form
@@ -248,8 +248,8 @@ class PollForm extends Component {
                     <input
                       className="polls-radio"
                       type="radio"
-                      value="radio-3"
-                      checked={type === "radio-3"}
+                      value="SINGLE_CHOICE"
+                      checked={type === "SINGLE_CHOICE"}
                       onChange={this.handleRadioInput}
                     />
                     Single choice
