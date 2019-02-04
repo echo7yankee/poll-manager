@@ -72,7 +72,7 @@ class PollForm extends Component {
   ///////////////////////////////
   // New choices methods
 
-  handleInputChange = e => {
+  handleQuestionInput = e => {
     this.setState({
       valueQ: e.target.value
     });
@@ -161,7 +161,7 @@ class PollForm extends Component {
     }
   };
 
-  handleRadioChange = e => {
+  handleRadioInput = e => {
     this.setState({
       selected: e.target.value
     });
@@ -177,7 +177,7 @@ class PollForm extends Component {
           results={this.state.results}
           newChoices={this.state.newChoices}
           deleteNewChoice={this.deleteNewChoice}
-          clearNewChoices={this.clearNewChoices}
+          clearAllChoices={this.clearAllChoices}
           addNewChoice={this.addNewChoice}
           handleChoiceInput={this.handleChoiceInput}
         />
@@ -194,7 +194,7 @@ class PollForm extends Component {
     const {
       newResults,
       toggleEditable,
-      clearAllPolls,
+      clearAllResults,
       toggleEdit
     } = this.props;
     const { selected, renderError, valueQ } = this.state;
@@ -220,7 +220,7 @@ class PollForm extends Component {
                 type="text"
                 placeholder="Enter a question"
                 value={valueQ}
-                onChange={this.handleInputChange}
+                onChange={this.handleQuestionInput}
               />
             </div>
             {renderError && <p>Please insert a value</p>}
@@ -234,7 +234,7 @@ class PollForm extends Component {
                       type="radio"
                       value="radio-1"
                       checked={selected === "radio-1"}
-                      onChange={this.handleRadioChange}
+                      onChange={this.handleRadioInput}
                     />
                     Yes/No Form
                   </label>
@@ -247,7 +247,7 @@ class PollForm extends Component {
                       type="radio"
                       value="radio-2"
                       checked={this.state.selected === "radio-2"}
-                      onChange={this.handleRadioChange}
+                      onChange={this.handleRadioInput}
                     />
                     Multiple choice form
                   </label>
@@ -260,7 +260,7 @@ class PollForm extends Component {
                       type="radio"
                       value="radio-3"
                       checked={selected === "radio-3"}
-                      onChange={this.handleRadioChange}
+                      onChange={this.handleRadioInput}
                     />
                     Single choice
                   </label>
@@ -282,7 +282,7 @@ class PollForm extends Component {
                 <button
                   className="add-poll delete-poll"
                   type="button"
-                  onClick={clearAllPolls}
+                  onClick={clearAllResults}
                 >
                   Clear Posts
                 </button>
