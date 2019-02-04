@@ -98,9 +98,6 @@ class PollForm extends Component {
         const updatedNewResults = {
           ...this.props.results,
           value: this.state.valueQ,
-          answersYN: "Yes/No",
-          answersMultiple: "",
-          answersSingle: "",
           answers: [createChoice(), createChoice()],
           type
         };
@@ -119,9 +116,6 @@ class PollForm extends Component {
             const updatedNewResults = {
               ...this.props.results,
               value: this.state.valueQ,
-              answersMultiple: this.state.answers,
-              answersSingle: "",
-              answersYN: "",
               answers: this.state.answers,
               type
             };
@@ -142,9 +136,6 @@ class PollForm extends Component {
             const updatedNewResults = {
               ...this.props.results,
               value: this.state.valueQ,
-              answersSingle: this.state.answers,
-              answersMultiple: "",
-              answersYN: "",
               answers: this.state.answers,
               type
             };
