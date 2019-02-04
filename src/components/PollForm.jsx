@@ -168,10 +168,9 @@ class PollForm extends Component {
   };
 
   renderChoicesComponent = () => {
-    if (
-      this.state.selected === "radio-2" ||
-      this.state.selected === "radio-3"
-    ) {
+    const { selected } = this.state;
+
+    if (selected === "radio-2" || selected === "radio-3") {
       return (
         <Choices
           results={this.state.results}
@@ -182,7 +181,7 @@ class PollForm extends Component {
           handleChoiceInput={this.handleChoiceInput}
         />
       );
-    } else if (this.state.selected === "radio-1") {
+    } else if (selected === "radio-1") {
       return null;
     }
   };
