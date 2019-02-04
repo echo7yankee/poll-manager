@@ -3,7 +3,9 @@ import ChoiceItem from "./ChoiceItem.jsx";
 
 class Choices extends Component {
   render() {
-    const { newChoices } = this.props;
+    const { newChoices, results } = this.props;
+    console.log(results, " results ");
+    console.log(newChoices, "newChoices");
 
     return (
       <div className="polls__choices-container">
@@ -11,7 +13,7 @@ class Choices extends Component {
           return (
             <ChoiceItem
               key={choice.id}
-              InputValue={choice.value}
+              inputValue={choice.value}
               handleChoiceInput={e =>
                 this.props.handleChoiceInput(e.target.value, choice.id)
               }
