@@ -16,7 +16,7 @@ class PollForm extends Component {
     super(props);
 
     this.state = {
-      newChoices: props.choices,
+      answers: props.choices,
       type: props.results.type,
       results: props.results,
       renderError: false,
@@ -27,27 +27,27 @@ class PollForm extends Component {
   ///////////////////////////////
   // New choices methods
   addNewChoice = () => {
-    const updatedChoices = [...this.state.newChoices, createChoice()];
+    const updatedChoices = [...this.state.answers, createChoice()];
     this.setState({
-      newChoices: updatedChoices
+      answers: updatedChoices
     });
   };
 
   deleteNewChoice = id => {
-    if (this.state.newChoices.length > 2) {
-      const filteredChoices = this.state.newChoices.filter(newChoice => {
+    if (this.state.answers.length > 2) {
+      const filteredChoices = this.state.answers.filter(newChoice => {
         return newChoice.id !== id;
       });
 
       this.setState({
-        newChoices: filteredChoices
+        answers: filteredChoices
       });
     }
   };
 
   clearAllChoices = () => {
     this.setState({
-      newChoices: [createChoice(), createChoice()]
+      answers: [createChoice(), createChoice()]
     });
   };
 
@@ -55,17 +55,17 @@ class PollForm extends Component {
 
   handleChoiceInput = (value, id) => {
     this.setState(prevState => {
-      const newChoices = [...prevState.newChoices];
-      const indexChoices = newChoices.findIndex((choice, index) => {
+      const answers = [...prevState.answers];
+      const indexChoices = answers.findIndex((choice, index) => {
         return choice.id === id;
       });
 
-      newChoices[indexChoices] = {
-        ...newChoices[indexChoices],
+      answers[indexChoices] = {
+        ...answers[indexChoices],
         value: value
       };
 
-      return { newChoices };
+      return { answers };
     });
   };
 
@@ -101,57 +101,57 @@ class PollForm extends Component {
           answersYN: "Yes/No",
           answersMultiple: "",
           answersSingle: "",
-          newChoices: [createChoice(), createChoice()],
+          answers: [createChoice(), createChoice()],
           type
         };
 
         this.setState({
           results: updatedNewResults,
-          newChoices: [createChoice(), createChoice()]
+          answers: [createChoice(), createChoice()]
         });
 
         handleSubmit(updatedNewResults);
       } else if (type === "radio-2") {
-        this.state.newChoices.forEach(choice => {
+        this.state.answers.forEach(choice => {
           if (choice.value === "") {
             alert("Choices Value is empty");
           } else {
             const updatedNewResults = {
               ...this.props.results,
               value: this.state.valueQ,
-              answersMultiple: this.state.newChoices,
+              answersMultiple: this.state.answers,
               answersSingle: "",
               answersYN: "",
-              newChoices: this.state.newChoices,
+              answers: this.state.answers,
               type
             };
 
             this.setState({
               results: updatedNewResults,
-              newChoices: [createChoice(), createChoice()]
+              answers: [createChoice(), createChoice()]
             });
 
             handleSubmit(updatedNewResults);
           }
         });
       } else if (type === "radio-3") {
-        this.state.newChoices.forEach(choice => {
+        this.state.answers.forEach(choice => {
           if (choice.value === "") {
             alert("Choices Value is empty");
           } else {
             const updatedNewResults = {
               ...this.props.results,
               value: this.state.valueQ,
-              answersSingle: this.state.newChoices,
+              answersSingle: this.state.answers,
               answersMultiple: "",
               answersYN: "",
-              newChoices: this.state.newChoices,
+              answers: this.state.answers,
               type
             };
 
             this.setState({
               results: updatedNewResults,
-              newChoices: [createChoice(), createChoice()]
+              answers: [createChoice(), createChoice()]
             });
 
             handleSubmit(updatedNewResults);
@@ -174,7 +174,7 @@ class PollForm extends Component {
       return (
         <Choices
           results={this.state.results}
-          newChoices={this.state.newChoices}
+          answers={this.state.answers}
           deleteNewChoice={this.deleteNewChoice}
           clearAllChoices={this.clearAllChoices}
           addNewChoice={this.addNewChoice}
@@ -188,7 +188,7 @@ class PollForm extends Component {
 
   render() {
     // console.log(this.props.choices, "from props");
-    // console.log(this.state.newChoices, "from state");
+    // console.log(this.state.answers, "from state");
 
     const {
       newResults,

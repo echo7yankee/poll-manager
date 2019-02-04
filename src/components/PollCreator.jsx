@@ -20,15 +20,15 @@ function question() {
     // @todo rename -> value
     value: "",
     // @todo have only 1 answers arr
+    answers: [createChoice(), createChoice()],
     answersYN: "",
     answersMultiple: "",
     answersSingle: "",
     // @todo rename selected -> type
     // @todo type values: "YES_NO", "MULTIPLE_CHOICE", ...
     type: "radio-1",
-    isEdit: false,
+    isEdit: false
     // @todo remove (astea-s answers)
-    newChoices: [createChoice(), createChoice()]
   };
 }
 
@@ -125,7 +125,7 @@ class PollCreator extends Component {
     return (
       <>
         <PollForm
-          choices={question().newChoices}
+          choices={question().answers}
           results={question()}
           handleSubmit={this.handleAddSubmit}
           renderError={this.state.renderError}
@@ -152,7 +152,7 @@ class PollCreator extends Component {
               key={result.id}
               handleSubmit={this.handleEditSubmit}
               newResults={this.state.newResults}
-              choices={result.newChoices}
+              choices={result.answers}
               results={result}
               value={result.value}
               toggleEditable={() => this.toggleEditable(result.id)}

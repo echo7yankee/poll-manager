@@ -3,13 +3,13 @@ import ChoiceItem from "./ChoiceItem.jsx";
 
 class Choices extends Component {
   render() {
-    const { newChoices, results } = this.props;
+    const { answers, results } = this.props;
     console.log(results, " results ");
-    console.log(newChoices, "newChoices");
+    console.log(answers, "answers");
 
     return (
       <div className="polls__choices-container">
-        {newChoices.map((choice, index) => {
+        {answers.map((choice, index) => {
           return (
             <ChoiceItem
               key={choice.id}
@@ -32,7 +32,7 @@ class Choices extends Component {
         >
           + Add new choice
         </button>
-        {newChoices.length > 2 && (
+        {answers.length > 2 && (
           <button className="add-choice" onClick={this.props.clearAllChoices}>
             Clear Choices
           </button>
