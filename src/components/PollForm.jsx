@@ -158,19 +158,19 @@ class PollForm extends Component {
   renderChoicesComponent = () => {
     const { type, answers } = this.state;
 
-    if (type === "MULTIPLE_CHOICE" || type === "SINGLE_CHOICE") {
-      return (
-        <Choices
-          answers={answers}
-          deleteNewChoice={this.deleteNewChoice}
-          clearAllChoices={this.clearAllChoices}
-          addNewChoice={this.addNewChoice}
-          handleChoiceInput={this.handleChoiceInput}
-        />
-      );
-    } else if (type === "YES_NO") {
+    if (type === "YES_NO") {
       return null;
     }
+
+    return (
+      <Choices
+        answers={answers}
+        deleteNewChoice={this.deleteNewChoice}
+        clearAllChoices={this.clearAllChoices}
+        addNewChoice={this.addNewChoice}
+        handleChoiceInput={this.handleChoiceInput}
+      />
+    );
   };
 
   render() {
