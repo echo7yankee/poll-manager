@@ -15,7 +15,9 @@ class Choices extends Component {
               handleChoiceInput={e =>
                 this.props.handleChoiceInput(e.target.value, choice.id)
               }
-              deleteChoice={() => this.props.deleteNewChoice(choice.id, index)}
+              deleteNewChoice={() =>
+                this.props.deleteNewChoice(choice.id, index)
+              }
               index={index + 1}
             />
           );
@@ -23,7 +25,7 @@ class Choices extends Component {
 
         <button
           className="add-choice"
-          onClick={this.props.addChoice}
+          onClick={this.props.addNewChoice}
           type="button"
         >
           + Add new choice
