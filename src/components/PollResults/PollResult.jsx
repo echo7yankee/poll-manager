@@ -5,14 +5,9 @@ import "../polls.css";
 import "./pollsResult.css";
 import "../reusableStyle.css";
 
-const PollResult = ({
-  value,
-  index,
-  toggleEditable,
-  handleDeleteResult,
-  answers,
-  type
-}) => {
+const PollResult = ({ index, toggleEditable, handleDeleteResult, results }) => {
+  const { answers, type, value } = results;
+
   const renderAnswers = () => {
     if (type === "YES_NO") {
       return (

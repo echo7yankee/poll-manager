@@ -16,7 +16,7 @@ class PollForm extends Component {
     super(props);
 
     this.state = {
-      answers: props.choices,
+      answers: props.results.answers,
       type: props.results.type,
       results: props.results,
       renderError: false,

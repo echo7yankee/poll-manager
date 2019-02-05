@@ -121,9 +121,7 @@ class PollCreator extends Component {
             <PollResult
               key={result.id}
               toggleEditable={() => this.toggleEditable(result.id)}
-              value={result.value}
-              type={result.type}
-              answers={result.answers}
+              results={result}
               handleDeleteResult={() => this.handleDeleteResult(result.id)}
               index={index + 1}
             />
@@ -132,9 +130,7 @@ class PollCreator extends Component {
               key={result.id}
               handleSubmit={this.editQuestion}
               newResults={this.state.newResults}
-              choices={result.answers}
               results={result}
-              value={result.value}
               toggleEditable={() => this.toggleEditable(result.id)}
             />
           );
