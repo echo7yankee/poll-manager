@@ -104,7 +104,7 @@ class PollCreator extends Component {
           newResults={this.state.newResults}
           toggleEditable={this.toggleEditable}
           clearAllResults={this.clearAllResults}
-          toggleEdit={false}
+          isEdit={createQuestion().isEdit}
         />
         {newResults.map((result, index) => {
           return result.isEdit === false ? (

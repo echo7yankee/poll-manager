@@ -171,18 +171,13 @@ class PollForm extends Component {
   };
 
   render() {
-    const {
-      newResults,
-      toggleEditable,
-      clearAllResults,
-      toggleEdit
-    } = this.props;
+    const { newResults, toggleEditable, clearAllResults, isEdit } = this.props;
     const { type, renderError, valueQ } = this.state;
 
     return (
       <>
         <div className="polls-container">
-          {toggleEdit === false ? (
+          {isEdit === false ? (
             <h1 className="polls-header">ADD POLLS</h1>
           ) : null}
 
@@ -249,7 +244,7 @@ class PollForm extends Component {
             </div>
             {this.renderChoicesComponent()}
             <div className="button-container">
-              {toggleEdit === false ? (
+              {isEdit === false ? (
                 <button className="add-poll" type="submit">
                   Add Poll
                 </button>
@@ -258,7 +253,7 @@ class PollForm extends Component {
                   Edit Poll
                 </button>
               )}
-              {toggleEdit === false ? (
+              {isEdit === false ? (
                 <button
                   className="add-poll delete-poll"
                   type="button"
