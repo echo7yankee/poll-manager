@@ -6,6 +6,7 @@ import uuid from "uuid";
 import PollResult from "./PollResults/PollResult";
 import PollForm from "./PollForm";
 
+// @todo extract function
 function createChoice() {
   return {
     id: uuid(),
@@ -101,6 +102,7 @@ class PollCreator extends Component {
           //@todo just one result, and delete newResults
           results={createQuestion()}
           handleSubmit={this.addQuestion}
+          // @todo remove newResults, display index number outside PollForm
           newResults={this.state.newResults}
           toggleEditable={this.toggleEditable}
           clearAllResults={this.clearAllResults}
