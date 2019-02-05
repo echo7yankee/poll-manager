@@ -31,11 +31,11 @@ const PollQuestion = ({
   };
 
   return (
-    <div className="polls__results-container">
+    <div className="polls__questions-container">
       <div className="polls__counter">
         <span className="polls__counter-item">{index}</span>
       </div>
-      <div className="polls__results">
+      <div className="polls__questions">
         <label className="polls-label">Question:</label>
         <div className="polls-text-container">
           <p className="polls-text">{value}</p>

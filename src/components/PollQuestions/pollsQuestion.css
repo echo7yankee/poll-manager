@@ -1,4 +1,4 @@
-.polls__results-container {
+.polls__questions-container {
   display: flex;
   flex-direction: column;
   min-height: 30vh;
@@ -29,7 +29,7 @@
   font-weight: bold;
 }
 
-.polls__results {
+.polls__questions {
   display: flex;
   align-items: center;
   width: 100%;
