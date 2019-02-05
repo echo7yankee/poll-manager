@@ -17,11 +17,11 @@ class PollForm extends Component {
     super(props);
 
     this.state = {
-      answers: props.results.answers,
-      type: props.results.type,
-      results: props.results,
+      answers: props.questions.answers,
+      type: props.questions.type,
+      questions: props.questions,
       renderError: false,
-      value: props.results.value
+      value: props.questions.value
     };
   }
 
@@ -78,11 +78,11 @@ class PollForm extends Component {
     });
   };
 
-  submitResult = e => {
+  submitQuestion = e => {
     e.preventDefault();
 
     const { type, answers, value } = this.state;
-    const { handleSubmit, results } = this.props;
+    const { handleSubmit, questions } = this.props;
 
     if (value === "") {
       this.setState({
@@ -95,37 +95,37 @@ class PollForm extends Component {
       });
 
       if (type === "YES_NO") {
-        const updatedNewResults = {
-          ...results,
+        const updatedNewQuestions = {
+          ...questions,
           value: value,
           answers: [createChoice(), createChoice()],
           type
         };
 
         this.setState({
-          results: updatedNewResults,
+          questions: updatedNewQuestions,
           answers: [createChoice(), createChoice()]
         });
 
-        handleSubmit(updatedNewResults);
+        handleSubmit(updatedNewQuestions);
       } else if (type === "MULTIPLE_CHOICE") {
         answers.forEach(choice => {
           if (choice.value === "") {
             alert("Choices Value is empty");
           } else {
-            const updatedNewResults = {
-              ...results,
+            const updatedNewQuestions = {
+              ...questions,
               value: value,
               answers: answers,
               type
             };
 
             this.setState({
-              results: updatedNewResults,
+              questions: updatedNewQuestions,
               answers: [createChoice(), createChoice()]
             });
 
-            handleSubmit(updatedNewResults);
+            handleSubmit(updatedNewQuestions);
           }
         });
       } else if (type === "SINGLE_CHOICE") {
@@ -133,19 +133,19 @@ class PollForm extends Component {
           if (choice.value === "") {
             alert("Choices Value is empty");
           } else {
-            const updatedNewResults = {
-              ...results,
+            const updatedNewQuestions = {
+              ...questions,
               value: value,
               answers: answers,
               type
             };
 
             this.setState({
-              results: updatedNewResults,
+              questions: updatedNewQuestions,
               answers: [createChoice(), createChoice()]
             });
 
-            handleSubmit(updatedNewResults);
+            handleSubmit(updatedNewQuestions);
           }
         });
       }
@@ -177,7 +177,12 @@ class PollForm extends Component {
   };
 
   render() {
-    const { newResults, toggleEditable, clearAllResults, isEdit } = this.props;
+    const {
+      newQuestions,
+      toggleEditable,
+      clearAllQuestions,
+      isEdit
+    } = this.props;
     const { type, renderError, value } = this.state;
 
     return (
@@ -187,11 +192,11 @@ class PollForm extends Component {
             <h1 className="polls-header">ADD POLLS</h1>
           ) : null}
 
-          <form className="polls-form" onSubmit={this.submitResult}>
+          <form className="polls-form" onSubmit={this.submitQuestion}>
             <div className="polls__inputs-container">
-              {newResults >= 0 ? null : (
+              {newQuestions >= 0 ? null : (
                 <span className="polls-header-counter">
-                  {newResults.length}
+                  {newQuestions.length}
                 </span>
               )}
 
@@ -263,7 +268,7 @@ class PollForm extends Component {
                 <button
                   className="add-poll delete-poll"
                   type="button"
-                  onClick={clearAllResults}
+                  onClick={clearAllQuestions}
                 >
                   Clear Posts
                 </button>

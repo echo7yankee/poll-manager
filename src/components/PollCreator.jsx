@@ -28,102 +28,107 @@ class PollCreator extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      newResults: []
+      newQuestions: []
     };
   }
 
-  addQuestion = updatedResults => {
-    const updatedCreatedResult = {
-      ...updatedResults
+  addQuestion = updatedQuestions => {
+    const updatedCreatedQuestions = {
+      ...updatedQuestions
     };
 
-    const updatedNewResults = [...this.state.newResults, updatedCreatedResult];
+    const updatedNewQuestions = [
+      ...this.state.newQuestions,
+      updatedCreatedQuestions
+    ];
 
     this.setState({
-      newResults: updatedNewResults
+      newQuestions: updatedNewQuestions
     });
   };
 
-  handleDeleteResult = id => {
-    const { newResults } = this.state;
-    const filteredResults = newResults.filter(result => {
-      return result.id !== id;
+  handleDeleteQuestion = id => {
+    const { newQuestions } = this.state;
+    const filteredQuestions = newQuestions.filter(question => {
+      return question.id !== id;
     });
 
     this.setState({
-      newResults: filteredResults
+      newQuestions: filteredQuestions
     });
   };
 
-  clearAllResults = () => {
+  clearAllQuestions = () => {
     this.setState({
-      newResults: []
+      newQuestions: []
     });
   };
 
   toggleEditable = id => {
     this.setState(prevState => {
-      const newResults = [...prevState.newResults];
-      const indexResults = newResults.findIndex((result, index) => {
-        return result.id === id;
+      const newQuestions = [...prevState.newQuestions];
+      const indexQuestions = newQuestions.findIndex((question, index) => {
+        return question.id === id;
       });
 
-      newResults[indexResults] = {
-        ...newResults[indexResults],
-        isEdit: !newResults[indexResults].isEdit
+      newQuestions[indexQuestions] = {
+        ...newQuestions[indexQuestions],
+        isEdit: !newQuestions[indexQuestions].isEdit
       };
 
-      return { newResults };
+      return { newQuestions };
     });
   };
 
-  editQuestion = updatedResults => {
+  editQuestion = updatedQuestions => {
     this.setState(prevState => {
-      const newResults = [...prevState.newResults];
-      const indexResults = newResults.findIndex((result, index) => {
-        return result.id === updatedResults.id;
+      const newQuestions = [...prevState.newQuestions];
+      const indexQuestions = newQuestions.findIndex((question, index) => {
+        return question.id === updatedQuestions.id;
       });
 
-      newResults[indexResults] = {
-        ...updatedResults,
+      newQuestions[indexQuestions] = {
+        ...updatedQuestions,
         isEdit: false
       };
 
-      return { newResults };
+      return { newQuestions };
     });
   };
 
   render() {
-    const { newResults } = this.state;
+    const { newQuestions } = this.state;
 
     return (
       <>
         <PollForm
           //@todo just one result, and delete newResults
-          results={createQuestion()}
+          questions={createQuestion()}
           handleSubmit={this.addQuestion}
           // @todo remove newResults, display index number outside PollForm
-          newResults={this.state.newResults}
+          newQuestions={this.state.newQuestions}
           toggleEditable={this.toggleEditable}
           clearAllResults={this.clearAllResults}
           isEdit={createQuestion().isEdit}
         />
-        {newResults.map((result, index) => {
-          return result.isEdit === false ? (
+        {newQuestions.map((question, index) => {
+          return question.isEdit === false ? (
             <PollResult
-              key={result.id}
-              toggleEditable={() => this.toggleEditable(result.id)}
-              results={result}
-              handleDeleteResult={() => this.handleDeleteResult(result.id)}
+              key={question.id}
+              toggleEditable={() => this.toggleEditable(question.id)}
+              questions={question}
+              handleDeleteQuestion={() =>
+                this.handleDeleteQuestion(question.id)
+              }
               index={index + 1}
             />
           ) : (
             <PollForm
-              key={result.id}
+              key={question.id}
               handleSubmit={this.editQuestion}
-              newResults={this.state.newResults}
-              results={result}
-              toggleEditable={() => this.toggleEditable(result.id)}
+              newQuestions={this.state.newQuestions}
+              questions={question}
+              toggleEditable={() => this.toggleEditable(question.id)}
             />
           );
         })}
