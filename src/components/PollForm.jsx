@@ -2,15 +2,7 @@ import React, { Component } from "react";
 import "./polls.css";
 
 import Choices from "./CreateNewChoices/Choices.jsx";
-import uuid from "uuid";
-
-// @todo extract function
-function createChoice() {
-  return {
-    id: uuid(),
-    value: ""
-  };
-}
+import createChoice from "./PollQuestions/createChoice";
 
 class PollForm extends Component {
   constructor(props) {

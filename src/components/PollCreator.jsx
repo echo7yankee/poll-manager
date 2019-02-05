@@ -1,18 +1,10 @@
 import React, { Component } from "react";
+import uuid from "uuid";
 import "./polls.css";
 
-import uuid from "uuid";
-
 import PollQuestion from "./PollQuestions/PollQuestion";
+import createChoice from "./PollQuestions/createChoice";
 import PollForm from "./PollForm";
-
-// @todo extract function
-function createChoice() {
-  return {
-    id: uuid(),
-    value: ""
-  };
-}
 
 function createQuestion() {
   return {
