@@ -3,7 +3,7 @@ import ChoiceItem from "./ChoiceItem.jsx";
 
 class Choices extends Component {
   render() {
-    const { answers, results } = this.props;
+    const { answers } = this.props;
 
     return (
       <div className="polls__choices-container">
