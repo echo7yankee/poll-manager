@@ -2,7 +2,7 @@ import React from "react";
 import PollQuestionChoices from "./PollQuestionChoices";
 
 import "../polls.css";
-import "./pollsResult.css";
+import "./pollsQuestion.css";
 import "../reusableStyle.css";
 
 const PollQuestion = ({
