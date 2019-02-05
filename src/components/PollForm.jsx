@@ -20,7 +20,7 @@ class PollForm extends Component {
       type: props.results.type,
       results: props.results,
       renderError: false,
-      valueQ: props.results.value
+      value: props.results.value
     };
   }
 
@@ -71,30 +71,30 @@ class PollForm extends Component {
 
   handleQuestionInput = e => {
     this.setState({
-      valueQ: e.target.value
+      value: e.target.value
     });
   };
 
   submitResult = e => {
     e.preventDefault();
 
-    const { type, answers, valueQ } = this.state;
+    const { type, answers, value } = this.state;
     const { handleSubmit, results } = this.props;
 
-    if (valueQ === "") {
+    if (value === "") {
       this.setState({
         renderError: true
       });
     } else {
       this.setState({
         renderError: false,
-        valueQ: ""
+        value: ""
       });
 
       if (type === "YES_NO") {
         const updatedNewResults = {
           ...results,
-          value: valueQ,
+          value: value,
           answers: [createChoice(), createChoice()],
           type
         };
@@ -112,7 +112,7 @@ class PollForm extends Component {
           } else {
             const updatedNewResults = {
               ...results,
-              value: valueQ,
+              value: value,
               answers: answers,
               type
             };
@@ -132,7 +132,7 @@ class PollForm extends Component {
           } else {
             const updatedNewResults = {
               ...results,
-              value: valueQ,
+              value: value,
               answers: answers,
               type
             };
@@ -176,7 +176,7 @@ class PollForm extends Component {
 
   render() {
     const { newResults, toggleEditable, clearAllResults, isEdit } = this.props;
-    const { type, renderError, valueQ } = this.state;
+    const { type, renderError, value } = this.state;
 
     return (
       <>
@@ -198,7 +198,7 @@ class PollForm extends Component {
                 className="polls-input"
                 type="text"
                 placeholder="Enter a question"
-                value={valueQ}
+                value={value}
                 onChange={this.handleQuestionInput}
               />
             </div>
