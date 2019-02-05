@@ -8,7 +8,7 @@ import "../reusableStyle.css";
 const PollQuestion = ({
   index,
   toggleEditable,
-  handleDeleteResult,
+  handleDeleteQuestion,
   questions
 }) => {
   const { answers, type, value } = questions;
@@ -50,7 +50,7 @@ const PollQuestion = ({
           <i className="fas fa-pencil-alt pencil-size" />
         </span>
 
-        <span className="btn-delete" onClick={handleDeleteResult}>
+        <span className="btn-delete" onClick={handleDeleteQuestion}>
           <i className="fas fa-times" />
         </span>
       </div>
