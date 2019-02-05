@@ -1,11 +1,11 @@
 import React from "react";
-import PollResultChoices from "./PollResultChoices";
+import PollQuestionChoices from "./PollQuestionChoices";
 
 import "../polls.css";
 import "./pollsResult.css";
 import "../reusableStyle.css";
 
-const PollResult = ({
+const PollQuestion = ({
   index,
   toggleEditable,
   handleDeleteResult,
@@ -26,7 +26,7 @@ const PollResult = ({
         </div>
       );
     } else {
-      return <PollResultChoices type={type} answers={answers} />;
+      return <PollQuestionChoices type={type} answers={answers} />;
     }
   };
 
@@ -58,4 +58,4 @@ const PollResult = ({
   );
 };
 
-export default PollResult;
+export default PollQuestion;

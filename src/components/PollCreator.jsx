@@ -3,7 +3,7 @@ import "./polls.css";
 
 import uuid from "uuid";
 
-import PollResult from "./PollResults/PollResult";
+import PollQuestion from "./PollQuestions/PollQuestion";
 import PollForm from "./PollForm";
 
 // @todo extract function
@@ -113,7 +113,7 @@ class PollCreator extends Component {
         />
         {newQuestions.map((question, index) => {
           return question.isEdit === false ? (
-            <PollResult
+            <PollQuestion
               key={question.id}
               toggleEditable={() => this.toggleEditable(question.id)}
               questions={question}

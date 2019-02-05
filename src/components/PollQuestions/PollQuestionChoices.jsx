@@ -1,7 +1,7 @@
 import React from "react";
 import "../polls.css";
 
-const PollResultChoices = ({ type, answers }) => {
+const PollQuestionChoices = ({ type, answers }) => {
   return (
     <ul className="polls-list">
       {answers.map(answer => {
@@ -27,4 +27,4 @@ const PollResultChoices = ({ type, answers }) => {
   );
 };
 
-export default PollResultChoices;
+export default PollQuestionChoices;
