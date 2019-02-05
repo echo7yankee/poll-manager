@@ -20,7 +20,7 @@ class PollForm extends Component {
       type: props.results.type,
       results: props.results,
       renderError: false,
-      value: props.results.value
+      valueQ: props.results.value
     };
   }
 
@@ -67,30 +67,30 @@ class PollForm extends Component {
 
   handleQuestionInput = e => {
     this.setState({
-      value: e.target.value
+      valueQ: e.target.value
     });
   };
 
   submitResult = e => {
     e.preventDefault();
 
-    const { type, value, answers } = this.state;
+    const { type, valueQ, answers } = this.state;
     const { handleSubmit, results } = this.props;
 
-    if (this.state.value === "") {
+    if (this.state.valueQ === "") {
       this.setState({
         renderError: true
       });
     } else {
       this.setState({
         renderError: false,
-        value: ""
+        valueQ: ""
       });
 
       if (type === "YES_NO") {
         const updatedNewResults = {
           ...results,
-          value: value,
+          value: valueQ,
           answers: [createChoice(), createChoice()],
           type
         };
@@ -108,7 +108,7 @@ class PollForm extends Component {
           } else {
             const updatedNewResults = {
               ...results,
-              value: value,
+              value: valueQ,
               answers: answers,
               type
             };
@@ -128,7 +128,7 @@ class PollForm extends Component {
           } else {
             const updatedNewResults = {
               ...results,
-              value: value,
+              value: valueQ,
               answers: answers,
               type
             };
@@ -172,7 +172,7 @@ class PollForm extends Component {
 
   render() {
     const { newResults, toggleEditable, clearAllResults, isEdit } = this.props;
-    const { type, renderError, value } = this.state;
+    const { type, renderError, valueQ } = this.state;
 
     return (
       <>
@@ -194,7 +194,7 @@ class PollForm extends Component {
                 className="polls-input"
                 type="text"
                 placeholder="Enter a question"
-                value={value}
+                value={valueQ}
                 onChange={this.handleQuestionInput}
               />
             </div>
