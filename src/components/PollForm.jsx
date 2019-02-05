@@ -161,6 +161,7 @@ class PollForm extends Component {
     if (type === "MULTIPLE_CHOICE" || type === "SINGLE_CHOICE") {
       return (
         <Choices
+          results={results}
           answers={answers}
           deleteNewChoice={this.deleteNewChoice}
           clearAllChoices={this.clearAllChoices}
