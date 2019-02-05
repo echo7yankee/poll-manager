@@ -13,7 +13,6 @@ function createChoice() {
   };
 }
 
-// @todo rename function (should be verb)
 function createQuestion() {
   return {
     id: uuid(),
@@ -32,7 +31,6 @@ class PollCreator extends Component {
     };
   }
 
-  //@todo rename func to addQuestion
   addQuestion = updatedResults => {
     const updatedCreatedResult = {
       ...updatedResults
@@ -81,7 +79,6 @@ class PollCreator extends Component {
     });
   };
 
-  // @todo rename func to editQuestion
   editQuestion = updatedResults => {
     console.log("From edit submit", updatedResults);
     this.setState(prevState => {
@@ -101,9 +98,6 @@ class PollCreator extends Component {
 
   render() {
     const { newResults } = this.state;
-
-    // @todo remove unused props
-    // @todo reduce number of sent props (only result)
 
     return (
       <>
