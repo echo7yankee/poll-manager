@@ -74,8 +74,8 @@ class PollForm extends Component {
   submitResult = e => {
     e.preventDefault();
 
-    const { type } = this.state;
-    const { handleSubmit } = this.props;
+    const { type, valueQ, answers } = this.state;
+    const { handleSubmit, results } = this.props;
 
     if (this.state.valueQ === "") {
       this.setState({
@@ -89,8 +89,8 @@ class PollForm extends Component {
 
       if (type === "YES_NO") {
         const updatedNewResults = {
-          ...this.props.results,
-          value: this.state.valueQ,
+          ...results,
+          value: valueQ,
           answers: [createChoice(), createChoice()],
           type
         };
@@ -107,9 +107,9 @@ class PollForm extends Component {
             alert("Choices Value is empty");
           } else {
             const updatedNewResults = {
-              ...this.props.results,
-              value: this.state.valueQ,
-              answers: this.state.answers,
+              ...results,
+              value: valueQ,
+              answers: answers,
               type
             };
 
@@ -127,9 +127,9 @@ class PollForm extends Component {
             alert("Choices Value is empty");
           } else {
             const updatedNewResults = {
-              ...this.props.results,
-              value: this.state.valueQ,
-              answers: this.state.answers,
+              ...results,
+              value: valueQ,
+              answers: answers,
               type
             };
 
