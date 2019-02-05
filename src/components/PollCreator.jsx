@@ -100,7 +100,7 @@ class PollCreator extends Component {
           // @todo remove newResults, display index number outside PollForm
           newQuestions={this.state.newQuestions}
           toggleEditable={this.toggleEditable}
-          clearAllQuestions={this.clearAllQuestions}
+          clearAllResults={this.clearAllResults}
           isEdit={createQuestion().isEdit}
         />
         {newQuestions.map((question, index) => {
