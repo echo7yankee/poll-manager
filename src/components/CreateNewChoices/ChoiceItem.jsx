@@ -8,8 +8,6 @@ const ChoiceItem = ({
   inputValue,
   index
 }) => {
-  console.log(inputValue, " input value ");
-
   return (
     <div className="polls__choices">
       <label className="polls__choices-label">Choice # {index}</label>

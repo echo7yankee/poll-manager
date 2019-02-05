@@ -21,7 +21,6 @@ class PollResultEdit extends React.Component {
 
   render() {
     const { toggleEditable, handleSubmitEdit } = this.props;
-    console.log(this.state.updatedResult.valueQuestion);
 
     return (
       <div className="polls-container polls-container-edit">

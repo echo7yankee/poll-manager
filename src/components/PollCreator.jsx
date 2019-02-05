@@ -41,9 +41,6 @@ class PollCreator extends Component {
     this.setState({
       newResults: updatedNewResults
     });
-
-    // console.log(updatedResults, "from poll creator");
-    console.log("From poll creator", updatedNewResults);
   };
 
   handleDeleteResult = id => {
@@ -80,7 +77,6 @@ class PollCreator extends Component {
   };
 
   editQuestion = updatedResults => {
-    console.log("From edit submit", updatedResults);
     this.setState(prevState => {
       const newResults = [...prevState.newResults];
       const indexResults = newResults.findIndex((result, index) => {

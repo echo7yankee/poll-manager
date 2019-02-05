@@ -178,9 +178,6 @@ class PollForm extends Component {
   };
 
   render() {
-    // console.log(this.props.choices, "from props");
-    // console.log(this.state.answers, "from state");
-
     const {
       newResults,
       toggleEditable,
