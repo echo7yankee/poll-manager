@@ -25,8 +25,7 @@ class PollForm extends Component {
     };
   }
 
-  // @todo remove "new"
-  addNewChoice = () => {
+  addChoice = () => {
     const { answers } = this.state;
 
     const updatedChoices = [...answers, createChoice()];
@@ -35,8 +34,7 @@ class PollForm extends Component {
     });
   };
 
-  // @todo remove "new"
-  deleteNewChoice = id => {
+  deleteChoice = id => {
     const { answers } = this.state;
 
     if (answers.length > 2) {
@@ -168,9 +166,9 @@ class PollForm extends Component {
     return (
       <Choices
         answers={answers}
-        deleteNewChoice={this.deleteNewChoice}
+        deleteChoice={this.deleteChoice}
         clearAllChoices={this.clearAllChoices}
-        addNewChoice={this.addNewChoice}
+        addChoice={this.addChoice}
         handleChoiceInput={this.handleChoiceInput}
       />
     );
