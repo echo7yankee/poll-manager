@@ -98,7 +98,6 @@ class PollCreator extends Component {
     return (
       <>
         <PollForm
-          choices={createQuestion().answers}
           results={createQuestion()}
           handleSubmit={this.addQuestion}
           newResults={this.state.newResults}
