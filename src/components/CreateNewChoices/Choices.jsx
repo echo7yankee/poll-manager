@@ -41,5 +41,3 @@ class Choices extends Component {
 }
 
 export default Choices;
-
-//[...this.state.choices.slice(0, i - 1), value];

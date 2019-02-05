@@ -13,5 +13,3 @@ const Navbar = props => {
 };
 
 export default Navbar;
-
-//{auth.isAuthenticated() ? <PollCreatorLink /> : null}

@@ -24,8 +24,6 @@ class PollForm extends Component {
     };
   }
 
-  ///////////////////////////////
-  // New choices methods
   addNewChoice = () => {
     const updatedChoices = [...this.state.answers, createChoice()];
     this.setState({
@@ -51,8 +49,6 @@ class PollForm extends Component {
     });
   };
 
-  //getInputValue = (value, id, prevState) => {};
-
   handleChoiceInput = (value, id) => {
     this.setState(prevState => {
       const answers = [...prevState.answers];
@@ -68,9 +64,6 @@ class PollForm extends Component {
       return { answers };
     });
   };
-
-  ///////////////////////////////
-  // New choices methods
 
   handleQuestionInput = e => {
     this.setState({
