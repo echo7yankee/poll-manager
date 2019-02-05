@@ -25,15 +25,19 @@ class PollForm extends Component {
   }
 
   addNewChoice = () => {
-    const updatedChoices = [...this.state.answers, createChoice()];
+    const { answers } = this.state;
+
+    const updatedChoices = [...answers, createChoice()];
     this.setState({
       answers: updatedChoices
     });
   };
 
   deleteNewChoice = id => {
-    if (this.state.answers.length > 2) {
-      const filteredChoices = this.state.answers.filter(newChoice => {
+    const { answers } = this.state;
+
+    if (answers.length > 2) {
+      const filteredChoices = answers.filter(newChoice => {
         return newChoice.id !== id;
       });
 
@@ -74,10 +78,10 @@ class PollForm extends Component {
   submitResult = e => {
     e.preventDefault();
 
-    const { type } = this.state;
-    const { handleSubmit } = this.props;
+    const { type, answers, valueQ } = this.state;
+    const { handleSubmit, results } = this.props;
 
-    if (this.state.valueQ === "") {
+    if (valueQ === "") {
       this.setState({
         renderError: true
       });
@@ -89,8 +93,8 @@ class PollForm extends Component {
 
       if (type === "YES_NO") {
         const updatedNewResults = {
-          ...this.props.results,
-          value: this.state.valueQ,
+          ...results,
+          value: valueQ,
           answers: [createChoice(), createChoice()],
           type
         };
@@ -102,14 +106,14 @@ class PollForm extends Component {
 
         handleSubmit(updatedNewResults);
       } else if (type === "MULTIPLE_CHOICE") {
-        this.state.answers.forEach(choice => {
+        answers.forEach(choice => {
           if (choice.value === "") {
             alert("Choices Value is empty");
           } else {
             const updatedNewResults = {
-              ...this.props.results,
-              value: this.state.valueQ,
-              answers: this.state.answers,
+              ...results,
+              value: valueQ,
+              answers: answers,
               type
             };
 
@@ -122,14 +126,14 @@ class PollForm extends Component {
           }
         });
       } else if (type === "SINGLE_CHOICE") {
-        this.state.answers.forEach(choice => {
+        answers.forEach(choice => {
           if (choice.value === "") {
             alert("Choices Value is empty");
           } else {
             const updatedNewResults = {
-              ...this.props.results,
-              value: this.state.valueQ,
-              answers: this.state.answers,
+              ...results,
+              value: valueQ,
+              answers: answers,
               type
             };
 
@@ -152,13 +156,13 @@ class PollForm extends Component {
   };
 
   renderChoicesComponent = () => {
-    const { type } = this.state;
+    const { type, answers, results } = this.state;
 
     if (type === "MULTIPLE_CHOICE" || type === "SINGLE_CHOICE") {
       return (
         <Choices
-          results={this.state.results}
-          answers={this.state.answers}
+          results={results}
+          answers={answers}
           deleteNewChoice={this.deleteNewChoice}
           clearAllChoices={this.clearAllChoices}
           addNewChoice={this.addNewChoice}
@@ -221,7 +225,7 @@ class PollForm extends Component {
                       className="polls-radio"
                       type="radio"
                       value="MULTIPLE_CHOICE"
-                      checked={this.state.type === "MULTIPLE_CHOICE"}
+                      checked={type === "MULTIPLE_CHOICE"}
                       onChange={this.handleRadioInput}
                     />
                     Multiple choice form
