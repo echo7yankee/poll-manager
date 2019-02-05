@@ -98,6 +98,7 @@ class PollCreator extends Component {
     return (
       <>
         <PollForm
+          //@todo just one result, and delete newResults
           results={createQuestion()}
           handleSubmit={this.addQuestion}
           newResults={this.state.newResults}
