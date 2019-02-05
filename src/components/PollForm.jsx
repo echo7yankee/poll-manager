@@ -4,6 +4,7 @@ import "./polls.css";
 import Choices from "./CreateNewChoices/Choices.jsx";
 import uuid from "uuid";
 
+// @todo extract function
 function createChoice() {
   return {
     id: uuid(),
@@ -24,6 +25,7 @@ class PollForm extends Component {
     };
   }
 
+  // @todo remove "new"
   addNewChoice = () => {
     const { answers } = this.state;
 
@@ -33,6 +35,7 @@ class PollForm extends Component {
     });
   };
 
+  // @todo remove "new"
   deleteNewChoice = id => {
     const { answers } = this.state;
 
