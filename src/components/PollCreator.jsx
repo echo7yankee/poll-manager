@@ -1,20 +1,11 @@
 import React, { Component } from "react";
-import uuid from "uuid";
 import "./polls.css";
 
 import PollQuestion from "./PollQuestions/PollQuestion";
-import { createChoice } from "./PollQuestions/createChoice";
+import { createQuestion } from "./PollQuestions/types";
 import PollForm from "./PollForm";
 
-function createQuestion() {
-  return {
-    id: uuid(),
-    value: "",
-    answers: [createChoice(), createChoice()],
-    type: "YES_NO",
-    isEdit: false
-  };
-}
+// @todo move to createChoice.js as named export + rename file
 
 class PollCreator extends Component {
   constructor(props) {
