@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 import Navbar from "./components/Navbar.jsx";
-import Polls from "./components/Polls";
+//import Polls from "./components/Polls";
 import PollCreatorLink from "./components/PollCreatorLink.jsx";
 import PollCreator from "./components/PollCreator";
 import PrivateRoute from "./PrivateRoute.jsx";
