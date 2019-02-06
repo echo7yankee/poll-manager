@@ -250,31 +250,34 @@ class PollForm extends Component {
             </div>
             {this.renderChoicesComponent()}
             <div className="button-container">
+              {/* @todo only one if */}
               {isEdit === false ? (
-                <button className="add-poll" type="submit">
-                  Add Poll
-                </button>
+                <>
+                  <button className="add-poll" type="submit">
+                    Add Poll
+                  </button>
+
+                  <button
+                    className="add-poll delete-poll"
+                    type="button"
+                    onClick={clearAllQuestions}
+                  >
+                    Clear Posts
+                  </button>
+                </>
               ) : (
-                <button className="add-poll edit-poll" type="submit">
-                  Edit Poll
-                </button>
-              )}
-              {isEdit === false ? (
-                <button
-                  className="add-poll delete-poll"
-                  type="button"
-                  onClick={clearAllQuestions}
-                >
-                  Clear Posts
-                </button>
-              ) : (
-                <button
-                  className="add-poll cancel-poll"
-                  type="button"
-                  onClick={toggleEditable}
-                >
-                  Cancel
-                </button>
+                <>
+                  <button className="add-poll edit-poll" type="submit">
+                    Edit Poll
+                  </button>
+                  <button
+                    className="add-poll cancel-poll"
+                    type="button"
+                    onClick={toggleEditable}
+                  >
+                    Cancel
+                  </button>
+                </>
               )}
             </div>
           </form>
