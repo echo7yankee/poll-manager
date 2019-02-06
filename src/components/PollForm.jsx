@@ -250,7 +250,6 @@ class PollForm extends Component {
             </div>
             {this.renderChoicesComponent()}
             <div className="button-container">
-              {/* @todo only one if */}
               {isEdit === false ? (
                 <>
                   <button className="add-poll" type="submit">
