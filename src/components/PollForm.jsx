@@ -14,70 +14,97 @@ class PollForm extends Component {
     super(props);
 
     this.state = {
-      answers: props.questions.answers,
-      type: props.questions.type,
       questions: props.questions,
-      renderError: false,
-      value: props.questions.value
+      renderError: false
     };
   }
 
   addChoice = () => {
-    const { answers } = this.state;
+    const { questions } = this.state;
+    const { answers } = this.state.questions;
 
-    const updatedChoices = [...answers, createChoice()];
+    const updatedQuestions = {
+      ...questions,
+      answers: [...answers, createChoice()]
+    };
+
     this.setState({
-      answers: updatedChoices
+      questions: updatedQuestions
     });
   };
 
   deleteChoice = id => {
-    const { answers } = this.state;
+    const { questions } = this.state;
+    const { answers } = this.state.questions;
+
+    const updatedQuestions = {
+      ...questions,
+      answers: answers.filter(newChoice => {
+        return newChoice.id !== id;
+      })
+    };
 
     if (answers.length > 2) {
-      const filteredChoices = answers.filter(newChoice => {
-        return newChoice.id !== id;
-      });
-
       this.setState({
-        answers: filteredChoices
+        questions: updatedQuestions
       });
     }
   };
 
   clearAllChoices = () => {
-    this.setState({
+    const { questions } = this.state;
+
+    const updatedQuestions = {
+      ...questions,
       answers: [createChoice(), createChoice()]
+    };
+
+    this.setState({
+      questions: updatedQuestions
     });
   };
 
   handleChoiceInput = (value, id) => {
-    this.setState(prevState => {
-      const answers = [...prevState.answers];
-      const indexChoices = answers.findIndex((choice, index) => {
-        return choice.id === id;
-      });
+    const { questions } = this.state;
+    const { answers } = this.state.questions;
 
-      answers[indexChoices] = {
-        ...answers[indexChoices],
-        value: value
-      };
+    const indexAnswers = answers.findIndex(answer => {
+      return answer.id === id;
+    });
 
-      return { answers };
+    answers[indexAnswers] = {
+      ...answers[indexAnswers],
+      value: value
+    };
+
+    const updatedQuestions = {
+      ...questions,
+      answers: answers
+    };
+
+    this.setState({
+      questions: updatedQuestions
     });
   };
 
   handleQuestionInput = e => {
-    this.setState({
+    const { questions } = this.state;
+
+    const updatedQuestions = {
+      ...questions,
       value: e.target.value
+    };
+
+    this.setState({
+      questions: updatedQuestions
     });
   };
 
   submitQuestion = e => {
     e.preventDefault();
 
-    const { type, answers, value } = this.state;
-    const { handleSubmit, questions } = this.props;
+    const { type, answers } = this.state.questions;
+    const { handleSubmit } = this.props;
 
     if (value === "") {
       this.setState({
@@ -148,13 +175,20 @@ class PollForm extends Component {
   };
 
   handleRadioInput = e => {
-    this.setState({
+    const { questions } = this.state;
+
+    const updatedQuestions = {
+      ...questions,
       type: e.target.value
+    };
+
+    this.setState({
+      questions: updatedQuestions
     });
   };
 
   renderChoicesComponent = () => {
-    const { type, answers } = this.state;
+    const { type, answers } = this.state.questions;
 
     if (type === YES_NO) {
       return null;
@@ -178,7 +212,8 @@ class PollForm extends Component {
       clearAllQuestions,
       isEdit
     } = this.props;
-    const { type, renderError, value } = this.state;
+    const { type, value } = this.state.questions;
+    const { renderError } = this.state;
 
     return (
       <>
