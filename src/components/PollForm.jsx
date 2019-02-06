@@ -183,10 +183,6 @@ class PollForm extends Component {
     return (
       <>
         <div className="polls-container">
-          {isEdit === false ? (
-            <h1 className="polls-header">ADD POLLS</h1>
-          ) : null}
-
           <form className="polls-form" onSubmit={this.submitQuestion}>
             <div className="polls__inputs-container">
               {newQuestions >= 0 ? null : (
