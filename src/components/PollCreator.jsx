@@ -3,7 +3,7 @@ import uuid from "uuid";
 import "./polls.css";
 
 import PollQuestion from "./PollQuestions/PollQuestion";
-import createChoice from "./PollQuestions/createChoice";
+import { createChoice } from "./PollQuestions/createChoice";
 import PollForm from "./PollForm";
 
 function createQuestion() {

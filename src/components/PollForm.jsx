@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./polls.css";
 
 import Choices from "./CreateNewChoices/Choices.jsx";
-import createChoice from "./PollQuestions/createChoice";
+import { createChoice } from "./PollQuestions/createChoice";
 
 class PollForm extends Component {
   constructor(props) {

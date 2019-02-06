@@ -1,6 +1,7 @@
 import uuid from "uuid";
 
-export default function createChoice() {
+// @todo named export
+export const createChoice = () => {
   return {
     id: uuid(),
     value: ""
