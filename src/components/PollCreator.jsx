@@ -83,37 +83,41 @@ class PollCreator extends Component {
 
     return (
       <>
-        <PollForm
-          //@todo just one result, and delete newResults
-          questions={createQuestion()}
-          handleSubmit={this.addQuestion}
-          // @todo remove newResults, display index number outside PollForm
-          newQuestions={this.state.newQuestions}
-          toggleEditable={this.toggleEditable}
-          clearAllQuestions={this.clearAllQuestions}
-          isEdit={createQuestion().isEdit}
-        />
-        {newQuestions.map((question, index) => {
-          return question.isEdit === false ? (
-            <PollQuestion
-              key={question.id}
-              toggleEditable={() => this.toggleEditable(question.id)}
-              questions={question}
-              handleDeleteQuestion={() =>
-                this.handleDeleteQuestion(question.id)
-              }
-              index={index + 1}
-            />
-          ) : (
-            <PollForm
-              key={question.id}
-              handleSubmit={this.editQuestion}
-              newQuestions={this.state.newQuestions}
-              questions={question}
-              toggleEditable={() => this.toggleEditable(question.id)}
-            />
-          );
-        })}
+        <div className="polls-test">
+          <h1 className="polls-header">ADD POLLS</h1>
+          <PollForm
+            //@todo just one result, and delete newResults
+            questions={createQuestion()}
+            handleSubmit={this.addQuestion}
+            // @todo remove newResults, display index number outside PollForm
+            newQuestions={this.state.newQuestions}
+            toggleEditable={this.toggleEditable}
+            clearAllQuestions={this.clearAllQuestions}
+            isEdit={createQuestion().isEdit}
+          />
+
+          {newQuestions.map((question, index) => {
+            return question.isEdit === false ? (
+              <PollQuestion
+                key={question.id}
+                toggleEditable={() => this.toggleEditable(question.id)}
+                questions={question}
+                handleDeleteQuestion={() =>
+                  this.handleDeleteQuestion(question.id)
+                }
+                index={index + 1}
+              />
+            ) : (
+              <PollForm
+                key={question.id}
+                handleSubmit={this.editQuestion}
+                newQuestions={this.state.newQuestions}
+                questions={question}
+                toggleEditable={() => this.toggleEditable(question.id)}
+              />
+            );
+          })}
+        </div>
       </>
     );
   }
