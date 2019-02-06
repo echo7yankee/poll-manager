@@ -13,7 +13,11 @@ export const createQuestion = () => {
     id: uuid(),
     value: "",
     answers: [createChoice(), createChoice()],
-    type: "YES_NO",
+    type: YES_NO,
     isEdit: false
   };
 };
+
+export const YES_NO = "YES_NO";
+export const MULTIPLE_CHOICE = "MULTIPLE_CHOICE";
+export const SINGLE_CHOICE = "SINGLE_CHOICE";
