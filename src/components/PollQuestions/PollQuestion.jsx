@@ -1,6 +1,8 @@
 import React from "react";
 import PollQuestionChoices from "./PollQuestionChoices";
 
+import { YES_NO } from "./types";
+
 import "../polls.css";
 import "./pollsQuestion.css";
 import "../reusableStyle.css";
@@ -14,7 +16,7 @@ const PollQuestion = ({
   const { answers, type, value } = questions;
 
   const renderAnswers = () => {
-    if (type === "YES_NO") {
+    if (type === YES_NO) {
       return (
         <div>
           <label>
