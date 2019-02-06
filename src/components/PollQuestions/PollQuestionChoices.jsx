@@ -1,12 +1,12 @@
 import React from "react";
-import { SINGLE_CHOICE } from "./types";
+import { MULTIPLE_CHOICE } from "./types";
 import "../polls.css";
 
 const PollQuestionChoices = ({ type, answers }) => {
   return (
     <ul className="polls-list">
       {answers.map(answer => {
-        return type === SINGLE_CHOICE ? (
+        return type === MULTIPLE_CHOICE ? (
           <li key={answer.id}>
             {answer.value === "" ? null : (
               <label>
