@@ -2,7 +2,12 @@ import React, { Component } from "react";
 import "./polls.css";
 
 import Choices from "./CreateNewChoices/Choices.jsx";
-import { createChoice } from "./PollQuestions/createChoice";
+import {
+  createChoice,
+  YES_NO,
+  MULTIPLE_CHOICE,
+  SINGLE_CHOICE
+} from "./PollQuestions/types";
 
 class PollForm extends Component {
   constructor(props) {
@@ -151,7 +156,7 @@ class PollForm extends Component {
   renderChoicesComponent = () => {
     const { type, answers } = this.state;
 
-    if (type === "YES_NO") {
+    if (type === YES_NO) {
       return null;
     }
 
@@ -208,8 +213,8 @@ class PollForm extends Component {
                     <input
                       className="polls-radio"
                       type="radio"
-                      value="YES_NO"
-                      checked={type === "YES_NO"}
+                      value={YES_NO}
+                      checked={type === YES_NO}
                       onChange={this.handleRadioInput}
                     />
                     Yes/No Form
@@ -221,8 +226,8 @@ class PollForm extends Component {
                     <input
                       className="polls-radio"
                       type="radio"
-                      value="MULTIPLE_CHOICE"
-                      checked={type === "MULTIPLE_CHOICE"}
+                      value={MULTIPLE_CHOICE}
+                      checked={type === MULTIPLE_CHOICE}
                       onChange={this.handleRadioInput}
                     />
                     Multiple choice form
@@ -234,8 +239,8 @@ class PollForm extends Component {
                     <input
                       className="polls-radio"
                       type="radio"
-                      value="SINGLE_CHOICE"
-                      checked={type === "SINGLE_CHOICE"}
+                      value={SINGLE_CHOICE}
+                      checked={type === SINGLE_CHOICE}
                       onChange={this.handleRadioInput}
                     />
                     Single choice
