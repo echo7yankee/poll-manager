@@ -89,10 +89,8 @@ class PollCreator extends Component {
             <span className="polls-header-counter">{newQuestions.length}</span>
           )}
           <PollForm
-            //@todo just one result, and delete newResults
             question={createQuestion()}
             handleSubmit={this.addQuestion}
-            // @todo remove newQuestions, display index number outside PollForm
             newQuestions={this.state.newQuestions}
             toggleEditable={this.toggleEditable}
             clearAllQuestions={this.clearAllQuestions}
