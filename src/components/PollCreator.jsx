@@ -91,7 +91,6 @@ class PollCreator extends Component {
           <PollForm
             question={createQuestion()}
             handleSubmit={this.addQuestion}
-            newQuestions={this.state.newQuestions}
             toggleEditable={this.toggleEditable}
             clearAllQuestions={this.clearAllQuestions}
             isEdit={createQuestion().isEdit}
@@ -113,7 +112,6 @@ class PollCreator extends Component {
             <PollForm
               key={question.id}
               handleSubmit={this.editQuestion}
-              newQuestions={this.state.newQuestions}
               question={question}
               toggleEditable={() => this.toggleEditable(question.id)}
             />
