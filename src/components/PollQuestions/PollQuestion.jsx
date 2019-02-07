@@ -11,9 +11,9 @@ const PollQuestion = ({
   index,
   toggleEditable,
   handleDeleteQuestion,
-  questions
+  question
 }) => {
-  const { answers, type, value } = questions;
+  const { answers, type, value } = question;
 
   const renderAnswers = () => {
     if (type === YES_NO) {

@@ -11,42 +11,41 @@ import {
 
 class PollForm extends Component {
   state = {
-    //@todo rename questions into question (singular)
-    questions: [],
+    question: [],
     renderError: false
   };
 
   static getDerivedStateFromProps(props, state) {
-    if (props.questions.id === state.questions.id) {
+    if (props.question.id === state.question.id) {
       return null;
     }
 
     return {
-      questions: props.questions,
+      question: props.question,
       renderError: false
     };
   }
 
   addChoice = () => {
-    const { questions } = this.state;
-    const { answers } = this.state.questions;
+    const { question } = this.state;
+    const { answers } = this.state.question;
 
     this.setState({
-      questions: {
-        ...questions,
+      question: {
+        ...question,
         answers: [...answers, createChoice()]
       }
     });
   };
 
   deleteChoice = id => {
-    const { questions } = this.state;
-    const { answers } = this.state.questions;
+    const { question } = this.state;
+    const { answers } = this.state.question;
 
     if (answers.length > 2) {
       this.setState({
-        questions: {
-          ...questions,
+        question: {
+          ...question,
           answers: answers.filter(newAnswer => {
             return newAnswer.id !== id;
           })
@@ -56,19 +55,19 @@ class PollForm extends Component {
   };
 
   clearAllChoices = () => {
-    const { questions } = this.state;
+    const { question } = this.state;
 
     this.setState({
-      questions: {
-        ...questions,
+      question: {
+        ...question,
         answers: [createChoice(), createChoice()]
       }
     });
   };
 
   handleChoiceInput = (value, id) => {
-    const { questions } = this.state;
-    const { answers } = this.state.questions;
+    const { question } = this.state;
+    const { answers } = this.state.question;
 
     const indexAnswers = answers.findIndex(answer => {
       return answer.id === id;
@@ -80,19 +79,19 @@ class PollForm extends Component {
     };
 
     this.setState({
-      questions: {
-        ...questions,
+      question: {
+        ...question,
         answers: answers
       }
     });
   };
 
   handleQuestionInput = e => {
-    const { questions } = this.state;
+    const { question } = this.state;
 
     this.setState({
-      questions: {
-        ...questions,
+      question: {
+        ...question,
         value: e.target.value
       }
     });
@@ -100,13 +99,13 @@ class PollForm extends Component {
   submitQuestion = e => {
     e.preventDefault();
 
-    const { type, answers } = this.state.questions;
+    const { type, answers } = this.state.question;
     const { handleSubmit } = this.props;
     let question;
 
     if (type === YES_NO) {
       question = {
-        ...this.state.questions,
+        ...this.state.question,
         answers: [createChoice(), createChoice()]
       };
     } else {
@@ -119,7 +118,7 @@ class PollForm extends Component {
       }
 
       question = {
-        ...this.state.questions,
+        ...this.state.question,
         answers: filledInAnswers
       };
     }
@@ -128,18 +127,18 @@ class PollForm extends Component {
   };
 
   handleRadioInput = e => {
-    const { questions } = this.state;
+    const { question } = this.state;
 
     this.setState({
-      questions: {
-        ...questions,
+      question: {
+        ...question,
         type: e.target.value
       }
     });
   };
 
   renderChoicesComponent = () => {
-    const { type, answers } = this.state.questions;
+    const { type, answers } = this.state.question;
 
     if (type === YES_NO) {
       return null;
@@ -158,7 +157,7 @@ class PollForm extends Component {
 
   render() {
     const { toggleEditable, clearAllQuestions, isEdit } = this.props;
-    const { type, value } = this.state.questions;
+    const { type, value } = this.state.question;
     const { renderError } = this.state;
 
     return (

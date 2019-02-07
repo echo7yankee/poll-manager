@@ -90,7 +90,7 @@ class PollCreator extends Component {
           )}
           <PollForm
             //@todo just one result, and delete newResults
-            questions={createQuestion()}
+            question={createQuestion()}
             handleSubmit={this.addQuestion}
             // @todo remove newQuestions, display index number outside PollForm
             newQuestions={this.state.newQuestions}
@@ -104,7 +104,7 @@ class PollCreator extends Component {
             <div className="polls polls-questions" key={question.id}>
               <PollQuestion
                 toggleEditable={() => this.toggleEditable(question.id)}
-                questions={question}
+                question={question}
                 handleDeleteQuestion={() =>
                   this.handleDeleteQuestion(question.id)
                 }
@@ -116,7 +116,7 @@ class PollCreator extends Component {
               key={question.id}
               handleSubmit={this.editQuestion}
               newQuestions={this.state.newQuestions}
-              questions={question}
+              question={question}
               toggleEditable={() => this.toggleEditable(question.id)}
             />
           );
