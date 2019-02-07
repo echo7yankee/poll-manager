@@ -8,6 +8,7 @@ import {
   MULTIPLE_CHOICE,
   SINGLE_CHOICE
 } from "./PollQuestions/types";
+import RadioType from "./reusableComponents/RadioType";
 
 class PollForm extends Component {
   state = {
@@ -178,46 +179,24 @@ class PollForm extends Component {
             <div className="polls__inputs-container">
               <label className="polls-label">Answers:</label>
               <div className="polls__radio-container">
-                {/* @todo extract Radio component */}
-
-                <div className="radio__label-container">
-                  <label className="mt-2">
-                    <input
-                      className="polls-radio"
-                      type="radio"
-                      value={YES_NO}
-                      checked={type === YES_NO}
-                      onChange={this.handleRadioInput}
-                    />
-                    Yes/No Form
-                  </label>
-                </div>
-
-                <div className="radio__label-container">
-                  <label className="mt-2">
-                    <input
-                      className="polls-radio"
-                      type="radio"
-                      value={MULTIPLE_CHOICE}
-                      checked={type === MULTIPLE_CHOICE}
-                      onChange={this.handleRadioInput}
-                    />
-                    Multiple choice form
-                  </label>
-                </div>
-
-                <div className="radio__label-container">
-                  <label className="mt-2">
-                    <input
-                      className="polls-radio"
-                      type="radio"
-                      value={SINGLE_CHOICE}
-                      checked={type === SINGLE_CHOICE}
-                      onChange={this.handleRadioInput}
-                    />
-                    Single choice
-                  </label>
-                </div>
+                <RadioType
+                  text={"Yes/No Form"}
+                  typeChoice={YES_NO}
+                  type={type}
+                  handleRadioInput={this.handleRadioInput}
+                />
+                <RadioType
+                  text={"Multiple choice form"}
+                  typeChoice={MULTIPLE_CHOICE}
+                  type={type}
+                  handleRadioInput={this.handleRadioInput}
+                />
+                <RadioType
+                  text={"Single choice"}
+                  typeChoice={SINGLE_CHOICE}
+                  type={type}
+                  handleRadioInput={this.handleRadioInput}
+                />
               </div>
             </div>
             {this.renderChoicesComponent()}
