@@ -10,10 +10,17 @@ import {
 } from "./PollQuestions/types";
 
 class PollForm extends Component {
-  constructor(props) {
-    super(props);
+  state = {
+    questions: [],
+    renderError: false
+  };
 
-    this.state = {
+  static getDerivedStateFromProps(props, state) {
+    if (props.questions.id === state.questions.id) {
+      return null;
+    }
+
+    return {
       questions: props.questions,
       renderError: false
     };
@@ -99,79 +106,34 @@ class PollForm extends Component {
       questions: updatedQuestions
     });
   };
-
   submitQuestion = e => {
     e.preventDefault();
 
     const { type, answers } = this.state.questions;
     const { handleSubmit } = this.props;
+    let question;
 
-    if (value === "") {
-      this.setState({
-        renderError: true
-      });
+    if (type === YES_NO) {
+      question = {
+        ...this.state.questions,
+        answers: []
+      };
     } else {
-      this.setState({
-        renderError: false,
-        value: ""
+      const filledInAnswers = answers.filter(answer => {
+        return answer.value !== "";
       });
 
-      if (type === "YES_NO") {
-        const updatedNewQuestions = {
-          ...questions,
-          value: value,
-          answers: [createChoice(), createChoice()],
-          type
-        };
-
-        this.setState({
-          questions: updatedNewQuestions,
-          answers: [createChoice(), createChoice()]
-        });
-
-        handleSubmit(updatedNewQuestions);
-      } else if (type === "MULTIPLE_CHOICE") {
-        answers.forEach(choice => {
-          if (choice.value === "") {
-            alert("Choices Value is empty");
-          } else {
-            const updatedNewQuestions = {
-              ...questions,
-              value: value,
-              answers: answers,
-              type
-            };
-
-            this.setState({
-              questions: updatedNewQuestions,
-              answers: [createChoice(), createChoice()]
-            });
-
-            handleSubmit(updatedNewQuestions);
-          }
-        });
-      } else if (type === "SINGLE_CHOICE") {
-        answers.forEach(choice => {
-          if (choice.value === "") {
-            alert("Choices Value is empty");
-          } else {
-            const updatedNewQuestions = {
-              ...questions,
-              value: value,
-              answers: answers,
-              type
-            };
-
-            this.setState({
-              questions: updatedNewQuestions,
-              answers: [createChoice(), createChoice()]
-            });
-
-            handleSubmit(updatedNewQuestions);
-          }
-        });
+      if (filledInAnswers.length < 2) {
+        return alert("You need at least two choices");
       }
+
+      question = {
+        ...this.state.questions,
+        answers: filledInAnswers
+      };
     }
+
+    handleSubmit(question);
   };
 
   handleRadioInput = e => {
