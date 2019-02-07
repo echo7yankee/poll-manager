@@ -9,6 +9,8 @@ import {
   SINGLE_CHOICE
 } from "./PollQuestions/types";
 
+// @todo reduce setState code (spread directly in setState)
+
 class PollForm extends Component {
   state = {
     questions: [],
@@ -201,6 +203,8 @@ class PollForm extends Component {
             <div className="polls__inputs-container">
               <label className="polls-label">Answers:</label>
               <div className="polls__radio-container">
+                {/* @todo extract Radio component */}
+
                 <div className="radio__label-container">
                   <label className="mt-2">
                     <input

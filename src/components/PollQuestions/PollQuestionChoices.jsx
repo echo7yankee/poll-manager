@@ -6,6 +6,7 @@ const PollQuestionChoices = ({ type, answers }) => {
   return (
     <ul className="polls-list">
       {answers.map(answer => {
+        // @todo remove duplication, use local variable
         return type === MULTIPLE_CHOICE ? (
           <li key={answer.id}>
             {answer.value === "" ? null : (

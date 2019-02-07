@@ -89,7 +89,7 @@ class PollCreator extends Component {
             //@todo just one result, and delete newResults
             questions={createQuestion()}
             handleSubmit={this.addQuestion}
-            // @todo remove newResults, display index number outside PollForm
+            // @todo remove newQuestions, display index number outside PollForm
             newQuestions={this.state.newQuestions}
             toggleEditable={this.toggleEditable}
             clearAllQuestions={this.clearAllQuestions}
