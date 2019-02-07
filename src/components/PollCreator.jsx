@@ -15,28 +15,16 @@ class PollCreator extends Component {
   }
 
   addQuestion = updatedQuestions => {
-    const updatedCreatedQuestions = {
-      ...updatedQuestions
-    };
-
-    const updatedNewQuestions = [
-      ...this.state.newQuestions,
-      updatedCreatedQuestions
-    ];
-
     this.setState({
-      newQuestions: updatedNewQuestions
+      newQuestions: [...this.state.newQuestions, { ...updatedQuestions }]
     });
   };
 
   handleDeleteQuestion = id => {
     const { newQuestions } = this.state;
-    const filteredQuestions = newQuestions.filter(question => {
-      return question.id !== id;
-    });
 
     this.setState({
-      newQuestions: filteredQuestions
+      newQuestions: newQuestions.filter(question => question.id !== id)
     });
   };
 
@@ -47,34 +35,34 @@ class PollCreator extends Component {
   };
 
   toggleEditable = id => {
-    this.setState(prevState => {
-      const newQuestions = [...prevState.newQuestions];
-      const indexQuestions = newQuestions.findIndex((question, index) => {
-        return question.id === id;
-      });
+    const { newQuestions } = this.state;
+    const indexQuestions = newQuestions.findIndex(question => {
+      return question.id === id;
+    });
 
-      newQuestions[indexQuestions] = {
-        ...newQuestions[indexQuestions],
-        isEdit: !newQuestions[indexQuestions].isEdit
-      };
+    newQuestions[indexQuestions] = {
+      ...newQuestions[indexQuestions],
+      isEdit: !newQuestions[indexQuestions].isEdit
+    };
 
-      return { newQuestions };
+    this.setState({
+      newQuestions
     });
   };
 
   editQuestion = updatedQuestions => {
-    this.setState(prevState => {
-      const newQuestions = [...prevState.newQuestions];
-      const indexQuestions = newQuestions.findIndex((question, index) => {
-        return question.id === updatedQuestions.id;
-      });
+    const { newQuestions } = this.state;
+    const indexQuestions = newQuestions.findIndex(question => {
+      return question.id === updatedQuestions.id;
+    });
 
-      newQuestions[indexQuestions] = {
-        ...updatedQuestions,
-        isEdit: false
-      };
+    newQuestions[indexQuestions] = {
+      ...updatedQuestions,
+      isEdit: false
+    };
 
-      return { newQuestions };
+    this.setState({
+      newQuestions
     });
   };
 
