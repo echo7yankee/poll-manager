@@ -11,71 +11,71 @@ class PollCreator extends Component {
     super(props);
     this.state = {
       // @todo rename to questions
-      newQuestions: []
+      questions: []
     };
   }
 
   addQuestion = newQuestion => {
     this.setState({
-      newQuestions: [...this.state.newQuestions, { ...newQuestion }]
+      questions: [...this.state.questions, { ...newQuestion }]
     });
   };
 
   handleDeleteQuestion = id => {
-    const { newQuestions } = this.state;
+    const { questions } = this.state;
 
     this.setState({
-      newQuestions: newQuestions.filter(question => question.id !== id)
+      questions: questions.filter(question => question.id !== id)
     });
   };
 
   clearAllQuestions = () => {
     this.setState({
-      newQuestions: []
+      questions: []
     });
   };
 
   toggleEditable = id => {
-    const { newQuestions } = this.state;
-    const indexQuestions = newQuestions.findIndex(question => {
+    const { questions } = this.state;
+    const indexQuestion = questions.findIndex(question => {
       return question.id === id;
     });
 
-    newQuestions[indexQuestions] = {
-      ...newQuestions[indexQuestions],
-      isEdit: !newQuestions[indexQuestions].isEdit
+    questions[indexQuestion] = {
+      ...questions[indexQuestion],
+      isEdit: !questions[indexQuestion].isEdit
     };
 
     this.setState({
-      newQuestions
+      questions
     });
   };
 
   editQuestion = updatedQuestion => {
-    const { newQuestions } = this.state;
-    const indexQuestions = newQuestions.findIndex(question => {
+    const { questions } = this.state;
+    const indexQuestion = questions.findIndex(question => {
       return question.id === updatedQuestion.id;
     });
 
-    newQuestions[indexQuestions] = {
+    questions[indexQuestion] = {
       ...updatedQuestion,
       isEdit: false
     };
 
     this.setState({
-      newQuestions
+      questions
     });
   };
 
   render() {
-    const { newQuestions } = this.state;
+    const { questions } = this.state;
 
     return (
       <>
         <div className="polls">
           <h1 className="polls-header">ADD POLLS</h1>
-          {newQuestions >= 0 ? null : (
-            <span className="polls-header-counter">{newQuestions.length}</span>
+          {questions >= 0 ? null : (
+            <span className="polls-header-counter">{questions.length}</span>
           )}
           <PollForm
             question={createQuestion()}
@@ -86,7 +86,7 @@ class PollCreator extends Component {
             isEdit={createQuestion().isEdit}
           />
         </div>
-        {newQuestions.map((question, index) => {
+        {questions.map((question, index) => {
           return question.isEdit === false ? (
             <div className="polls polls-questions" key={question.id}>
               <PollQuestion
