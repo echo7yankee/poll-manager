@@ -10,7 +10,6 @@ class PollCreator extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // @todo rename to questions
       questions: []
     };
   }
@@ -79,7 +78,6 @@ class PollCreator extends Component {
           )}
           <PollForm
             question={createQuestion()}
-            // @todo rename to onSubmit
             onSubmit={this.addQuestion}
             toggleEditable={this.toggleEditable}
             clearAllQuestions={this.clearAllQuestions}
