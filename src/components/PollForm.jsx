@@ -184,11 +184,11 @@ class PollForm extends Component {
         <div className="polls-container">
           <form className="polls-form" onSubmit={this.submitQuestion}>
             <div className="polls__inputs-container">
-              {newQuestions >= 0 ? null : (
+              {/* {newQuestions >= 0 ? null : (
                 <span className="polls-header-counter">
                   {newQuestions.length}
                 </span>
-              )}
+              )} */}
 
               <label className="polls-label">Question:</label>
               <input

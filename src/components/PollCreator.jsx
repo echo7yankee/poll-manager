@@ -83,8 +83,11 @@ class PollCreator extends Component {
 
     return (
       <>
-        <div className="polls-test">
+        <div className="polls">
           <h1 className="polls-header">ADD POLLS</h1>
+          {newQuestions >= 0 ? null : (
+            <span className="polls-header-counter">{newQuestions.length}</span>
+          )}
           <PollForm
             //@todo just one result, and delete newResults
             questions={createQuestion()}
@@ -95,11 +98,11 @@ class PollCreator extends Component {
             clearAllQuestions={this.clearAllQuestions}
             isEdit={createQuestion().isEdit}
           />
-
-          {newQuestions.map((question, index) => {
-            return question.isEdit === false ? (
+        </div>
+        {newQuestions.map((question, index) => {
+          return question.isEdit === false ? (
+            <div className="polls polls-questions" key={question.id}>
               <PollQuestion
-                key={question.id}
                 toggleEditable={() => this.toggleEditable(question.id)}
                 questions={question}
                 handleDeleteQuestion={() =>
@@ -107,17 +110,17 @@ class PollCreator extends Component {
                 }
                 index={index + 1}
               />
-            ) : (
-              <PollForm
-                key={question.id}
-                handleSubmit={this.editQuestion}
-                newQuestions={this.state.newQuestions}
-                questions={question}
-                toggleEditable={() => this.toggleEditable(question.id)}
-              />
-            );
-          })}
-        </div>
+            </div>
+          ) : (
+            <PollForm
+              key={question.id}
+              handleSubmit={this.editQuestion}
+              newQuestions={this.state.newQuestions}
+              questions={question}
+              toggleEditable={() => this.toggleEditable(question.id)}
+            />
+          );
+        })}
       </>
     );
   }
