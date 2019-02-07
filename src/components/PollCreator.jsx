@@ -80,7 +80,7 @@ class PollCreator extends Component {
           <PollForm
             question={createQuestion()}
             // @todo rename to onSubmit
-            handleSubmit={this.addQuestion}
+            onSubmit={this.addQuestion}
             toggleEditable={this.toggleEditable}
             clearAllQuestions={this.clearAllQuestions}
             isEdit={createQuestion().isEdit}
@@ -101,7 +101,7 @@ class PollCreator extends Component {
           ) : (
             <div className="polls" key={question.id}>
               <PollForm
-                handleSubmit={this.editQuestion}
+                onSubmit={this.editQuestion}
                 question={question}
                 toggleEditable={() => this.toggleEditable(question.id)}
               />

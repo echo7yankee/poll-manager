@@ -101,7 +101,7 @@ class PollForm extends Component {
     e.preventDefault();
 
     const { type, answers } = this.state.question;
-    const { handleSubmit } = this.props;
+    const { onSubmit } = this.props;
     let question;
 
     if (type === YES_NO) {
@@ -124,7 +124,7 @@ class PollForm extends Component {
       };
     }
 
-    handleSubmit(question);
+    onSubmit(question);
   };
 
   handleRadioInput = e => {
