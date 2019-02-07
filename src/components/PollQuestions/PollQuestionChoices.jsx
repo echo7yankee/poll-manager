@@ -8,15 +8,13 @@ const PollQuestionChoices = ({ type, answers }) => {
       {answers.map(answer => {
         return (
           <li key={answer.id}>
-            {answer.value === "" ? null : (
-              <label>
-                <input
-                  type={type === MULTIPLE_CHOICE ? "checkbox" : "radio"}
-                  disabled
-                />
-                {answer.value}
-              </label>
-            )}
+            <label>
+              <input
+                type={type === MULTIPLE_CHOICE ? "checkbox" : "radio"}
+                disabled
+              />
+              {answer.value}
+            </label>
           </li>
         );
       })}
