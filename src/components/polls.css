@@ -128,7 +128,7 @@
   list-style: none;
 }
 
-.polls-test {
+.polls {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -138,4 +138,8 @@
   margin: 5px auto;
   background-color: #fbfbfb;
   border-radius: 5px;
+}
+
+.polls-questions {
+  min-height: 20vh !important;
 }
