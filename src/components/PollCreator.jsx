@@ -10,13 +10,14 @@ class PollCreator extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      // @todo rename to questions
       newQuestions: []
     };
   }
 
-  addQuestion = updatedQuestions => {
+  addQuestion = newQuestion => {
     this.setState({
-      newQuestions: [...this.state.newQuestions, { ...updatedQuestions }]
+      newQuestions: [...this.state.newQuestions, { ...newQuestion }]
     });
   };
 
@@ -50,14 +51,14 @@ class PollCreator extends Component {
     });
   };
 
-  editQuestion = updatedQuestions => {
+  editQuestion = updatedQuestion => {
     const { newQuestions } = this.state;
     const indexQuestions = newQuestions.findIndex(question => {
-      return question.id === updatedQuestions.id;
+      return question.id === updatedQuestion.id;
     });
 
     newQuestions[indexQuestions] = {
-      ...updatedQuestions,
+      ...updatedQuestion,
       isEdit: false
     };
 
@@ -78,6 +79,7 @@ class PollCreator extends Component {
           )}
           <PollForm
             question={createQuestion()}
+            // @todo rename to onSubmit
             handleSubmit={this.addQuestion}
             toggleEditable={this.toggleEditable}
             clearAllQuestions={this.clearAllQuestions}
