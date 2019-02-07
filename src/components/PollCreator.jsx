@@ -109,12 +109,13 @@ class PollCreator extends Component {
               />
             </div>
           ) : (
-            <PollForm
-              key={question.id}
-              handleSubmit={this.editQuestion}
-              question={question}
-              toggleEditable={() => this.toggleEditable(question.id)}
-            />
+            <div className="polls" key={question.id}>
+              <PollForm
+                handleSubmit={this.editQuestion}
+                question={question}
+                toggleEditable={() => this.toggleEditable(question.id)}
+              />
+            </div>
           );
         })}
       </>
