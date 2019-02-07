@@ -6,20 +6,15 @@ const PollQuestionChoices = ({ type, answers }) => {
   return (
     <ul className="polls-list">
       {answers.map(answer => {
-        // @todo remove duplication, use local variable
-        return type === MULTIPLE_CHOICE ? (
+        return (
           <li key={answer.id}>
             {answer.value === "" ? null : (
               <label>
-                <input type="checkbox" disabled /> {answer.value}
-              </label>
-            )}
-          </li>
-        ) : (
-          <li key={answer.id}>
-            {answer.value === "" ? null : (
-              <label>
-                <input type="radio" disabled /> {answer.value}
+                <input
+                  type={type === MULTIPLE_CHOICE ? "checkbox" : "radio"}
+                  disabled
+                />
+                {answer.value}
               </label>
             )}
           </li>
