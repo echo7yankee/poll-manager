@@ -9,10 +9,9 @@ import {
   SINGLE_CHOICE
 } from "./PollQuestions/types";
 
-// @todo reduce setState code (spread directly in setState)
-
 class PollForm extends Component {
   state = {
+    //@todo rename questions into question (singular)
     questions: [],
     renderError: false
   };
@@ -32,13 +31,11 @@ class PollForm extends Component {
     const { questions } = this.state;
     const { answers } = this.state.questions;
 
-    const updatedQuestions = {
-      ...questions,
-      answers: [...answers, createChoice()]
-    };
-
     this.setState({
-      questions: updatedQuestions
+      questions: {
+        ...questions,
+        answers: [...answers, createChoice()]
+      }
     });
   };
 
@@ -46,16 +43,14 @@ class PollForm extends Component {
     const { questions } = this.state;
     const { answers } = this.state.questions;
 
-    const updatedQuestions = {
-      ...questions,
-      answers: answers.filter(newChoice => {
-        return newChoice.id !== id;
-      })
-    };
-
     if (answers.length > 2) {
       this.setState({
-        questions: updatedQuestions
+        questions: {
+          ...questions,
+          answers: answers.filter(newAnswer => {
+            return newAnswer.id !== id;
+          })
+        }
       });
     }
   };
@@ -63,13 +58,11 @@ class PollForm extends Component {
   clearAllChoices = () => {
     const { questions } = this.state;
 
-    const updatedQuestions = {
-      ...questions,
-      answers: [createChoice(), createChoice()]
-    };
-
     this.setState({
-      questions: updatedQuestions
+      questions: {
+        ...questions,
+        answers: [createChoice(), createChoice()]
+      }
     });
   };
 
@@ -86,26 +79,22 @@ class PollForm extends Component {
       value: value
     };
 
-    const updatedQuestions = {
-      ...questions,
-      answers: answers
-    };
-
     this.setState({
-      questions: updatedQuestions
+      questions: {
+        ...questions,
+        answers: answers
+      }
     });
   };
 
   handleQuestionInput = e => {
     const { questions } = this.state;
 
-    const updatedQuestions = {
-      ...questions,
-      value: e.target.value
-    };
-
     this.setState({
-      questions: updatedQuestions
+      questions: {
+        ...questions,
+        value: e.target.value
+      }
     });
   };
   submitQuestion = e => {
@@ -118,7 +107,7 @@ class PollForm extends Component {
     if (type === YES_NO) {
       question = {
         ...this.state.questions,
-        answers: []
+        answers: [createChoice(), createChoice()]
       };
     } else {
       const filledInAnswers = answers.filter(answer => {
@@ -141,13 +130,11 @@ class PollForm extends Component {
   handleRadioInput = e => {
     const { questions } = this.state;
 
-    const updatedQuestions = {
-      ...questions,
-      type: e.target.value
-    };
-
     this.setState({
-      questions: updatedQuestions
+      questions: {
+        ...questions,
+        type: e.target.value
+      }
     });
   };
 
