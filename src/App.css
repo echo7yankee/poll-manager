@@ -1,3 +1,7 @@
+:root {
+  --main-lg-color: #f9f9f9;
+}
+
 * {
   margin: 0;
   padding: 0;
