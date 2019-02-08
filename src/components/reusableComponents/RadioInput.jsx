@@ -1,7 +1,7 @@
 import React from "react";
 import "../polls.css";
 
-const RadioType = ({ value, text, type, onChange }) => {
+const RadioInput = ({ value, text, type, onChange }) => {
   return (
     <div className="radio__label-container">
       <label className="mt-2">
@@ -18,4 +18,4 @@ const RadioType = ({ value, text, type, onChange }) => {
   );
 };
 
-export default RadioType;
+export default RadioInput;

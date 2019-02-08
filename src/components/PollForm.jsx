@@ -8,7 +8,7 @@ import {
   MULTIPLE_CHOICE,
   SINGLE_CHOICE
 } from "./PollQuestions/types";
-import RadioType from "./reusableComponents/RadioInput";
+import RadioInput from "./reusableComponents/RadioInput";
 
 class PollForm extends Component {
   state = {
@@ -179,19 +179,19 @@ class PollForm extends Component {
             <div className="polls__inputs-container">
               <label className="polls-label">Answers:</label>
               <div className="polls__radio-container">
-                <RadioType
+                <RadioInput
                   text={"Yes/No Form"}
                   value={YES_NO}
                   type={type === YES_NO}
                   onChange={this.handleRadioInput}
                 />
-                <RadioType
+                <RadioInput
                   text={"Multiple choice form"}
                   value={MULTIPLE_CHOICE}
                   type={type === MULTIPLE_CHOICE}
                   onChange={this.handleRadioInput}
                 />
-                <RadioType
+                <RadioInput
                   text={"Single choice"}
                   value={SINGLE_CHOICE}
                   type={type === SINGLE_CHOICE}
