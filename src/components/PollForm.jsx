@@ -97,12 +97,20 @@ class PollForm extends Component {
       }
     });
   };
+
   submitQuestion = e => {
     e.preventDefault();
 
-    const { type, answers } = this.state.question;
+    const { type, answers, value } = this.state.question;
     const { onSubmit } = this.props;
     let question;
+
+    if (value === "") {
+      this.setState({
+        renderError: true
+      });
+      return;
+    }
 
     if (type === YES_NO) {
       question = {
