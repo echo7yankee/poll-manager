@@ -2,6 +2,8 @@ import React from "react";
 import "./choices.css";
 import "../reusableStyle.css";
 
+import cancel from "../../img/cancel.svg";
+
 const ChoiceItem = ({ deleteChoice, handleChoiceInput, inputValue, index }) => {
   return (
     <div className="polls__choices">
@@ -14,8 +16,8 @@ const ChoiceItem = ({ deleteChoice, handleChoiceInput, inputValue, index }) => {
         placeholder={index === 1 ? "Enter a choice" : null}
       />
       {index >= 3 ? (
-        <span className="btn-delete btn-delete-position" onClick={deleteChoice}>
-          <i className="fas fa-times" />
+        <span className="btn-delete-position" onClick={deleteChoice}>
+          <img src={cancel} className="btn-delete" alt="" />
         </span>
       ) : null}
     </div>
