@@ -6,6 +6,8 @@ import { YES_NO } from "./types";
 import "../polls.css";
 import "./pollsQuestion.css";
 import "../reusableStyle.css";
+import edit from "../../img/edit.svg";
+import cancel from "../../img/cancel.svg";
 
 const PollQuestion = ({
   index,
@@ -49,11 +51,11 @@ const PollQuestion = ({
 
       <div className="btn-icons">
         <span className="btn-edit" onClick={toggleEditable}>
-          <i className="fas fa-pencil-alt pencil-size" />
+          <img src={edit} alt="" />
         </span>
 
         <span className="btn-delete" onClick={handleDeleteQuestion}>
-          <i className="fas fa-times" />
+          <img src={cancel} alt="" />
         </span>
       </div>
     </div>
