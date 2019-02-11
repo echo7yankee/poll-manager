@@ -47,9 +47,8 @@
   color: #619dbd;
 }
 
-.btn-delete-position {
-  position: absolute !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
-  right: 30px !important;
+.btn-delete-absolute {
+  position: absolute;
+  top: 7px;
+  right: 40px;
 }
