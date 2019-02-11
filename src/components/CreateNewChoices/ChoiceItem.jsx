@@ -2,7 +2,7 @@ import React from "react";
 import "./choices.css";
 import "../reusableStyle.css";
 
-import cancel from "../../img/cancel.svg";
+import { BtnDelete } from "../reusableComponents/buttons";
 
 const ChoiceItem = ({ deleteChoice, handleChoiceInput, inputValue, index }) => {
   return (
@@ -16,9 +16,11 @@ const ChoiceItem = ({ deleteChoice, handleChoiceInput, inputValue, index }) => {
         placeholder={index === 1 ? "Enter a choice" : null}
       />
       {index >= 3 ? (
-        <span className="btn-delete-position" onClick={deleteChoice}>
-          <img src={cancel} className="btn-delete" alt="" />
-        </span>
+        <BtnDelete
+          onClick={deleteChoice}
+          spanClassName="btn-delete-absolute"
+          imgClassName={"btn-delete"}
+        />
       ) : null}
     </div>
   );

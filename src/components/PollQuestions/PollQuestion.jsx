@@ -2,12 +2,11 @@ import React from "react";
 import PollQuestionChoices from "./PollQuestionChoices";
 
 import { YES_NO } from "./types";
+import { BtnEdit, BtnDelete } from "../reusableComponents/buttons";
 
 import "../polls.css";
 import "./pollsQuestion.css";
 import "../reusableStyle.css";
-import edit from "../../img/edit.svg";
-import cancel from "../../img/cancel.svg";
 
 const PollQuestion = ({
   index,
@@ -48,15 +47,9 @@ const PollQuestion = ({
       <div className="polls__inputs-container">
         <label className="polls-label">Answers:{renderAnswers()}</label>
       </div>
-
       <div className="btn-icons">
-        <span className="btn-edit" onClick={toggleEditable}>
-          <img src={edit} alt="" />
-        </span>
-
-        <span className="btn-delete" onClick={handleDeleteQuestion}>
-          <img src={cancel} alt="" />
-        </span>
+        <BtnEdit onClick={toggleEditable} />
+        <BtnDelete onClick={handleDeleteQuestion} imgClassName={"btn-delete"} />
       </div>
     </div>
   );
