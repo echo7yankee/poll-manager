@@ -171,16 +171,38 @@ class PollForm extends Component {
 
     return (
       <>
-        <div className="polls-container">
-          <form className="polls-form" onSubmit={this.submitQuestion}>
-            <div className="polls__inputs-container">
-              <label className="polls-label">Question:</label>
-              <input
-                className="polls-input"
-                type="text"
-                placeholder="Enter a question"
-                value={value}
-                onChange={this.handleQuestionInput}
+        <form className="polls-form" onSubmit={this.submitQuestion}>
+          <div className="polls__inputs-container">
+            <label className="polls-label">Question:</label>
+            <input
+              className="polls-input"
+              type="text"
+              placeholder="Enter a question"
+              value={value}
+              onChange={this.handleQuestionInput}
+            />
+          </div>
+          {renderError && <p>Please insert a value</p>}
+          <div className="polls__inputs-container">
+            <label className="polls-label">Answers:</label>
+            <div className="polls__radio-container">
+              <RadioInput
+                text={"Yes/No Form"}
+                value={YES_NO}
+                type={type === YES_NO}
+                onChange={this.handleRadioInput}
+              />
+              <RadioInput
+                text={"Multiple choice form"}
+                value={MULTIPLE_CHOICE}
+                type={type === MULTIPLE_CHOICE}
+                onChange={this.handleRadioInput}
+              />
+              <RadioInput
+                text={"Single choice"}
+                value={SINGLE_CHOICE}
+                type={type === SINGLE_CHOICE}
+                onChange={this.handleRadioInput}
               />
             </div>
             {renderError && <p>Please insert a value</p>}

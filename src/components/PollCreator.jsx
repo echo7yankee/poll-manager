@@ -71,7 +71,7 @@ class PollCreator extends Component {
 
     return (
       <>
-        <div className="polls">
+        <div className="polls-container">
           <h1 className="polls-header">ADD POLLS</h1>
           {questions >= 0 ? null : (
             <span className="polls-header-counter">{questions.length}</span>
@@ -97,7 +97,7 @@ class PollCreator extends Component {
               />
             </div>
           ) : (
-            <div className="polls" key={question.id}>
+            <div className="polls-container" key={question.id}>
               <PollForm
                 onSubmit={this.editQuestion}
                 question={question}
