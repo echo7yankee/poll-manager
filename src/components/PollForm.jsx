@@ -205,63 +205,39 @@ class PollForm extends Component {
                 onChange={this.handleRadioInput}
               />
             </div>
-            {renderError && <p>Please insert a value</p>}
-            <div className="polls__inputs-container">
-              <label className="polls-label">Answers:</label>
-              <div className="polls__radio-container">
-                <RadioInput
-                  text={"Yes/No Form"}
-                  value={YES_NO}
-                  type={type === YES_NO}
-                  onChange={this.handleRadioInput}
-                />
-                <RadioInput
-                  text={"Multiple choice form"}
-                  value={MULTIPLE_CHOICE}
-                  type={type === MULTIPLE_CHOICE}
-                  onChange={this.handleRadioInput}
-                />
-                <RadioInput
-                  text={"Single choice"}
-                  value={SINGLE_CHOICE}
-                  type={type === SINGLE_CHOICE}
-                  onChange={this.handleRadioInput}
-                />
-              </div>
-            </div>
-            {this.renderChoicesComponent()}
-            <div className="button-container">
-              {isEdit === false ? (
-                <>
-                  <button className="add-poll" type="submit">
-                    Add Poll
-                  </button>
+          </div>
+          {this.renderChoicesComponent()}
+          <div className="button-container">
+            {isEdit === false ? (
+              <>
+                <button className="add-poll" type="submit">
+                  Add Poll
+                </button>
 
-                  <button
-                    className="add-poll delete-poll"
-                    type="button"
-                    onClick={clearAllQuestions}
-                  >
-                    Clear Posts
-                  </button>
-                </>
-              ) : (
-                <>
-                  <button className="add-poll edit-poll" type="submit">
-                    Edit Poll
-                  </button>
-                  <button
-                    className="add-poll cancel-poll"
-                    type="button"
-                    onClick={toggleEditable}
-                  >
-                    Cancel
-                  </button>
-                </>
-              )}
-            </div>
-          </form>
-        </div>
+                <button
+                  className="add-poll delete-poll"
+                  type="button"
+                  onClick={clearAllQuestions}
+                >
+                  Clear Posts
+                </button>
+              </>
+            ) : (
+              <>
+                <button className="add-poll edit-poll" type="submit">
+                  Edit Poll
+                </button>
+                <button
+                  className="add-poll cancel-poll"
+                  type="button"
+                  onClick={toggleEditable}
+                >
+                  Cancel
+                </button>
+              </>
+            )}
+          </div>
+        </form>
       </>
     );
   }
