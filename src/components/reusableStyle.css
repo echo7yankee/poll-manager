@@ -1,17 +1,7 @@
 .btn-delete,
 .btn-edit {
-  font-size: 28px;
+  width: 23px;
+  height: 23px;
   cursor: pointer;
-  top: 50%;
-  right: 30px;
-  transform: translateY(-50%);
-  color: rgb(200, 200, 200);
-}
-
-.btn-edit:hover {
-  color: green;
-}
-
-.btn-delete:hover {
-  color: red;
+  fill: red;
 }
