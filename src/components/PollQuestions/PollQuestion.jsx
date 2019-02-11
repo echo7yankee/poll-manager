@@ -19,12 +19,17 @@ const PollQuestion = ({
   const renderAnswers = () => {
     if (type === YES_NO) {
       return (
-        <div>
+        <div className="polls__answers-yesNo">
           <label>
-            <input type="radio" disabled /> Yes
+            <input type="radio" className="polls-radio" disabled /> Yes
           </label>
           <label>
-            <input type="radio" disabled /> No
+            <input
+              type="radio"
+              className="polls-radio polls-radio-ml"
+              disabled
+            />{" "}
+            No
           </label>
         </div>
       );
@@ -34,24 +39,25 @@ const PollQuestion = ({
   };
 
   return (
-    <div className="polls__questions-container">
-      <div className="polls__counter">
-        <span className="polls__counter-item">{index}</span>
-      </div>
-      <div className="polls__questions">
-        <label className="polls-label">Question:</label>
-        <div className="polls-text-container">
+    <>
+      <form className="polls-form" onSubmit={e => e.preventDefault()}>
+        <div className="polls__questions polls__questions-mt">
+          <label className="polls-label">Question:</label>
           <p className="polls-text">{value}</p>
         </div>
-      </div>
-      <div className="polls__inputs-container">
-        <label className="polls-label">Answers:{renderAnswers()}</label>
-      </div>
-      <div className="btn-icons">
-        <BtnEdit onClick={toggleEditable} />
-        <BtnDelete onClick={handleDeleteQuestion} imgClassName={"btn-delete"} />
-      </div>
-    </div>
+        <div className="polls__questions">
+          <label className="polls-label">Answers:</label>
+          {renderAnswers()}
+        </div>
+        <div className="btn-icons">
+          <BtnEdit onClick={toggleEditable} spanClassName={"btn-edit"} />
+          <BtnDelete
+            onClick={handleDeleteQuestion}
+            imgClassName={"btn-delete"}
+          />
+        </div>
+      </form>
+    </>
   );
 };
 

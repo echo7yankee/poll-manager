@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import ChoiceItem from "./ChoiceItem.jsx";
+import "./choices.css";
 
 class Choices extends Component {
   render() {
     const { answers } = this.props;
 
     return (
-      <div className="polls__choices-container">
+      <div className="polls__answers-container">
         {answers.map((choice, index) => {
           return (
             <ChoiceItem
@@ -21,18 +22,20 @@ class Choices extends Component {
           );
         })}
 
-        <button
-          className="add-choice"
-          onClick={this.props.addChoice}
-          type="button"
-        >
-          + Add new choice
-        </button>
-        {answers.length > 2 && (
-          <button className="add-choice" onClick={this.props.clearAllChoices}>
-            Clear Choices
+        <div className="polls__answers-butons">
+          <button
+            className="add-choice"
+            onClick={this.props.addChoice}
+            type="button"
+          >
+            + Add new choice
           </button>
-        )}
+          {answers.length > 2 && (
+            <button className="add-choice" onClick={this.props.clearAllChoices}>
+              Clear Choices
+            </button>
+          )}
+        </div>
       </div>
     );
   }

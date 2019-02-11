@@ -74,7 +74,7 @@ class PollCreator extends Component {
         <div className="polls-container">
           <h1 className="polls-header">ADD POLLS</h1>
           {questions >= 0 ? null : (
-            <span className="polls-header-counter">{questions.length}</span>
+            <span className="polls__header-counter">{questions.length}</span>
           )}
           <PollForm
             question={createQuestion()}
@@ -86,7 +86,11 @@ class PollCreator extends Component {
         </div>
         {questions.map((question, index) => {
           return question.isEdit === false ? (
-            <div className="polls polls-questions" key={question.id}>
+            <div
+              className="polls-container polls-container-mh"
+              key={question.id}
+            >
+              <span className="polls__header-counter">{index + 1}</span>
               <PollQuestion
                 toggleEditable={() => this.toggleEditable(question.id)}
                 question={question}

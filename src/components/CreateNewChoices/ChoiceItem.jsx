@@ -1,12 +1,11 @@
 import React from "react";
-import "./choices.css";
 import "../reusableStyle.css";
 
 import { BtnDelete } from "../reusableComponents/buttons";
 
 const ChoiceItem = ({ deleteChoice, handleChoiceInput, inputValue, index }) => {
   return (
-    <div className="polls__choices">
+    <div className="polls__answer">
       <label className="polls__choices-label">Choice # {index}</label>
       <input
         className="polls__choices-input"

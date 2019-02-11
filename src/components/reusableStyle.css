@@ -1,7 +1,15 @@
 .btn-delete,
 .btn-edit {
-  width: 23px;
-  height: 23px;
+  width: 2.3rem;
+  height: 2.3rem;
   cursor: pointer;
-  fill: red;
+  fill: rgba(214, 214, 214, 0.5);
+}
+
+.btn-delete:hover {
+  fill: rgba(214, 214, 214, 1);
+}
+
+.btn-edit:hover {
+  fill: rgba(214, 214, 214, 1);
 }

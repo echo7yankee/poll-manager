@@ -172,7 +172,7 @@ class PollForm extends Component {
     return (
       <>
         <form className="polls-form" onSubmit={this.submitQuestion}>
-          <div className="polls__inputs-container">
+          <div className="polls__input-container polls__input-container-mt">
             <label className="polls-label">Question:</label>
             <input
               className="polls-input"
@@ -183,7 +183,7 @@ class PollForm extends Component {
             />
           </div>
           {renderError && <p>Please insert a value</p>}
-          <div className="polls__inputs-container">
+          <div className="polls__input-container ">
             <label className="polls-label">Answers:</label>
             <div className="polls__radio-container">
               <RadioInput
@@ -207,7 +207,7 @@ class PollForm extends Component {
             </div>
           </div>
           {this.renderChoicesComponent()}
-          <div className="button-container">
+          <div className="polls__button-container">
             {isEdit === false ? (
               <>
                 <button className="add-poll" type="submit">

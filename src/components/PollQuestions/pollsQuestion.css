@@ -1,59 +1,46 @@
-.polls__questions-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 30vh;
-  width: 100%;
-  padding: 20px;
-  margin: 0 auto;
-  background-color: var(--main-lg-color);
-  border-radius: 5px;
-  margin-top: 3px;
-  position: relative;
-}
-
-.polls__counter {
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  width: 25px;
-  height: 25px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  background-color: rgb(214, 19, 19);
-}
-
-.polls__counter-item {
-  color: #fbfbfb;
-  font-weight: bold;
+.polls-container-mh {
+  min-height: 20vh !important;
 }
 
 .polls__questions {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
-  margin-left: 20px;
+  min-height: 5vh;
 }
 
-.polls-text-container {
-  width: 70%;
-  height: 40px;
-  background: #ffffff;
+.polls__questions-mt {
+  margin-top: 4.6rem;
+}
+
+.polls__answers-yesNo {
+  width: 100%;
+  margin-left: 3rem;
   display: flex;
-  align-items: center;
-  box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.25);
-  border-radius: 3px;
-  padding-left: 5px;
-  padding-bottom: 5px;
+}
+
+.polls__answers {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  margin-left: 3rem;
+  min-height: 5vh;
+}
+
+.polls-radio-ml {
+  margin-left: 1rem;
+}
+
+.polls-text {
+  margin-left: 3rem;
 }
 
 .btn-icons {
   display: flex;
   justify-content: space-between;
-  width: 50px;
-  height: 40px;
+  width: 5rem;
+  height: 4rem;
   position: absolute;
-  right: 10px;
-  top: 25px;
+  right: 1rem;
+  top: 2.5rem;
 }

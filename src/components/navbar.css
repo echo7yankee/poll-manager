@@ -1,10 +1,14 @@
 .nav {
   width: 100%;
   background: #393939;
-  height: 50px;
+  height: 5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
 }
 
 .nav-elements {
@@ -12,16 +16,17 @@
 }
 
 .nav-item {
-  margin-right: 30px;
+  margin-right: 3rem;
 }
 
 .nav-el:link,
 .nav-el:visited {
-  font-size: 16px;
+  font-size: 1.6rem;
   color: #ffffff;
 }
 
 .google-button {
-  height: 40px !important;
-  margin-left: 30px !important;
+  height: 4rem !important;
+  margin-left: 3rem !important;
+  font-size: 1.4rem !important;
 }

@@ -1,11 +1,30 @@
 :root {
-  --main-lg-color: #f9f9f9;
+  --main-lg-color: #f3f3f3;
   --green-linear-gradient: linear-gradient(to bottom, #50c039 10%, #388828);
-  --lg-color: #e6e6e6;
+  --lg-color: #dfdfdf;
+  --text-color: #666;
+  --white-bg-color: #ffffff;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  color: #666;
+  font-size: 1.4rem;
+}
+
+.App {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--lg-color);
+  padding: 8rem;
 }
