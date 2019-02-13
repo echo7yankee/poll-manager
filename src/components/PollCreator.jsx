@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 
-import "./polls.css";
-
 import PollQuestion from "./PollQuestions/PollQuestion";
 import { createQuestion } from "./PollQuestions/types";
 import PollForm from "./PollForm";
+
+import "./polls.css";
 
 class PollCreator extends Component {
   constructor(props) {
@@ -71,45 +71,57 @@ class PollCreator extends Component {
 
     return (
       <>
-        <div className="polls-container">
-          <h1 className="polls-header">ADD POLLS</h1>
-          {questions >= 0 ? null : (
-            <span className="polls__header-counter">{questions.length}</span>
-          )}
-          <PollForm
-            question={createQuestion()}
-            onSubmit={this.addQuestion}
-            toggleEditable={this.toggleEditable}
-            clearAllQuestions={this.clearAllQuestions}
-            isEdit={createQuestion().isEdit}
-          />
+        <div className="container">
+          <div className="polls-container">
+            <h1 className="polls-header">ADD POLLS</h1>
+            {questions >= 0 ? null : (
+              <span className="polls__header-counter">
+                {questions.length + 1}
+              </span>
+            )}
+            <PollForm
+              question={createQuestion()}
+              onSubmit={this.addQuestion}
+              toggleEditable={this.toggleEditable}
+              clearAllQuestions={this.clearAllQuestions}
+              isEdit={createQuestion().isEdit}
+            />
+          </div>
+          {questions.map((question, index) => {
+            return question.isEdit === false ? (
+              <div
+                className="polls-container polls-container-question"
+                key={question.id}
+              >
+                <span className="polls__header-counter polls__header-counter-question">
+                  {index + 1}
+                </span>
+                <PollQuestion
+                  toggleEditable={() => this.toggleEditable(question.id)}
+                  question={question}
+                  handleDeleteQuestion={() =>
+                    this.handleDeleteQuestion(question.id)
+                  }
+                  index={index + 1}
+                />
+              </div>
+            ) : (
+              <div
+                className="polls-container polls-container-edit"
+                key={question.id}
+              >
+                <span className="polls__header-counter polls__header-counter-edit">
+                  {index + 1}
+                </span>
+                <PollForm
+                  onSubmit={this.editQuestion}
+                  question={question}
+                  toggleEditable={() => this.toggleEditable(question.id)}
+                />
+              </div>
+            );
+          })}
         </div>
-        {questions.map((question, index) => {
-          return question.isEdit === false ? (
-            <div
-              className="polls-container polls-container-mh"
-              key={question.id}
-            >
-              <span className="polls__header-counter">{index + 1}</span>
-              <PollQuestion
-                toggleEditable={() => this.toggleEditable(question.id)}
-                question={question}
-                handleDeleteQuestion={() =>
-                  this.handleDeleteQuestion(question.id)
-                }
-                index={index + 1}
-              />
-            </div>
-          ) : (
-            <div className="polls-container" key={question.id}>
-              <PollForm
-                onSubmit={this.editQuestion}
-                question={question}
-                toggleEditable={() => this.toggleEditable(question.id)}
-              />
-            </div>
-          );
-        })}
       </>
     );
   }

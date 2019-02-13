@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./polls.css";
 
 import Choices from "./CreateNewChoices/Choices.jsx";
 import {
@@ -9,6 +8,8 @@ import {
   SINGLE_CHOICE
 } from "./PollQuestions/types";
 import RadioInput from "./reusableComponents/RadioInput";
+
+import "./polls.css";
 
 class PollForm extends Component {
   state = {
@@ -172,7 +173,12 @@ class PollForm extends Component {
     return (
       <>
         <form className="polls-form" onSubmit={this.submitQuestion}>
-          <div className="polls__input-container polls__input-container-mt">
+          <div className="render__error-container">
+            {renderError && (
+              <p className="render__error-text">Field cannot be empty</p>
+            )}
+          </div>
+          <div className="polls__input-container polls__input-container-align">
             <label className="polls-label">Question:</label>
             <input
               className="polls-input"
@@ -180,10 +186,10 @@ class PollForm extends Component {
               placeholder="Enter a question"
               value={value}
               onChange={this.handleQuestionInput}
+              required
             />
           </div>
-          {renderError && <p>Please insert a value</p>}
-          <div className="polls__input-container ">
+          <div className="polls__input-container">
             <label className="polls-label">Answers:</label>
             <div className="polls__radio-container">
               <RadioInput
@@ -207,15 +213,15 @@ class PollForm extends Component {
             </div>
           </div>
           {this.renderChoicesComponent()}
-          <div className="polls__button-container">
+          <div className="polls__buttons-container">
             {isEdit === false ? (
               <>
-                <button className="add-poll" type="submit">
+                <button className="polls-button add-poll" type="submit">
                   Add Poll
                 </button>
 
                 <button
-                  className="add-poll delete-poll"
+                  className="polls-button clear-polls"
                   type="button"
                   onClick={clearAllQuestions}
                 >
@@ -224,11 +230,11 @@ class PollForm extends Component {
               </>
             ) : (
               <>
-                <button className="add-poll edit-poll" type="submit">
+                <button className="polls-button edit-poll" type="submit">
                   Edit Poll
                 </button>
                 <button
-                  className="add-poll cancel-poll"
+                  className="polls-button cancel-poll"
                   type="button"
                   onClick={toggleEditable}
                 >

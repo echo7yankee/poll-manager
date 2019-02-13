@@ -22,16 +22,19 @@ class Choices extends Component {
           );
         })}
 
-        <div className="polls__answers-butons">
+        <div className="polls__answers-buttons">
           <button
-            className="add-choice"
+            className="button-answer"
             onClick={this.props.addChoice}
             type="button"
           >
             + Add new choice
           </button>
           {answers.length > 2 && (
-            <button className="add-choice" onClick={this.props.clearAllChoices}>
+            <button
+              className="button-answer"
+              onClick={this.props.clearAllChoices}
+            >
               Clear Choices
             </button>
           )}

@@ -4,7 +4,7 @@ import "../polls.css";
 
 const PollQuestionChoices = ({ type, answers }) => {
   return (
-    <ul className="polls__radio-container polls__answers">
+    <ul className="polls__answers">
       {answers.map(answer => {
         return (
           <li key={answer.id}>

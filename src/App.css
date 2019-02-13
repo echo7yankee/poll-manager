@@ -2,6 +2,8 @@
   --main-lg-color: #f3f3f3;
   --green-linear-gradient: linear-gradient(to bottom, #50c039 10%, #388828);
   --lg-color: #dfdfdf;
+  --grey-color: rgba(214, 214, 214, 1);
+  --dark-grey-color: rgb(192, 192, 192);
   --text-color: #666;
   --white-bg-color: #ffffff;
 }

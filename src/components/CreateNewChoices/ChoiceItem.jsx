@@ -1,14 +1,15 @@
 import React from "react";
-import "../reusableStyle.css";
 
 import { BtnDelete } from "../reusableComponents/buttons";
+
+import "../buttons.css";
 
 const ChoiceItem = ({ deleteChoice, handleChoiceInput, inputValue, index }) => {
   return (
     <div className="polls__answer">
-      <label className="polls__choices-label">Choice # {index}</label>
+      <label className="polls__answer-label">Choice # {index}</label>
       <input
-        className="polls__choices-input"
+        className="polls__answer-input"
         type="text"
         value={inputValue}
         onChange={handleChoiceInput}
@@ -17,8 +18,8 @@ const ChoiceItem = ({ deleteChoice, handleChoiceInput, inputValue, index }) => {
       {index >= 3 ? (
         <BtnDelete
           onClick={deleteChoice}
-          spanClassName="btn-delete-absolute"
-          imgClassName={"btn-delete"}
+          spanClassName="button__icon-absolute"
+          imgClassName={"button-icon"}
         />
       ) : null}
     </div>

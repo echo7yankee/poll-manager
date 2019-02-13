@@ -1,21 +1,40 @@
-.polls-container-mh {
-  min-height: 20vh !important;
+.polls__header-counter-question {
+  top: 2.2rem;
+  background-color: var(--grey-color);
+}
+
+.polls-container-question {
+  min-height: 10vh;
+  border-bottom: 0.1rem solid var(--lg-color);
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.polls__questions-container {
+  display: flex;
+  width: 100%;
+  flex: 0 0 100%;
 }
 
 .polls__questions {
   display: flex;
   align-items: flex-start;
   width: 100%;
-  min-height: 5vh;
+  min-height: 4vh;
 }
 
 .polls__questions-mt {
-  margin-top: 4.6rem;
+  margin-top: 1.5rem;
+  width: 80%;
 }
 
 .polls__answers-yesNo {
   width: 100%;
   margin-left: 3rem;
+  margin-top: 0.2rem;
+  min-height: 3vh;
   display: flex;
 }
 
@@ -35,12 +54,9 @@
   margin-left: 3rem;
 }
 
-.btn-icons {
+.buttons__icon-container {
   display: flex;
-  justify-content: space-between;
-  width: 5rem;
-  height: 4rem;
-  position: absolute;
-  right: 1rem;
-  top: 2.5rem;
+  justify-content: space-around;
+  flex: 0 0 9%;
+  margin-top: 1.5rem;
 }

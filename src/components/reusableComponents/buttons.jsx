@@ -1,7 +1,5 @@
 import React from "react";
 
-import "../reusableStyle.css";
-
 export const BtnEdit = ({ onClick, spanClassName, imgClassName }) => {
   return (
     <span onClick={onClick} className={spanClassName}>
