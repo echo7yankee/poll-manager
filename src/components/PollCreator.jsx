@@ -9,23 +9,32 @@ import "./polls.css";
 class PollCreator extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      questions: []
-    };
+    if (localStorage.getItem("questions") !== null) {
+      this.state = {
+        questions: JSON.parse(localStorage.getItem("questions"))
+      };
+    } else {
+      this.state = {
+        questions: []
+      };
+    }
   }
 
   addQuestion = newQuestion => {
-    this.setState({
-      questions: [...this.state.questions, { ...newQuestion }]
-    });
+    this.setState(
+      {
+        questions: [...this.state.questions, { ...newQuestion }]
+      },
+      () => {
+        let questionsStringify = JSON.stringify(this.state.questions);
+        localStorage.setItem("questions", questionsStringify);
+      }
+    );
   };
 
   handleDeleteQuestion = id => {
-    const { questions } = this.state;
+    //const { questions } = this.state;
 
-    this.setState({
-      questions: questions.filter(question => question.id !== id)
-    });
     //YOU FUCKING HAE TO TALK ABOUT THIS
     //YOU FUCKING HAE TO TALK ABOUT THIS
 
@@ -47,12 +56,25 @@ class PollCreator extends Component {
     //YOU FUCKING HAE TO TALK ABOUT THIS
     //YOU FUCKING HAE TO TALK ABOUT THIS
     //YOU FUCKING HAE TO TALK ABOUT THIS
+
+    this.setState(
+      {
+        questions: this.state.questions.filter(question => question.id !== id)
+      },
+      () => {
+        console.log(this.state.questions);
+        let questionsStringify = JSON.stringify(this.state.questions);
+        localStorage.setItem("questions", questionsStringify);
+      }
+    );
   };
 
   clearAllQuestions = () => {
     this.setState({
       questions: []
     });
+
+    localStorage.clear();
   };
 
   toggleEditable = id => {
@@ -82,9 +104,15 @@ class PollCreator extends Component {
       isEdit: false
     };
 
-    this.setState({
-      questions
-    });
+    this.setState(
+      {
+        questions
+      },
+      () => {
+        let updatedQuestionStringify = JSON.stringify(questions);
+        localStorage.setItem("questions", updatedQuestionStringify);
+      }
+    );
   };
 
   render() {
