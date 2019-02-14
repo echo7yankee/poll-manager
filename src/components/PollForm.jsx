@@ -13,8 +13,7 @@ import "./polls.css";
 
 class PollForm extends Component {
   state = {
-    question: [],
-    renderError: false
+    question: []
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -23,8 +22,7 @@ class PollForm extends Component {
     }
 
     return {
-      question: props.question,
-      renderError: false
+      question: props.question
     };
   }
 
@@ -168,16 +166,10 @@ class PollForm extends Component {
   render() {
     const { toggleEditable, clearAllQuestions, isEdit } = this.props;
     const { type, value } = this.state.question;
-    const { renderError } = this.state;
 
     return (
       <>
-        <form className="polls-form" onSubmit={this.submitQuestion}>
-          <div className="render__error-container">
-            {renderError && (
-              <p className="render__error-text">Field cannot be empty</p>
-            )}
-          </div>
+        <form className="polls__form" onSubmit={this.submitQuestion}>
           <div className="polls__input-container polls__input-container-align">
             <label className="polls-label">Question:</label>
             <input
