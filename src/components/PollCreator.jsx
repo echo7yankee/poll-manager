@@ -33,30 +33,6 @@ class PollCreator extends Component {
   };
 
   handleDeleteQuestion = id => {
-    //const { questions } = this.state;
-
-    //YOU FUCKING HAE TO TALK ABOUT THIS
-    //YOU FUCKING HAE TO TALK ABOUT THIS
-
-    //YOU FUCKING HAE TO TALK ABOUT THIS
-    //YOU FUCKING HAE TO TALK ABOUT THIS
-    //YOU FUCKING HAE TO TALK ABOUT THIS
-
-    //YOU FUCKING HAE TO TALK ABOUT THIS
-
-    //YOU FUCKING HAE TO TALK ABOUT THIS
-    //YOU FUCKING HAE TO TALK ABOUT THIS
-
-    //YOU FUCKING HAE TO TALK ABOUT THIS
-
-    //YOU FUCKING HAE TO TALK ABOUT THIS
-
-    //YOU FUCKING HAE TO TALK ABOUT THIS
-    //YOU FUCKING HAE TO TALK ABOUT THIS
-    //YOU FUCKING HAE TO TALK ABOUT THIS
-    //YOU FUCKING HAE TO TALK ABOUT THIS
-    //YOU FUCKING HAE TO TALK ABOUT THIS
-
     this.setState(
       {
         questions: this.state.questions.filter(question => question.id !== id)
