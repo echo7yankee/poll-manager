@@ -4,11 +4,11 @@ import "../polls.css";
 
 const PollQuestionChoices = ({ type, answers }) => {
   return (
-    <ul className="polls__answers">
+    <ul>
       {answers.map(answer => {
         return (
           <li key={answer.id}>
-            <label>
+            <label className="polls__answers">
               <input
                 type={type === MULTIPLE_CHOICE ? "checkbox" : "radio"}
                 className="polls-radio"
