@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { signIn, signOut } from "../actions";
 import { withRouter } from "react-router-dom";
 
-import auth from "../auth";
+import auth from "../Auth";
 import SignIn from "./SignIn.jsx";
 import SignOut from "./SignOut.jsx";
 
