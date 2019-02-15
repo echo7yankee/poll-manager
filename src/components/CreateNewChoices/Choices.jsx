@@ -7,20 +7,22 @@ class Choices extends Component {
     const { answers } = this.props;
 
     return (
-      <div className="polls__answers-container">
-        {answers.map((choice, index) => {
-          return (
-            <ChoiceItem
-              key={choice.id}
-              inputValue={choice.value}
-              handleChoiceInput={e =>
-                this.props.handleChoiceInput(e.target.value, choice.id)
-              }
-              deleteChoice={() => this.props.deleteChoice(choice.id, index)}
-              index={index + 1}
-            />
-          );
-        })}
+      <>
+        <div className="polls__answer">
+          {answers.map((choice, index) => {
+            return (
+              <ChoiceItem
+                key={choice.id}
+                inputValue={choice.value}
+                handleChoiceInput={e =>
+                  this.props.handleChoiceInput(e.target.value, choice.id)
+                }
+                deleteChoice={() => this.props.deleteChoice(choice.id, index)}
+                index={index + 1}
+              />
+            );
+          })}
+        </div>
 
         <div className="polls__answers-buttons">
           <button
@@ -39,7 +41,7 @@ class Choices extends Component {
             </button>
           )}
         </div>
-      </div>
+      </>
     );
   }
 }

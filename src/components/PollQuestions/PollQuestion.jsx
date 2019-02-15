@@ -6,6 +6,7 @@ import { BtnEdit, BtnDelete } from "../reusableComponents/buttons";
 
 import "./pollsQuestion.css";
 import "../buttons.css";
+import "../polls.css";
 
 const PollQuestion = ({ toggleEditable, handleDeleteQuestion, question }) => {
   const { answers, type, value } = question;
@@ -34,25 +35,19 @@ const PollQuestion = ({ toggleEditable, handleDeleteQuestion, question }) => {
 
   return (
     <>
-      <form className="polls-form" onSubmit={e => e.preventDefault()}>
-        <div className="polls__questions-container">
-          <div className="polls__questions polls__questions-mt">
-            <label className="polls-label">Question:</label>
-            <p className="polls-text">{value}</p>
-          </div>
-          <div className="buttons__icon-container">
-            <BtnEdit onClick={toggleEditable} spanClassName={"button-icon"} />
-            <BtnDelete
-              onClick={handleDeleteQuestion}
-              imgClassName={"button-icon"}
-            />
-          </div>
+      <div className="polls__question">
+        <label className="polls-label">Question:</label>
+        <p className="polls-text">{value}</p>
+        <div className="buttons__container-icons">
+          <BtnEdit onClick={toggleEditable} spanClassName={"button-icon"} />
+          <BtnDelete
+            onClick={handleDeleteQuestion}
+            imgClassName={"button-icon"}
+          />
         </div>
-        <div className="polls__questions">
-          <label className="polls-label">Answers:</label>
-          {renderAnswers()}
-        </div>
-      </form>
+        <label className="polls-label polls-label--top">Answers:</label>
+        <div className="polls__questions">{renderAnswers()}</div>
+      </div>
     </>
   );
 };

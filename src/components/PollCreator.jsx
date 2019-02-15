@@ -97,13 +97,9 @@ class PollCreator extends Component {
     return (
       <>
         <div className="container">
-          <div className="polls-container">
-            <h1 className="polls-header">ADD POLLS</h1>
-            {questions >= 0 ? null : (
-              <span className="polls__header-counter">
-                {questions.length + 1}
-              </span>
-            )}
+          <div className="polls__form-container">
+            <h1 className="polls__container-header">ADD POLLS</h1>
+            <span className="polls__counter">{questions.length + 1}</span>
             <PollForm
               question={createQuestion()}
               onSubmit={this.addQuestion}
@@ -114,12 +110,9 @@ class PollCreator extends Component {
           </div>
           {questions.map((question, index) => {
             return question.isEdit === false ? (
-              <div
-                className="polls-container polls-container-question"
-                key={question.id}
-              >
-                <span className="polls__header-counter polls__header-counter-question">
-                  {index + 1}
+              <div className="polls__container-question" key={question.id}>
+                <span className="polls__counter polls__counter--question">
+                  {index + 2}
                 </span>
                 <PollQuestion
                   toggleEditable={() => this.toggleEditable(question.id)}
@@ -131,12 +124,9 @@ class PollCreator extends Component {
                 />
               </div>
             ) : (
-              <div
-                className="polls-container polls-container-edit"
-                key={question.id}
-              >
-                <span className="polls__header-counter polls__header-counter-edit">
-                  {index + 1}
+              <div className="polls__form-container" key={question.id}>
+                <span className="polls__counter  polls__counter--edit">
+                  {questions.length + 1}
                 </span>
                 <PollForm
                   onSubmit={this.editQuestion}

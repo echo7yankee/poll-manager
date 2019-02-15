@@ -8,7 +8,7 @@ const PollQuestionChoices = ({ type, answers }) => {
       {answers.map(answer => {
         return (
           <li key={answer.id}>
-            <label className="polls__answers">
+            <label>
               <input
                 type={type === MULTIPLE_CHOICE ? "checkbox" : "radio"}
                 className="polls-radio"

@@ -18,6 +18,10 @@ html {
   font-size: 62.5%;
 }
 
+input,
+textarea,
+button,
+select,
 body {
   font-family: "Lato", sans-serif;
   color: #666;
@@ -28,5 +32,5 @@ body {
   width: 100%;
   min-height: 100vh;
   background-color: var(--lg-color);
-  padding: 8rem;
+  padding: 8rem 4rem;
 }

@@ -168,44 +168,47 @@ class PollForm extends Component {
     const { type, value } = this.state.question;
 
     return (
-      <>
-        <form className="polls__form" onSubmit={this.submitQuestion}>
-          <div className="polls__input-container polls__input-container-align">
-            <label className="polls-label">Question:</label>
-            <input
-              className="polls-input"
-              type="text"
-              placeholder="Enter a question"
-              value={value}
-              onChange={this.handleQuestionInput}
-              required
+      <form className="polls__form" onSubmit={this.submitQuestion}>
+        <label className="polls-label" htmlFor="question">
+          Question:
+        </label>
+        <div className="polls__container-input">
+          <input
+            id="question"
+            className="polls-input"
+            type="text"
+            placeholder="Enter a question"
+            value={value}
+            onChange={this.handleQuestionInput}
+            required
+          />
+        </div>
+        <span className="polls-label polls-label--top">Answers:</span>
+        <div className="polls__container-input">
+          <div className="polls__container-radio">
+            <RadioInput
+              text={"Yes/No Form"}
+              value={YES_NO}
+              type={type === YES_NO}
+              onChange={this.handleRadioInput}
+            />
+            <RadioInput
+              text={"Multiple choice form"}
+              value={MULTIPLE_CHOICE}
+              type={type === MULTIPLE_CHOICE}
+              onChange={this.handleRadioInput}
+            />
+            <RadioInput
+              text={"Single choice"}
+              value={SINGLE_CHOICE}
+              type={type === SINGLE_CHOICE}
+              onChange={this.handleRadioInput}
             />
           </div>
-          <div className="polls__input-container">
-            <label className="polls-label">Answers:</label>
-            <div className="polls__radio-container">
-              <RadioInput
-                text={"Yes/No Form"}
-                value={YES_NO}
-                type={type === YES_NO}
-                onChange={this.handleRadioInput}
-              />
-              <RadioInput
-                text={"Multiple choice form"}
-                value={MULTIPLE_CHOICE}
-                type={type === MULTIPLE_CHOICE}
-                onChange={this.handleRadioInput}
-              />
-              <RadioInput
-                text={"Single choice"}
-                value={SINGLE_CHOICE}
-                type={type === SINGLE_CHOICE}
-                onChange={this.handleRadioInput}
-              />
-            </div>
+          <div className="polls__answers-container">
+            {this.renderChoicesComponent()}
           </div>
-          {this.renderChoicesComponent()}
-          <div className="polls__buttons-container">
+          <div className="polls__container-buttons">
             {isEdit === false ? (
               <>
                 <button className="polls-button add-poll" type="submit">
@@ -235,8 +238,8 @@ class PollForm extends Component {
               </>
             )}
           </div>
-        </form>
-      </>
+        </div>
+      </form>
     );
   }
 }

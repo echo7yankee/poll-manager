@@ -6,7 +6,7 @@ import "../buttons.css";
 
 const ChoiceItem = ({ deleteChoice, handleChoiceInput, inputValue, index }) => {
   return (
-    <div className="polls__answer">
+    <>
       <label className="polls__answer-label">Choice # {index}</label>
       <input
         className="polls__answer-input"
@@ -16,13 +16,9 @@ const ChoiceItem = ({ deleteChoice, handleChoiceInput, inputValue, index }) => {
         placeholder={index === 1 ? "Enter a choice" : null}
       />
       {index >= 3 ? (
-        <BtnDelete
-          onClick={deleteChoice}
-          spanClassName="button__icon-absolute"
-          imgClassName={"button-icon"}
-        />
+        <BtnDelete onClick={deleteChoice} imgClassName={"button-icon"} />
       ) : null}
-    </div>
+    </>
   );
 };
 
