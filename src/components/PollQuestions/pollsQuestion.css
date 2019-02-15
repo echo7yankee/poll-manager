@@ -9,6 +9,7 @@
 
 .polls__counter--question {
   margin: 0;
+  background-color: var(--grey-color);
 }
 
 .polls__question {
