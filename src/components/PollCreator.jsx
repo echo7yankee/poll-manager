@@ -126,7 +126,7 @@ class PollCreator extends Component {
             ) : (
               <div className="polls__form-container" key={question.id}>
                 <span className="polls__counter  polls__counter--edit">
-                  {questions.length}
+                  {questions.length + 1}
                 </span>
                 <PollForm
                   onSubmit={this.editQuestion}
