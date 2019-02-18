@@ -89,3 +89,32 @@
 .polls__container-buttons {
   grid-column-start: 2;
 }
+
+.polls-buttons {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.modal-background {
+  min-height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 750;
+}
+
+.modal {
+  background-color: var(--main-lg-color);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 800;
+  max-width: 80rem;
+  padding: 2rem;
+  border-radius: 0.3rem;
+}

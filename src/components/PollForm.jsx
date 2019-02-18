@@ -8,6 +8,7 @@ import {
   SINGLE_CHOICE
 } from "./PollQuestions/types";
 import RadioInput from "./reusableComponents/RadioInput";
+import Modal from "./reusableComponents/Modal";
 
 import "./polls.css";
 
@@ -164,8 +165,17 @@ class PollForm extends Component {
   };
 
   render() {
-    const { toggleEditable, clearAllQuestions, isEdit } = this.props;
+    const {
+      toggleEditable,
+      clearAllQuestions,
+      isEdit,
+      isOpen,
+      toggleModal,
+      questions
+    } = this.props;
     const { type, value } = this.state.question;
+
+    console.log(this.state.isOpen);
 
     return (
       <form className="polls__form" onSubmit={this.submitQuestion}>
@@ -218,7 +228,7 @@ class PollForm extends Component {
                 <button
                   className="polls-button clear-polls"
                   type="button"
-                  onClick={clearAllQuestions}
+                  onClick={questions.length > 0 ? toggleModal : null}
                 >
                   Clear Posts
                 </button>
@@ -236,6 +246,12 @@ class PollForm extends Component {
                   Cancel
                 </button>
               </>
+            )}
+            {isOpen && (
+              <Modal
+                toggleModal={toggleModal}
+                clearAllQuestions={clearAllQuestions}
+              />
             )}
           </div>
         </div>

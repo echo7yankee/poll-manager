@@ -15,7 +15,8 @@ class PollCreator extends Component {
       };
     } else {
       this.state = {
-        questions: []
+        questions: [],
+        isOpen: false
       };
     }
   }
@@ -47,7 +48,8 @@ class PollCreator extends Component {
 
   clearAllQuestions = () => {
     this.setState({
-      questions: []
+      questions: [],
+      isOpen: !this.state.isOpen
     });
 
     localStorage.clear();
@@ -91,6 +93,10 @@ class PollCreator extends Component {
     );
   };
 
+  toggleModal = () => {
+    this.setState({ isOpen: !this.state.isOpen });
+  };
+
   render() {
     const { questions } = this.state;
 
@@ -106,6 +112,9 @@ class PollCreator extends Component {
               toggleEditable={this.toggleEditable}
               clearAllQuestions={this.clearAllQuestions}
               isEdit={createQuestion().isEdit}
+              toggleModal={this.toggleModal}
+              isOpen={this.state.isOpen}
+              questions={this.state.questions}
             />
           </div>
           {questions.map((question, index) => {
