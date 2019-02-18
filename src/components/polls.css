@@ -1,8 +1,7 @@
 .container {
   margin: 0 auto;
   padding: 0;
-  border-bottom-left-radius: 0.8rem;
-  border-bottom-right-radius: 0.8rem;
+  border-radius: 0.8rem;
   overflow: hidden;
   max-width: 90rem;
 }
@@ -14,7 +13,6 @@
   padding: 2.5rem;
   background-color: var(--main-lg-color);
   border-bottom: 0.4rem solid var(--lg-color);
-  border-radius: 0.8rem;
 }
 
 .polls__container-header {
