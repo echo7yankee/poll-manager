@@ -59,7 +59,8 @@ ul {
 }
 
 .buttons__container-icons {
-  display: flex;
+  display: grid;
+  grid-template-columns: max-content max-content;
   grid-gap: 1rem;
   justify-content: space-around;
   justify-self: flex-end;
