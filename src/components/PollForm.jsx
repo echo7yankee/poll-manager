@@ -175,8 +175,6 @@ class PollForm extends Component {
     } = this.props;
     const { type, value } = this.state.question;
 
-    console.log(this.state.isOpen);
-
     return (
       <form className="polls__form" onSubmit={this.submitQuestion}>
         <label className="polls-label" htmlFor="question">
