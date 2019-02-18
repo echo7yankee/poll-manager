@@ -10,7 +10,6 @@
 }
 
 .add-poll,
-.clear-polls,
 .edit-poll,
 .yes-poll,
 .no-poll {
@@ -26,7 +25,8 @@
   padding: 0.5rem 1.5rem;
 }
 
-.cancel-poll {
+.cancel-poll,
+.clear-polls {
   background: transparent;
   border: none;
   color: #82bfe0;

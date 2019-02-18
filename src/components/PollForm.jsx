@@ -230,7 +230,7 @@ class PollForm extends Component {
                   type="button"
                   onClick={questions.length > 0 ? toggleModal : null}
                 >
-                  Clear Posts
+                  Clear Questions
                 </button>
               </>
             ) : (
