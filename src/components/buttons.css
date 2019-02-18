@@ -20,6 +20,10 @@
   padding: 1rem 1rem;
 }
 
+.poll-button--hover:hover {
+  background: var(--green-linear-gradient-reverse);
+}
+
 .yes-poll,
 .no-poll {
   padding: 0.5rem 1.5rem;
@@ -33,6 +37,10 @@
 }
 
 .cancel-poll:hover {
+  color: #619dbd;
+}
+
+.clear-polls:hover {
   color: #619dbd;
 }
 

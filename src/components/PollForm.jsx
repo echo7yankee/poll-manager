@@ -221,7 +221,10 @@ class PollForm extends Component {
           <div className="polls__container-buttons">
             {isEdit === false ? (
               <>
-                <button className="polls-button add-poll" type="submit">
+                <button
+                  className="polls-button add-poll poll-button--hover"
+                  type="submit"
+                >
                   Add Poll
                 </button>
 
@@ -235,7 +238,10 @@ class PollForm extends Component {
               </>
             ) : (
               <>
-                <button className="polls-button edit-poll" type="submit">
+                <button
+                  className="polls-button edit-poll poll-button--hover"
+                  type="submit"
+                >
                   Edit Poll
                 </button>
                 <button
