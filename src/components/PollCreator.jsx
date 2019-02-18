@@ -121,7 +121,7 @@ class PollCreator extends Component {
             return question.isEdit === false ? (
               <div className="polls__container-question" key={question.id}>
                 <span className="polls__counter polls__counter--question">
-                  {index + 2}
+                  {index + 1}
                 </span>
                 <PollQuestion
                   toggleEditable={() => this.toggleEditable(question.id)}
@@ -135,7 +135,7 @@ class PollCreator extends Component {
             ) : (
               <div className="polls__form-container" key={question.id}>
                 <span className="polls__counter  polls__counter--edit">
-                  {questions.length + 1}
+                  {index + 1}
                 </span>
                 <PollForm
                   onSubmit={this.editQuestion}
