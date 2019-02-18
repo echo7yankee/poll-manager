@@ -1,7 +1,7 @@
 .nav {
   width: 100%;
+  padding: 0.3rem;
   background: #393939;
-  height: 5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -25,8 +25,21 @@
   color: #ffffff;
 }
 
+.google-plus-icon {
+  width: 2.2rem;
+  height: 2.2rem;
+  margin-right: 1rem;
+  fill: var(--white-bg-color);
+}
+
 .google-button {
-  height: 4rem !important;
-  margin-left: 3rem !important;
-  font-size: 1.4rem !important;
+  cursor: pointer;
+  padding: 0.8rem 1rem;
+  border-radius: 0.3rem;
+  margin-left: 1rem;
+  border: none;
+  color: var(--white-bg-color);
+  background: var(--google-plus-red);
+  display: flex;
+  align-items: center;
 }
