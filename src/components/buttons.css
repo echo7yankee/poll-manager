@@ -36,6 +36,14 @@
   color: #82bfe0;
 }
 
+.cancel-poll:hover {
+  color: #5b9abe;
+}
+
+.clear-polls:hover {
+  color: #5b9abe;
+}
+
 .cancel-poll:focus {
   outline: none;
 }
