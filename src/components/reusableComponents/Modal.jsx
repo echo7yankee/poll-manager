@@ -10,10 +10,16 @@ const Modal = ({ clearAllQuestions, toggleModal }) => {
       <div className="modal">
         <p>Are you sure you want to clear these questions?</p>
         <div className="polls-buttons">
-          <button className="polls-button yes-poll" onClick={clearAllQuestions}>
+          <button
+            className="polls-button yes-poll poll-button--hover"
+            onClick={clearAllQuestions}
+          >
             Yes
           </button>
-          <button className="polls-button no-poll" onClick={toggleModal}>
+          <button
+            className="polls-button no-poll poll-button--hover"
+            onClick={toggleModal}
+          >
             No
           </button>
         </div>
