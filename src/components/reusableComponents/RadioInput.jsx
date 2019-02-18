@@ -3,7 +3,7 @@ import "../polls.css";
 
 const RadioInput = ({ value, text, type, onChange }) => {
   return (
-    <label className="radio__label-input">
+    <label className="radio__label-input radio__label-input--mt">
       <input
         className="polls-radio"
         type="radio"

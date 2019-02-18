@@ -72,16 +72,21 @@
 }
 
 .polls-radio {
-  margin-right: 1rem;
+  margin-right: 0.3rem;
 }
 
 .polls__answers-container {
   margin-top: 2rem;
 }
 
+.radio__label-input--mt {
+  margin-top: 0.5rem;
+}
+
 .radio__label-input {
   display: flex;
   align-items: center;
+  margin-right: 0.5rem;
 }
 
 .polls__container-buttons {
