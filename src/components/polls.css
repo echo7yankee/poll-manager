@@ -64,7 +64,7 @@
 
 .polls-input {
   width: 100%;
-  padding: 1rem 0 1rem 0.5rem;
+  padding: 1rem 0 1rem 1rem;
   border: 0.1rem solid var(--lg-color);
   background-color: var(--white-bg-color);
   box-shadow: inset 0 0.25rem 0.35rem rgba(0, 0, 0, 0.07);
