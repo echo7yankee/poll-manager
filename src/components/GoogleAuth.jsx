@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { signIn, signOut } from "../actions";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 
 import auth from "../Auth";
-import SignIn from "./SignIn.jsx";
-import SignOut from "./SignOut.jsx";
+import PollCreatorLink from "./PollCreatorLink";
+
+import { GooglePlusIcon } from "./reusableComponents/icons";
 
 class GoogleAuth extends Component {
   componentDidMount() {
@@ -48,18 +49,42 @@ class GoogleAuth extends Component {
     });
   };
 
-  renderAuthButton() {
+  renderNavbar() {
     if (this.props.isSignedIn === null) {
       return null;
     } else if (this.props.isSignedIn === true) {
-      return <SignOut onSignOutClick={this.onSignOutClick} />;
+      return (
+        <div className="nav">
+          <button onClick={this.onSignOutClick} className="google-button">
+            <GooglePlusIcon />
+            Sign Out
+          </button>
+          <ul className="nav-items">
+            <li>
+              <PollCreatorLink />
+            </li>
+          </ul>
+        </div>
+      );
     } else {
-      return <SignIn onSignInClick={this.onSignInClick} />;
+      return (
+        <div className="nav">
+          <button className="google-button" onClick={this.onSignInClick}>
+            <GooglePlusIcon />
+            Sign In with Google
+          </button>
+          <ul className="nav-items">
+            <Link className="nav-el" to="/pollQuestions">
+              See Polls
+            </Link>
+          </ul>
+        </div>
+      );
     }
   }
 
   render() {
-    return <div>{this.renderAuthButton()}</div>;
+    return <div>{this.renderNavbar()}</div>;
   }
 }
 
