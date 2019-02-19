@@ -35,10 +35,6 @@ class GoogleAuth extends Component {
 
   onSignInClick = () => {
     this.auth.signIn();
-
-    auth.login(() => {
-      this.props.history.push("/pollCreatorLink");
-    });
   };
 
   onSignOutClick = () => {
@@ -52,35 +48,35 @@ class GoogleAuth extends Component {
   renderNavbar() {
     if (this.props.isSignedIn === null) {
       return null;
-    } else if (this.props.isSignedIn === true) {
-      return (
-        <div className="nav">
-          <button onClick={this.onSignOutClick} className="google-button">
-            <GooglePlusIcon />
-            Sign Out
-          </button>
-          <ul className="nav-items">
-            <li>
-              <PollCreatorLink />
-            </li>
-          </ul>
-        </div>
-      );
-    } else {
-      return (
-        <div className="nav">
-          <button className="google-button" onClick={this.onSignInClick}>
-            <GooglePlusIcon />
-            Sign In with Google
-          </button>
-          <ul className="nav-items">
+    }
+
+    return this.props.isSignedIn === true ? (
+      <div className="nav">
+        <button onClick={this.onSignOutClick} className="google-button">
+          <GooglePlusIcon />
+          Sign Out
+        </button>
+        <ul className="nav-items">
+          <li>
+            <PollCreatorLink />
+          </li>
+        </ul>
+      </div>
+    ) : (
+      <div className="nav">
+        <button onClick={this.onSignInClick} className="google-button">
+          <GooglePlusIcon />
+          Sign In with Google
+        </button>
+        <ul className="nav-items">
+          <li>
             <Link className="nav-el" to="/pollQuestions">
               See Polls
             </Link>
-          </ul>
-        </div>
-      );
-    }
+          </li>
+        </ul>
+      </div>
+    );
   }
 
   render() {

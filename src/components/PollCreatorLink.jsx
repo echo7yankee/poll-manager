@@ -1,13 +1,24 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import "./navbar.css";
+import auth from "../Auth";
 
-const PollCreatorLink = () => {
-  return (
-    <Link className="nav-el" to="/pollCreator">
-      Create Polls
-    </Link>
-  );
-};
+class PollCreatorLink extends React.Component {
+  render() {
+    return (
+      <Link
+        className="nav-el"
+        to="/pollCreator"
+        onClick={() =>
+          auth.login(() => {
+            this.props.history.push("/pollCreatorLink");
+          })
+        }
+      >
+        Create Polls
+      </Link>
+    );
+  }
+}
 
-export default PollCreatorLink;
+export default withRouter(PollCreatorLink);
