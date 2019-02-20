@@ -11,18 +11,22 @@
   z-index: 1000;
 }
 
-.nav-elements {
-  width: 100%;
+.navbar-items {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: red;
 }
 
-.nav-item {
-  margin-right: 3rem;
+.nav-items {
+  margin-right: 1rem;
+  list-style: none;
 }
 
 .nav-el:link,
 .nav-el:visited {
-  font-size: 1.6rem;
   color: #ffffff;
+  text-decoration: none;
 }
 
 .google-plus-icon {
@@ -42,4 +46,8 @@
   background: var(--google-plus-red);
   display: flex;
   align-items: center;
+}
+
+.google-button:focus {
+  outline: none;
 }
