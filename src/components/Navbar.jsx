@@ -1,15 +1,11 @@
 import React from "react";
 
-import GoogleAuth from "./GoogleAuth.jsx";
+import NavbarGoogleAuth from "./NavbarGoogleAuth.jsx";
 
 import "./navbar.css";
 
-const Navbar = props => {
-  return (
-    <div className="">
-      <GoogleAuth />
-    </div>
-  );
+const Navbar = () => {
+  return <NavbarGoogleAuth />;
 };
 
 export default Navbar;
