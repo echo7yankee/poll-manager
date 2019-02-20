@@ -7,6 +7,20 @@
   border-bottom: 0.1rem solid var(--lg-color);
 }
 
+.questions__container {
+  max-width: 90rem;
+  margin: 0 auto;
+}
+
+.polls__container-question-gap {
+  /* margin-top: 1rem; */
+}
+
+.question__container-button {
+  margin-top: 2rem;
+  text-align: center;
+}
+
 .polls__counter--question {
   margin: 0;
   background-color: var(--grey-color);

@@ -1,12 +1,7 @@
 import React, { Component } from "react";
 
 import Choices from "./CreateNewChoices/Choices.jsx";
-import {
-  createChoice,
-  YES_NO,
-  MULTIPLE_CHOICE,
-  SINGLE_CHOICE
-} from "./PollQuestions/types";
+import { createChoice, YES_NO, MULTIPLE_CHOICE, SINGLE_CHOICE } from "./types";
 import RadioInput from "./reusableComponents/RadioInput";
 import Modal from "./reusableComponents/Modal";
 

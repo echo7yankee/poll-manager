@@ -3,8 +3,6 @@ import "../buttons.css";
 import "../polls.css";
 
 const Modal = ({ clearAllQuestions, toggleModal }) => {
-  console.log("click");
-
   return (
     <div className="modal-background">
       <div className="modal">

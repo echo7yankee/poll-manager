@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { signIn, signOut } from "../actions";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 import auth from "../Auth";
 import PollCreatorLink from "./PollCreatorLink";
@@ -35,6 +35,10 @@ class GoogleAuth extends Component {
 
   onSignInClick = () => {
     this.auth.signIn();
+
+    auth.login(() => {
+      this.props.history.push("/pollCreator");
+    });
   };
 
   onSignOutClick = () => {
@@ -69,11 +73,11 @@ class GoogleAuth extends Component {
           Sign In with Google
         </button>
         <ul className="nav-items">
-          <li>
+          {/* <li>
             <Link className="nav-el" to="/pollQuestions">
               See Polls
             </Link>
-          </li>
+          </li> */}
         </ul>
       </div>
     );

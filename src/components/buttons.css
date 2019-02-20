@@ -12,7 +12,8 @@
 .add-poll,
 .edit-poll,
 .yes-poll,
-.no-poll {
+.no-poll,
+.submit-questions {
   background: var(--green-linear-gradient);
   border: 0.1rem solid #2ba32b;
   border-radius: 0.3rem;
@@ -27,6 +28,10 @@
 .yes-poll,
 .no-poll {
   padding: 0.5rem 1.5rem;
+}
+
+.submit-questions {
+  text-align: center;
 }
 
 .cancel-poll,
