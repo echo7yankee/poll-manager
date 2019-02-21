@@ -11,17 +11,13 @@ import "./PollQuestions/pollsQuestion.css";
 class Question extends Component {
   state = {
     question: this.props.question,
-    isRadioChecked: "",
+    selected: "",
     checked: new Set()
-  };
-
-  handleSubmit = e => {
-    e.preventDefault();
   };
 
   handleRadioChange = value => {
     this.setState({
-      isRadioChecked: value
+      selected: value
     });
   };
 
@@ -36,7 +32,7 @@ class Question extends Component {
 
   renderAnswers = () => {
     const { type, answers } = this.state.question;
-    console.log(this.state.question);
+    const { question, selected } = this.state;
 
     if (type === YES_NO) {
       return (
@@ -44,37 +40,36 @@ class Question extends Component {
           <label className="radio__label-input">
             <input
               type="radio"
-              name="YES/NO"
+              name={question.id}
               className="polls-radio"
               value={YES}
-              checked={this.state.isRadioChecked === YES}
+              checked={selected === YES}
               onChange={e => this.handleRadioChange(e.target.value)}
             />
             Yes
-            {/* <RadioInput text={"Yes"} value={YES} type={question.type === YES} /> */}
           </label>
           <label className="radio__label-input">
             <input
               type="radio"
-              name="YES/NO"
+              name={question.id}
               className="polls-radio polls-radio-ml"
               value={NO}
-              checked={this.state.isRadioChecked === NO}
+              checked={selected === NO}
               onChange={e => this.handleRadioChange(e.target.value)}
             />
             No
-            {/* <RadioInput text={"No"} value={NO} type={question.type === NO} /> */}
           </label>
         </div>
       );
     } else {
       return (
         <PollQuestionChoices
+          id={this.state.question.id}
           type={type}
           answers={answers}
           handleRadioChange={this.handleRadioChange}
           handleCheckboxChange={this.handleCheckboxChange}
-          isRadioChecked={this.state.isRadioChecked}
+          selected={this.state.selected}
           checked={this.state.checked}
         />
       );
@@ -85,18 +80,13 @@ class Question extends Component {
     const { value } = this.state.question;
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div className="polls__question">
-          <label className="polls-label">Question:</label>
-          <p className="polls-text">{value}</p>
+      <div className="polls__question">
+        <label className="polls-label">Question:</label>
+        <p className="polls-text">{value}</p>
 
-          <label className="polls-label polls-label--top">Answers:</label>
-          <div className="polls__questions">{this.renderAnswers()}</div>
-        </div>
-        {/* <button className="polls-button submit-questions poll-button--hover">
-          Submit
-        </button> */}
-      </form>
+        <label className="polls-label polls-label--top">Answers:</label>
+        <div className="polls__questions">{this.renderAnswers()}</div>
+      </div>
     );
   }
 }

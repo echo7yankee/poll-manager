@@ -7,8 +7,9 @@ const PollQuestionChoices = ({
   answers,
   handleRadioChange,
   handleCheckboxChange,
-  isRadioChecked,
-  checked
+  selected,
+  checked,
+  id
 }) => {
   return (
     <ul>
@@ -18,13 +19,13 @@ const PollQuestionChoices = ({
             <label>
               <input
                 type={type === MULTIPLE_CHOICE ? "checkbox" : "radio"}
-                name="answers"
+                name={id}
                 className="polls-radio"
                 value={answer.value}
                 checked={
                   type === MULTIPLE_CHOICE
                     ? checked.has(answer.value)
-                    : isRadioChecked === answer.value
+                    : selected === answer.value
                 }
                 onChange={
                   type === MULTIPLE_CHOICE

@@ -23,5 +23,3 @@ export const SINGLE_CHOICE = "SINGLE_CHOICE";
 
 export const YES = "YES";
 export const NO = "NO";
-
-export const ANSWER_TYPE = createChoice().value;

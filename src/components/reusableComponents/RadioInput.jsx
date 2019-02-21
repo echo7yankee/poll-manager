@@ -5,6 +5,7 @@ const RadioInput = ({ value, text, type, onChange }) => {
   return (
     <label className="radio__label-input radio__label-input--mt">
       <input
+        name="types"
         className="polls-radio"
         type="radio"
         value={value}
