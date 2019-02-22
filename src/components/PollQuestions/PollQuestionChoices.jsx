@@ -27,7 +27,7 @@ const PollQuestionChoices = ({
                 }
                 onChange={
                   type === MULTIPLE_CHOICE
-                    ? e => handleCheckboxChange(e.target.value)
+                    ? handleCheckboxChange
                     : e => handleRadioChange(e.target.value)
                 }
               />

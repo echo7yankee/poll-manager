@@ -13,7 +13,7 @@ class Question extends Component {
   state = {
     question: this.props.question,
     selected: "",
-    checked: new Set()
+    checked: []
   };
 
   handleRadioChange = value => {
@@ -22,13 +22,21 @@ class Question extends Component {
     });
   };
 
-  handleCheckboxChange = value => {
-    if (this.state.checked.has(value)) {
-      this.state.checked.delete(value);
+  handleCheckboxChange = e => {
+    const checkedArray = this.state.checked;
+    const selectedValue = e.target.value;
+
+    if (e.target.checked === true) {
+      this.setState({
+        checked: [...checkedArray, selectedValue]
+      });
     } else {
-      this.state.checked.add(value);
+      const selectedValueIndex = checkedArray.indexOf(selectedValue);
+      checkedArray.splice(selectedValueIndex, 1);
+      this.setState({
+        checked: checkedArray
+      });
     }
-    this.setState({ checked: new Set([...this.state.checked]) });
   };
 
   submitResults = e => {
@@ -83,6 +91,7 @@ class Question extends Component {
 
   render() {
     const { value } = this.state.question;
+    console.log(this.state.checked);
 
     return (
       <form onSubmit={this.submitResults}>
