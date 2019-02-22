@@ -7,6 +7,7 @@ import auth from "../Auth";
 import PollCreatorLink from "./PollCreatorLink";
 
 import { GooglePlusIcon } from "./reusableComponents/icons";
+import PollResultsLink from "./PollResultsLink";
 
 class GoogleAuth extends Component {
   componentDidMount() {
@@ -36,9 +37,9 @@ class GoogleAuth extends Component {
   onSignInClick = () => {
     this.auth.signIn();
 
-    auth.login(() => {
-      this.props.history.push("/pollCreator");
-    });
+    // auth.login(() => {
+    //   this.props.history.push("/pollCreator");
+    // });
   };
 
   onSignOutClick = () => {
@@ -63,6 +64,9 @@ class GoogleAuth extends Component {
         <ul className="nav-items">
           <li>
             <PollCreatorLink />
+          </li>
+          <li>
+            <PollResultsLink />
           </li>
         </ul>
       </div>

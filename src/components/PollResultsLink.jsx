@@ -3,22 +3,22 @@ import { withRouter, Link } from "react-router-dom";
 import "./navbar.css";
 import auth from "../Auth";
 
-class PollCreatorLink extends React.Component {
+class PollResultsLink extends React.Component {
   render() {
     return (
       <Link
         className="nav-el"
-        to="/pollCreator"
+        to="/pollResults"
         onClick={() =>
           auth.login(() => {
-            this.props.history.push("/pollCreator");
+            this.props.history.push("/pollResults");
           })
         }
       >
-        Create Polls
+        Poll Results
       </Link>
     );
   }
 }
 
-export default withRouter(PollCreatorLink);
+export default withRouter(PollResultsLink);

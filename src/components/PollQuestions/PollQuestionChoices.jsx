@@ -15,17 +15,15 @@ const PollQuestionChoices = ({
     <ul>
       {answers.map(answer => {
         return (
-          <li key={answer.id}>
-            <label>
+          <li key={answer.id} className="radio__label-input--mt">
+            <label className="polls__question-choices">
               <input
                 type={type === MULTIPLE_CHOICE ? "checkbox" : "radio"}
                 name={id}
                 className="polls-radio"
                 value={answer.value}
                 checked={
-                  type === MULTIPLE_CHOICE
-                    ? checked.has(answer.value)
-                    : selected === answer.value
+                  type === MULTIPLE_CHOICE ? null : selected === answer.value
                 }
                 onChange={
                   type === MULTIPLE_CHOICE

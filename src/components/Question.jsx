@@ -30,6 +30,18 @@ class Question extends Component {
     this.setState({ checked: new Set([...this.state.checked]) });
   };
 
+  submitResults = e => {
+    e.preventDefault();
+    const { handleSubmit } = this.props;
+
+    const results = {
+      selected: this.state.selected,
+      checked: this.state.checked
+    };
+
+    handleSubmit(results);
+  };
+
   renderAnswers = () => {
     const { type, answers } = this.state.question;
     const { question, selected } = this.state;
@@ -64,9 +76,9 @@ class Question extends Component {
     } else {
       return (
         <PollQuestionChoices
-          id={this.state.question.id}
           type={type}
           answers={answers}
+          id={this.state.question.id}
           handleRadioChange={this.handleRadioChange}
           handleCheckboxChange={this.handleCheckboxChange}
           selected={this.state.selected}
@@ -80,13 +92,23 @@ class Question extends Component {
     const { value } = this.state.question;
 
     return (
-      <div className="polls__question">
-        <label className="polls-label">Question:</label>
-        <p className="polls-text">{value}</p>
+      <form onSubmit={this.submitResults}>
+        <div className="polls__question">
+          <label className="polls-label">Question:</label>
+          <p className="polls-text">{value}</p>
 
-        <label className="polls-label polls-label--top">Answers:</label>
-        <div className="polls__questions">{this.renderAnswers()}</div>
-      </div>
+          <div className="polls__questions polls__question--colstart2">
+            {this.renderAnswers()}
+          </div>
+
+          <button
+            type="submit"
+            className="polls-button yes-poll poll-button--hover"
+          >
+            Check
+          </button>
+        </div>
+      </form>
     );
   }
 }

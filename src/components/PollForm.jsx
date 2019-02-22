@@ -168,7 +168,7 @@ class PollForm extends Component {
       toggleModal,
       questions
     } = this.props;
-    const { type, value } = this.state.question;
+    const { type, value, id } = this.state.question;
 
     return (
       <form className="polls__form" onSubmit={this.submitQuestion}>
@@ -190,6 +190,7 @@ class PollForm extends Component {
         <div className="polls__container-input">
           <div className="polls__container-radio">
             <RadioInput
+              name={id}
               text={"Yes/No Form"}
               value={YES_NO}
               type={type === YES_NO}

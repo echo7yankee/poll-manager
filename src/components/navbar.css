@@ -19,6 +19,8 @@
 }
 
 .nav-items {
+  display: flex;
+  align-items: center;
   margin-right: 1rem;
   list-style: none;
 }
@@ -27,6 +29,7 @@
 .nav-el:visited {
   color: #ffffff;
   text-decoration: none;
+  margin-right: 0.5rem;
 }
 
 .google-plus-icon {

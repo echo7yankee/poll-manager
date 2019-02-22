@@ -16,8 +16,13 @@
   /* margin-top: 1rem; */
 }
 
-.question__container-button {
-  margin-top: 2rem;
+.polls__question-choices {
+  display: flex;
+  align-items: center;
+}
+
+.container-center {
+  margin-top: 0.5rem;
   text-align: center;
 }
 
@@ -31,6 +36,9 @@
   grid-template-columns: max-content 1fr;
   grid-gap: 2rem;
   align-items: center;
+}
+.polls__question--colstart2 {
+  grid-column-start: 2;
 }
 
 .polls__questions {

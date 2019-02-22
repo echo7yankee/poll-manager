@@ -71,6 +71,11 @@
   outline: none;
 }
 
+.polls-input--questions {
+  margin-bottom: 0.5rem;
+  width: 50%;
+}
+
 .polls-radio {
   margin-right: 0.3rem;
 }
@@ -81,6 +86,7 @@
 
 .radio__label-input--mt {
   margin-top: 0.5rem;
+  align-items: center;
 }
 
 .radio__label-input {
