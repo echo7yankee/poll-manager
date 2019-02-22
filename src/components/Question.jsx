@@ -7,6 +7,7 @@ import { YES_NO, YES, NO } from "./types";
 
 import "./polls.css";
 import "./PollQuestions/pollsQuestion.css";
+import RadioInput from "./reusableComponents/RadioInput";
 
 class Question extends Component {
   state = {
@@ -49,28 +50,20 @@ class Question extends Component {
     if (type === YES_NO) {
       return (
         <div className="polls__answers-yesNo">
-          <label className="radio__label-input">
-            <input
-              type="radio"
-              name={question.id}
-              className="polls-radio"
-              value={YES}
-              checked={selected === YES}
-              onChange={e => this.handleRadioChange(e.target.value)}
-            />
-            Yes
-          </label>
-          <label className="radio__label-input">
-            <input
-              type="radio"
-              name={question.id}
-              className="polls-radio polls-radio-ml"
-              value={NO}
-              checked={selected === NO}
-              onChange={e => this.handleRadioChange(e.target.value)}
-            />
-            No
-          </label>
+          <RadioInput
+            name={question.id}
+            value={YES}
+            type={selected === YES}
+            onChange={e => this.handleRadioChange(e.target.value)}
+            text={"Yes"}
+          />
+          <RadioInput
+            name={question.id}
+            value={NO}
+            type={selected === NO}
+            onChange={e => this.handleRadioChange(e.target.value)}
+            text={"No"}
+          />
         </div>
       );
     } else {
