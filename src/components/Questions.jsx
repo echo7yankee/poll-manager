@@ -31,6 +31,10 @@ class Questions extends Component {
   handleSubmit = results => {
     const { name } = this.state;
 
+    if (name === "") {
+      return;
+    }
+
     this.setState(
       {
         results: [...this.state.results, { ...results, id: uuid() }]
@@ -40,11 +44,6 @@ class Questions extends Component {
         localStorage.setItem("results", updatedResultsStringify);
       }
     );
-
-    // if (name === "") {
-    //   console.log("Name input is empty");
-    //   return;
-    // }
   };
 
   render() {
