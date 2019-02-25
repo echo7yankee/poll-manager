@@ -13,19 +13,12 @@ class Question extends Component {
   state = {
     question: this.props.question,
     selected: "",
-    selectedYesNo: "",
     checked: []
   };
 
-  setSingleRadio = value => {
+  setRadio = value => {
     this.setState({
       selected: value
-    });
-  };
-
-  setYesNoRadio = value => {
-    this.setState({
-      selectedYesNo: value
     });
   };
 
@@ -52,7 +45,6 @@ class Question extends Component {
 
     const results = {
       selected: this.state.selected,
-      selectedYesNo: this.state.selectedYesNo,
       checked: this.state.checked,
       questionValue: this.state.question.value
     };
@@ -62,7 +54,7 @@ class Question extends Component {
 
   renderAnswers = () => {
     const { type, answers } = this.state.question;
-    const { question, selectedYesNo } = this.state;
+    const { question, selected } = this.state;
 
     if (type === YES_NO) {
       return (
@@ -70,15 +62,15 @@ class Question extends Component {
           <RadioInput
             name={question.id}
             value={YES}
-            type={selectedYesNo === YES}
-            onChange={e => this.setYesNoRadio(e.target.value)}
+            type={selected === YES}
+            onChange={e => this.setRadio(e.target.value)}
             text={"Yes"}
           />
           <RadioInput
             name={question.id}
             value={NO}
-            type={selectedYesNo === NO}
-            onChange={e => this.setSingleRadio(e.target.value)}
+            type={selected === NO}
+            onChange={e => this.setRadio(e.target.value)}
             text={"No"}
           />
         </div>
@@ -89,7 +81,7 @@ class Question extends Component {
           type={type}
           answers={answers}
           id={this.state.question.id}
-          setSingleRadio={this.setSingleRadio}
+          setRadio={this.setRadio}
           setCheckbox={this.setCheckbox}
           selected={this.state.selected}
           checked={this.state.checked}

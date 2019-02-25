@@ -5,7 +5,7 @@ import "../polls.css";
 const PollQuestionChoices = ({
   type,
   answers,
-  setSingleRadio,
+  setRadio,
   setCheckbox,
   selected,
   checked,
@@ -28,7 +28,7 @@ const PollQuestionChoices = ({
                 onChange={
                   type === MULTIPLE_CHOICE
                     ? setCheckbox
-                    : e => setSingleRadio(e.target.value)
+                    : e => setRadio(e.target.value)
                 }
               />
               {answer.value}
