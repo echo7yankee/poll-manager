@@ -17,19 +17,19 @@ class Question extends Component {
     checked: []
   };
 
-  handleRadioChange = value => {
+  setSingleRadio = value => {
     this.setState({
       selected: value
     });
   };
 
-  handleYesNoRadioChange = value => {
+  setYesNoRadio = value => {
     this.setState({
       selectedYesNo: value
     });
   };
 
-  handleCheckboxChange = e => {
+  setCheckbox = e => {
     const checkedArray = this.state.checked;
     const selectedValue = e.target.value;
 
@@ -71,14 +71,14 @@ class Question extends Component {
             name={question.id}
             value={YES}
             type={selectedYesNo === YES}
-            onChange={e => this.handleYesNoRadioChange(e.target.value)}
+            onChange={e => this.setYesNoRadio(e.target.value)}
             text={"Yes"}
           />
           <RadioInput
             name={question.id}
             value={NO}
             type={selectedYesNo === NO}
-            onChange={e => this.handleYesNoRadioChange(e.target.value)}
+            onChange={e => this.setSingleRadio(e.target.value)}
             text={"No"}
           />
         </div>
@@ -89,8 +89,8 @@ class Question extends Component {
           type={type}
           answers={answers}
           id={this.state.question.id}
-          handleRadioChange={this.handleRadioChange}
-          handleCheckboxChange={this.handleCheckboxChange}
+          setSingleRadio={this.setSingleRadio}
+          setCheckbox={this.setCheckbox}
           selected={this.state.selected}
           checked={this.state.checked}
         />
