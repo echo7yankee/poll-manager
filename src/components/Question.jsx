@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import PollQuestionChoices from "./PollQuestions/PollQuestionChoices";
-//import RadioInput from "./reusableComponents/RadioInput";
+import uuid from "uuid";
 
 import { YES_NO, YES, NO } from "./types";
 
@@ -13,6 +13,7 @@ class Question extends Component {
   state = {
     question: this.props.question,
     selected: "",
+    selectedYesNo: "",
     checked: []
   };
 
@@ -22,13 +23,19 @@ class Question extends Component {
     });
   };
 
+  handleYesNoRadioChange = value => {
+    this.setState({
+      selectedYesNo: value
+    });
+  };
+
   handleCheckboxChange = e => {
     const checkedArray = this.state.checked;
     const selectedValue = e.target.value;
 
     if (e.target.checked === true) {
       this.setState({
-        checked: [...checkedArray, selectedValue]
+        checked: [...checkedArray, { id: uuid(), checkedValue: selectedValue }]
       });
     } else {
       const selectedValueIndex = checkedArray.indexOf(selectedValue);
@@ -45,7 +52,9 @@ class Question extends Component {
 
     const results = {
       selected: this.state.selected,
-      checked: this.state.checked
+      selectedYesNo: this.state.selectedYesNo,
+      checked: this.state.checked,
+      questionValue: this.state.question.value
     };
 
     handleSubmit(results);
@@ -53,7 +62,7 @@ class Question extends Component {
 
   renderAnswers = () => {
     const { type, answers } = this.state.question;
-    const { question, selected } = this.state;
+    const { question, selectedYesNo } = this.state;
 
     if (type === YES_NO) {
       return (
@@ -61,15 +70,15 @@ class Question extends Component {
           <RadioInput
             name={question.id}
             value={YES}
-            type={selected === YES}
-            onChange={e => this.handleRadioChange(e.target.value)}
+            type={selectedYesNo === YES}
+            onChange={e => this.handleYesNoRadioChange(e.target.value)}
             text={"Yes"}
           />
           <RadioInput
             name={question.id}
             value={NO}
-            type={selected === NO}
-            onChange={e => this.handleRadioChange(e.target.value)}
+            type={selectedYesNo === NO}
+            onChange={e => this.handleYesNoRadioChange(e.target.value)}
             text={"No"}
           />
         </div>
