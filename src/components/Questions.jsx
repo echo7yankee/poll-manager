@@ -4,6 +4,8 @@ import "./polls.css";
 import "./PollQuestions/pollsQuestion.css";
 import "./buttons.css";
 
+import uuid from "uuid";
+
 class Questions extends Component {
   constructor(props) {
     super(props);
@@ -29,11 +31,9 @@ class Questions extends Component {
   handleSubmit = results => {
     const { name } = this.state;
 
-    console.log(results);
-
     this.setState(
       {
-        results: [...this.state.results, { ...results }]
+        results: [...this.state.results, { ...results, id: uuid() }]
       },
       () => {
         let updatedResultsStringify = JSON.stringify(this.state.results);
