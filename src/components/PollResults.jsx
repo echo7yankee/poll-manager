@@ -39,9 +39,6 @@ class PollResults extends Component {
               </ul>
               <ul>
                 {result.selected === "" ? null : <li> {result.selected}</li>}
-                {result.selectedYesNo === "" ? null : (
-                  <li>{result.selectedYesNo}</li>
-                )}
               </ul>
             </div>
           );
