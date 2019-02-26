@@ -81,12 +81,17 @@ ul {
 
 .polls-date {
   display: flex;
+  /* justify-content: space-around; */
 }
 
 .poll-items {
   grid-row-start: 2;
   grid-column-start: 1;
   font-weight: 400;
+}
+
+.poll-item {
+  font-weight: 700;
 }
 
 .polls-text {
