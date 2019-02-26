@@ -13,7 +13,8 @@ class Questions extends Component {
       this.state = {
         questions: JSON.parse(localStorage.getItem("questions")),
         name: "",
-        results: []
+        results: [],
+        personalData: {}
       };
     } else {
       this.state = {
@@ -30,6 +31,15 @@ class Questions extends Component {
 
   handleSubmit = results => {
     const { name } = this.state;
+    const date = [
+      { day: new Date().getDate() },
+      { month: new Date().getMonth() },
+      { year: new Date().getFullYear() },
+      { hour: new Date().getHours() },
+      { minute: new Date().getMinutes() }
+    ];
+
+    console.log(date);
 
     if (name === "") {
       return;
@@ -37,18 +47,26 @@ class Questions extends Component {
 
     this.setState(
       {
-        results: [...this.state.results, { ...results, id: uuid() }]
+        results: [
+          ...this.state.results,
+          { ...results, id: uuid(), name: this.state.name }
+        ],
+        personalData: { name: this.state.name, date: date }
       },
       () => {
         let updatedResultsStringify = JSON.stringify(this.state.results);
         localStorage.setItem("results", updatedResultsStringify);
+
+        let updatedPersonalDataStringify = JSON.stringify(
+          this.state.personalData
+        );
+        localStorage.setItem("personalData", updatedPersonalDataStringify);
       }
     );
   };
 
   render() {
     const { questions } = this.state;
-    console.log(this.state.results);
 
     return (
       <div className="questions__container">
