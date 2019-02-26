@@ -49,10 +49,10 @@ class Questions extends Component {
         user: { name: this.state.name, date: date }
       },
       () => {
-        let updatedResultsStringify = JSON.stringify(this.state.results);
+        const updatedResultsStringify = JSON.stringify(this.state.results);
         localStorage.setItem("results", updatedResultsStringify);
 
-        let updatedUserStringify = JSON.stringify(this.state.user);
+        const updatedUserStringify = JSON.stringify(this.state.user);
         localStorage.setItem("user", updatedUserStringify);
       }
     );
