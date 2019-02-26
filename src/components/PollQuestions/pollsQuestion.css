@@ -37,6 +37,7 @@
   grid-gap: 2rem;
   align-items: center;
 }
+
 .polls__question--colstart2 {
   grid-column-start: 2;
 }
@@ -47,6 +48,10 @@
 
 .polls-label {
   grid-column: 1;
+}
+
+.polls-label--test {
+  display: flex;
 }
 
 .polls__questions-mt {
@@ -72,6 +77,16 @@ ul {
 
 .polls-radio-ml {
   margin-left: 1rem;
+}
+
+.polls-date {
+  display: flex;
+}
+
+.poll-items {
+  grid-row-start: 2;
+  grid-column-start: 1;
+  font-weight: 400;
 }
 
 .polls-text {
