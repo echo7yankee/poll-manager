@@ -31,13 +31,16 @@ class Questions extends Component {
 
   handleSubmit = results => {
     const { name } = this.state;
-    const date = [
-      { day: new Date().getDate() },
-      { month: new Date().getMonth() },
-      { year: new Date().getFullYear() },
-      { hour: new Date().getHours() },
-      { minute: new Date().getMinutes() }
-    ];
+    // const date = [
+    //   { day: new Date().getDate() },
+    //   { month: new Date().getMonth() },
+    //   { year: new Date().getFullYear() },
+    //   { hour: new Date().getHours() },
+    //   { minute: new Date().getMinutes() }
+    // ];
+
+    const date = new Date().toLocaleString();
+    console.log(date);
 
     if (name === "") {
       return;

@@ -23,20 +23,9 @@ class PollResults extends Component {
 
     return (
       <div className="questions__container">
-        Name: <span>{this.state.user.name}</span>
-        <div className="polls-date">
-          Date:
-          {this.state.user.date.map((date, index) => {
-            return (
-              <div key={index}>
-                <span>{date.day}</span>
-                <span>{date.month}</span>
-                <span>{date.year}</span>
-                <span>{date.hour}</span>
-                <span>{date.minute}</span>
-              </div>
-            );
-          })}
+        <div className="polls-user">
+          <span>Name: {this.state.user.name}</span>
+          <span>Date: {this.state.user.date}</span>
         </div>
         {this.state.results.map(result => {
           return (
