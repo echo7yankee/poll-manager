@@ -92,7 +92,6 @@ class Question extends Component {
 
   render() {
     const { value } = this.state.question;
-    console.log(this.state.checked);
 
     return (
       <form onSubmit={this.submitResults}>

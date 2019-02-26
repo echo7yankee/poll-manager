@@ -8,25 +8,25 @@ class PollResults extends Component {
     if (localStorage.getItem("results") !== null) {
       this.state = {
         results: JSON.parse(localStorage.getItem("results")),
-        personalData: JSON.parse(localStorage.getItem("personalData"))
+        user: JSON.parse(localStorage.getItem("user"))
       };
     } else {
       this.state = {
         results: [],
-        personalData: {}
+        user: {}
       };
     }
   }
 
   render() {
-    console.log(this.state.personalData);
+    console.log(this.state.user);
 
     return (
       <div className="questions__container">
-        Name: <span>{this.state.personalData.name}</span>
+        Name: <span>{this.state.user.name}</span>
         <div className="polls-date">
           Date:
-          {this.state.personalData.date.map((date, index) => {
+          {this.state.user.date.map((date, index) => {
             return (
               <div key={index}>
                 <span>{date.day}</span>

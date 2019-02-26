@@ -14,7 +14,7 @@ class Questions extends Component {
         questions: JSON.parse(localStorage.getItem("questions")),
         name: "",
         results: [],
-        personalData: {}
+        user: {}
       };
     } else {
       this.state = {
@@ -39,34 +39,28 @@ class Questions extends Component {
       { minute: new Date().getMinutes() }
     ];
 
-    console.log(date);
-
     if (name === "") {
       return;
     }
 
     this.setState(
       {
-        results: [
-          ...this.state.results,
-          { ...results, id: uuid(), name: this.state.name }
-        ],
-        personalData: { name: this.state.name, date: date }
+        results: [...this.state.results, { ...results, id: uuid() }],
+        user: { name: this.state.name, date: date }
       },
       () => {
         let updatedResultsStringify = JSON.stringify(this.state.results);
         localStorage.setItem("results", updatedResultsStringify);
 
-        let updatedPersonalDataStringify = JSON.stringify(
-          this.state.personalData
-        );
-        localStorage.setItem("personalData", updatedPersonalDataStringify);
+        let updatedUserStringify = JSON.stringify(this.state.user);
+        localStorage.setItem("user", updatedUserStringify);
       }
     );
   };
 
   render() {
     const { questions } = this.state;
+    console.log(this.state.results);
 
     return (
       <div className="questions__container">
