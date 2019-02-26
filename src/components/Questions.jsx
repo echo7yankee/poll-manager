@@ -66,9 +66,9 @@ class Questions extends Component {
     console.log(this.state.results);
 
     return (
-      <div className="questions__container">
+      <div className="container">
         {/* <form onSubmit={this.handleSubmit}> */}
-        <div className="container-center">
+        <div className="container-center ">
           <input
             type="text"
             className="polls-input polls-input--questions"
@@ -76,22 +76,24 @@ class Questions extends Component {
             onChange={e => this.handleInputChange(e.target.value)}
           />
         </div>
-        {questions.map(question => {
-          return (
-            <div
-              key={question.id}
-              className="polls__container-question
+        <div className="container">
+          {questions.map(question => {
+            return (
+              <div
+                key={question.id}
+                className="polls__container-question
                 polls__container-question-gap"
-            >
-              <Question
-                handleSubmit={this.handleSubmit}
-                question={question}
-                handleRadioChange={this.handleRadioChange}
-                handleCheckboxChange={this.handleCheckboxChange}
-              />
-            </div>
-          );
-        })}
+              >
+                <Question
+                  handleSubmit={this.handleSubmit}
+                  question={question}
+                  handleRadioChange={this.handleRadioChange}
+                  handleCheckboxChange={this.handleCheckboxChange}
+                />
+              </div>
+            );
+          })}
+        </div>
         <div className="container-center">
           {/* <button
             onClick={this.handleSubmit}

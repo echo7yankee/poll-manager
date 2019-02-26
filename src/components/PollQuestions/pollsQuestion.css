@@ -7,9 +7,13 @@
   border-bottom: 0.1rem solid var(--lg-color);
 }
 
-.questions__container {
-  max-width: 90rem;
-  margin: 0 auto;
+.polls__container-question--date {
+  border-bottom: 0.4rem solid var(--lg-color);
+  grid-template-rows: max-content max-content;
+}
+
+.polls-row--2 {
+  grid-row-start: 2;
 }
 
 .polls__container-question-gap {
@@ -80,10 +84,7 @@ ul {
 }
 
 .polls-user {
-}
-
-.polls-date span {
-  margin-left: 0.1rem;
+  margin-left: 2rem;
 }
 
 .poll-items {

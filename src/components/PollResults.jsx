@@ -22,10 +22,10 @@ class PollResults extends Component {
     console.log(this.state.user);
 
     return (
-      <div className="questions__container">
-        <div className="polls-user">
-          <span>Name: {this.state.user.name}</span>
-          <span>Date: {this.state.user.date}</span>
+      <div className="container">
+        <div className="polls__container-question polls__container-question--date">
+          <p>Name: {this.state.user.name}</p>
+          <p className="polls-row--2">Date: {this.state.user.date}</p>
         </div>
         {this.state.results.map(result => {
           return (
