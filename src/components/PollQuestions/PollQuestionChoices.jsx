@@ -8,7 +8,8 @@ const PollQuestionChoices = ({
   setRadio,
   setCheckbox,
   selected,
-  id
+  id,
+  inputDisabled
 }) => {
   return (
     <ul>
@@ -24,6 +25,7 @@ const PollQuestionChoices = ({
                 checked={
                   type === MULTIPLE_CHOICE ? null : selected === answer.value
                 }
+                disabled={inputDisabled}
                 onChange={
                   type === MULTIPLE_CHOICE
                     ? e => setCheckbox(e, id)

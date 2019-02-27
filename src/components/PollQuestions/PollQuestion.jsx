@@ -8,7 +8,12 @@ import "./pollsQuestion.css";
 import "../buttons.css";
 import "../polls.css";
 
-const PollQuestion = ({ toggleEditable, handleDeleteQuestion, question }) => {
+const PollQuestion = ({
+  toggleEditable,
+  handleDeleteQuestion,
+  question,
+  inputDisabled
+}) => {
   const { answers, type, value } = question;
 
   const renderAnswers = () => {
@@ -29,7 +34,13 @@ const PollQuestion = ({ toggleEditable, handleDeleteQuestion, question }) => {
         </div>
       );
     } else {
-      return <PollQuestionChoices type={type} answers={answers} />;
+      return (
+        <PollQuestionChoices
+          type={type}
+          answers={answers}
+          inputDisabled={inputDisabled}
+        />
+      );
     }
   };
 

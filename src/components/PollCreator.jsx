@@ -129,6 +129,7 @@ class PollCreator extends Component {
                   this.handleDeleteQuestion(question.id)
                 }
                 index={index + 1}
+                inputDisabled={question.inputDisabled}
               />
             </div>
           ) : (
