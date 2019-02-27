@@ -42,18 +42,10 @@ class GoogleAuth extends Component {
 
   onSignInClick = () => {
     this.auth.signIn();
-
-    // auth.login(() => {
-    //   this.props.history.push("/pollCreatorLink");
-    // });
   };
 
   onSignOutClick = () => {
     this.auth.signOut();
-
-    // auth.logout(() => {
-    //   this.props.history.push("/");
-    // });
   };
 
   renderNavbar() {
