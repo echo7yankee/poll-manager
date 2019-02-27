@@ -29,8 +29,14 @@ class GoogleAuth extends Component {
   onAuthChange = isSignedIn => {
     if (isSignedIn) {
       this.props.signIn(this.auth.currentUser.get().getId());
+      auth.login(() => {
+        this.props.history.push("/pollCreator");
+      });
     } else {
       this.props.signOut();
+      auth.logout(() => {
+        this.props.history.push("/");
+      });
     }
   };
 
@@ -38,16 +44,16 @@ class GoogleAuth extends Component {
     this.auth.signIn();
 
     // auth.login(() => {
-    //   this.props.history.push("/pollCreator");
+    //   this.props.history.push("/pollCreatorLink");
     // });
   };
 
   onSignOutClick = () => {
     this.auth.signOut();
 
-    auth.logout(() => {
-      this.props.history.push("/");
-    });
+    // auth.logout(() => {
+    //   this.props.history.push("/");
+    // });
   };
 
   renderNavbar() {
