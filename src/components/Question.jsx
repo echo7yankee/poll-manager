@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
 import PollQuestionChoices from "./PollQuestions/PollQuestionChoices";
-import uuid from "uuid";
 
 import { YES_NO, YES, NO } from "./types";
 
@@ -15,7 +14,7 @@ class Question extends Component {
   };
 
   renderAnswers = () => {
-    const { type, answers, selected } = this.state.question;
+    const { type, answers } = this.state.question;
     const { question } = this.state;
 
     if (type === YES_NO) {
