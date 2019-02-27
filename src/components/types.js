@@ -13,7 +13,9 @@ export const createQuestion = () => {
     value: "",
     answers: [createChoice(), createChoice()],
     type: YES_NO,
-    isEdit: false
+    isEdit: false,
+    selected: "",
+    checked: []
   };
 };
 

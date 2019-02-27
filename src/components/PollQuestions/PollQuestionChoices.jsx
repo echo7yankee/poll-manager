@@ -9,6 +9,7 @@ const PollQuestionChoices = ({
   setCheckbox,
   selected,
   checked,
+  question,
   id
 }) => {
   return (
@@ -27,8 +28,8 @@ const PollQuestionChoices = ({
                 }
                 onChange={
                   type === MULTIPLE_CHOICE
-                    ? setCheckbox
-                    : e => setRadio(e.target.value)
+                    ? e => setCheckbox(e, question.id)
+                    : e => setRadio(e.target.value, question.id)
                 }
               />
               {answer.value}
