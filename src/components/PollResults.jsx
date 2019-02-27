@@ -19,8 +19,6 @@ class PollResults extends Component {
   }
 
   render() {
-    console.log(this.state.user);
-
     return (
       <div className="container">
         <div className="polls__container-question polls__container-question--date">
