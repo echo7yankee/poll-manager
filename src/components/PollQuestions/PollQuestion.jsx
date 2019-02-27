@@ -2,7 +2,7 @@ import React from "react";
 
 import PollQuestionChoices from "./PollQuestionChoices";
 import { YES_NO } from "../types";
-import { BtnEdit, BtnDelete } from "../reusableComponents/buttons";
+import { BtnEdit, BtnDelete } from "../reusableComponents/buttonIcons";
 
 import "./pollsQuestion.css";
 import "../buttons.css";

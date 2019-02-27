@@ -1,6 +1,6 @@
 import React from "react";
 
-import { BtnDelete } from "../reusableComponents/buttons";
+import { BtnDelete } from "../reusableComponents/buttonIcons";
 
 import "../buttons.css";
 
