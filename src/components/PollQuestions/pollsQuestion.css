@@ -26,8 +26,12 @@
 }
 
 .container-center {
-  margin-top: 0.5rem;
+  background-color: var(--main-lg-color);
   text-align: center;
+}
+
+.container-center--border {
+  border-bottom: 0.4rem solid var(--lg-color);
 }
 
 .polls__counter--question {

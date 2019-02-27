@@ -42,7 +42,8 @@ class Questions extends Component {
     this.setState(
       {
         questions: [...this.state.questions],
-        user: { name: name, date: date }
+        user: { name: name, date: date },
+        name: ""
       },
       () => {
         const updatedQuestionsStringify = JSON.stringify(this.state.questions);
@@ -113,15 +114,16 @@ class Questions extends Component {
     return (
       <div className="container">
         <form onSubmit={this.handleSubmit}>
-          <div className="container-center ">
-            <input
-              type="text"
-              className="polls-input polls-input--questions"
-              placeholder="Name"
-              onChange={e => this.handleInputChange(e.target.value)}
-            />
-          </div>
           <div className="container">
+            <div className="container-center container-center--border">
+              <input
+                type="text"
+                className="polls-input polls-input--questions"
+                placeholder="Name"
+                required
+                onChange={e => this.handleInputChange(e.target.value)}
+              />
+            </div>
             {questions.map(question => {
               return (
                 <div
@@ -141,11 +143,11 @@ class Questions extends Component {
                 </div>
               );
             })}
-          </div>
-          <div className="container-center">
-            <button className="polls-button submit-questions poll-button--hover">
-              Submit
-            </button>
+            <div className="container-center">
+              <button className="polls-button submit-questions poll-button--hover">
+                Submit
+              </button>
+            </div>
           </div>
         </form>
         <div className="question__container-button" />
