@@ -29,18 +29,11 @@ class Questions extends Component {
     });
   };
 
-  handleSubmit = results => {
-    const { name } = this.state;
-    // const date = [
-    //   { day: new Date().getDate() },
-    //   { month: new Date().getMonth() },
-    //   { year: new Date().getFullYear() },
-    //   { hour: new Date().getHours() },
-    //   { minute: new Date().getMinutes() }
-    // ];
+  handleSubmit = e => {
+    e.preventDefault();
 
+    const { name } = this.state;
     const date = new Date().toLocaleString();
-    console.log(date);
 
     if (name === "") {
       return;
@@ -48,61 +41,114 @@ class Questions extends Component {
 
     this.setState(
       {
-        results: [...this.state.results, { ...results, id: uuid() }],
-        user: { name: this.state.name, date: date }
+        questions: [...this.state.questions],
+        user: { name: name, date: date }
       },
       () => {
-        const updatedResultsStringify = JSON.stringify(this.state.results);
-        localStorage.setItem("results", updatedResultsStringify);
+        const updatedQuestionsStringify = JSON.stringify(this.state.questions);
+        localStorage.setItem("questionsResults", updatedQuestionsStringify);
 
         const updatedUserStringify = JSON.stringify(this.state.user);
         localStorage.setItem("user", updatedUserStringify);
       }
     );
+
+    console.log(this.state.questions);
+  };
+
+  setRadio = (value, id) => {
+    const { questions } = this.state;
+
+    const indexQuestion = questions.findIndex(question => {
+      return question.id === id;
+    });
+
+    questions[indexQuestion] = {
+      ...questions[indexQuestion],
+      selected: value
+    };
+
+    this.setState({
+      questions
+    });
+  };
+
+  setCheckbox = (e, id) => {
+    const { questions } = this.state;
+    const selectedValue = e.target.value;
+
+    const indexQuestion = questions.findIndex(question => {
+      return question.id === id;
+    });
+
+    if (e.target.checked === true) {
+      questions[indexQuestion] = {
+        ...questions[indexQuestion],
+        checked: [
+          ...questions[indexQuestion].checked,
+          { id: uuid(), checkedValue: selectedValue }
+        ]
+      };
+    } else {
+      const selectedValueIndex = questions[indexQuestion].checked.indexOf(
+        selectedValue
+      );
+
+      questions[indexQuestion].checked.splice(selectedValueIndex, 1);
+
+      questions[indexQuestion] = {
+        ...questions[indexQuestion],
+        checked: questions[indexQuestion].checked
+      };
+    }
+
+    this.setState({
+      questions
+    });
   };
 
   render() {
     const { questions } = this.state;
-    console.log(this.state.results);
 
     return (
       <div className="container">
-        {/* <form onSubmit={this.handleSubmit}> */}
-        <div className="container-center ">
-          <input
-            type="text"
-            className="polls-input polls-input--questions"
-            placeholder="Name"
-            onChange={e => this.handleInputChange(e.target.value)}
-          />
-        </div>
-        <div className="container">
-          {questions.map(question => {
-            return (
-              <div
-                key={question.id}
-                className="polls__container-question
+        <form onSubmit={this.handleSubmit}>
+          <div className="container-center ">
+            <input
+              type="text"
+              className="polls-input polls-input--questions"
+              placeholder="Name"
+              onChange={e => this.handleInputChange(e.target.value)}
+            />
+          </div>
+          <div className="container">
+            {questions.map(question => {
+              return (
+                <div
+                  key={question.id}
+                  className="polls__container-question
                 polls__container-question-gap"
-              >
-                <Question
-                  handleSubmit={this.handleSubmit}
-                  question={question}
-                  handleRadioChange={this.handleRadioChange}
-                  handleCheckboxChange={this.handleCheckboxChange}
-                />
-              </div>
-            );
-          })}
-        </div>
-        <div className="container-center">
-          {/* <button
-            onClick={this.handleSubmit}
-            className="polls-button submit-questions poll-button--hover"
-          >
-            Submit
-          </button> */}
-        </div>
-        {/* </form> */}
+                >
+                  <Question
+                    handleSubmit={this.handleSubmit}
+                    question={question}
+                    handleRadioChange={this.handleRadioChange}
+                    handleCheckboxChange={this.handleCheckboxChange}
+                    setRadio={this.setRadio}
+                    setCheckbox={this.setCheckbox}
+                    selected={question.selected}
+                    checked={question.checked}
+                  />
+                </div>
+              );
+            })}
+          </div>
+          <div className="container-center">
+            <button className="polls-button submit-questions poll-button--hover">
+              Submit
+            </button>
+          </div>
+        </form>
         <div className="question__container-button" />
       </div>
     );

@@ -5,14 +5,14 @@ import "./PollQuestions/pollsQuestion.css";
 class PollResults extends Component {
   constructor(props) {
     super(props);
-    if (localStorage.getItem("results") !== null) {
+    if (localStorage.getItem("questions") !== null) {
       this.state = {
-        results: JSON.parse(localStorage.getItem("results")),
+        questions: JSON.parse(localStorage.getItem("questionsResults")),
         user: JSON.parse(localStorage.getItem("user"))
       };
     } else {
       this.state = {
-        results: [],
+        questions: [],
         user: {}
       };
     }
@@ -27,14 +27,14 @@ class PollResults extends Component {
           <p>Name: {this.state.user.name}</p>
           <p className="polls-row--2">Date: {this.state.user.date}</p>
         </div>
-        {this.state.results.map(result => {
+        {this.state.questions.map(question => {
           return (
-            <div key={result.id} className="polls__container-question">
+            <div key={question.id} className="polls__container-question">
               <div className="polls__question">
-                <span>{result.questionValue}</span>
+                <span>{question.value}</span>
 
                 <ul className="poll-items">
-                  {result.checked.map(check => {
+                  {question.checked.map(check => {
                     return check.checkedValue === "" ? null : (
                       <li key={check.id} className="poll-item">
                         {check.checkedValue}
@@ -43,8 +43,8 @@ class PollResults extends Component {
                   })}
                 </ul>
                 <ul className="poll-items">
-                  {result.selected === "" ? null : (
-                    <li className="poll-item"> {result.selected}</li>
+                  {question.selected === "" ? null : (
+                    <li className="poll-item"> {question.selected}</li>
                   )}
                 </ul>
               </div>
