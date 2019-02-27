@@ -39,14 +39,12 @@ class Question extends Component {
     } else {
       return (
         <PollQuestionChoices
-          question={question}
           type={type}
           answers={answers}
           id={this.state.question.id}
           setRadio={this.props.setRadio}
           setCheckbox={this.props.setCheckbox}
           selected={this.props.selected}
-          checked={this.props.checked}
         />
       );
     }

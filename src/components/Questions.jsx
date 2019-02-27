@@ -137,7 +137,6 @@ class Questions extends Component {
                     setRadio={this.setRadio}
                     setCheckbox={this.setCheckbox}
                     selected={question.selected}
-                    checked={question.checked}
                   />
                 </div>
               );
