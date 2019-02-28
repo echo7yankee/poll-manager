@@ -5,7 +5,7 @@ import "./PollQuestions/pollsQuestion.css";
 class PollResults extends Component {
   constructor(props) {
     super(props);
-    if (localStorage.getItem("questions") !== null) {
+    if (localStorage.getItem("questionsResults") !== null) {
       this.state = {
         questions: JSON.parse(localStorage.getItem("questionsResults")),
         user: JSON.parse(localStorage.getItem("user")),

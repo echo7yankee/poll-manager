@@ -14,7 +14,8 @@ class Questions extends Component {
         questions: JSON.parse(localStorage.getItem("questions")),
         name: "",
         results: [],
-        user: {}
+        user: {},
+        showMessage: false
       };
     } else {
       this.state = {
@@ -43,7 +44,8 @@ class Questions extends Component {
       {
         questions: [...this.state.questions],
         user: { name: name, date: date },
-        name: ""
+        name: "",
+        showMessage: true
       },
       () => {
         const updatedQuestionsStringify = JSON.stringify(this.state.questions);
@@ -139,6 +141,11 @@ class Questions extends Component {
               );
             })}
             <div className="container-center">
+              <div className="questions__show-message">
+                {this.state.showMessage ? (
+                  <span>Thank you! Your form has been submitted</span>
+                ) : null}
+              </div>
               <button className="polls-button submit-questions poll-button--hover">
                 Submit
               </button>
