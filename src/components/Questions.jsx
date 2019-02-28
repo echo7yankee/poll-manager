@@ -53,6 +53,19 @@ class Questions extends Component {
 
         const updatedUserStringify = JSON.stringify(this.state.user);
         localStorage.setItem("user", updatedUserStringify);
+
+        this.setState(
+          {
+            questions: [],
+            user: {}
+          },
+          () => {
+            const updatedQuestionsStringify = JSON.stringify(
+              this.state.questions
+            );
+            localStorage.setItem("questions", updatedQuestionsStringify);
+          }
+        );
       }
     );
   };
