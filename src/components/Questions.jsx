@@ -14,7 +14,7 @@ class Questions extends Component {
         questions: JSON.parse(localStorage.getItem("questions")),
         name: "",
         results: [],
-        user: {},
+        users: [],
         showMessage: false,
         count: 0
       };
@@ -44,20 +44,17 @@ class Questions extends Component {
     this.setState(
       {
         questions: [...this.state.questions],
-        user: { name: name, date: date },
+        users: [...this.state.users, { name: name, date: date, id: uuid() }],
         name: "",
         showMessage: true,
         count: this.state.count + 1
       },
       () => {
         const updatedQuestionsStringify = JSON.stringify(this.state.questions);
-        localStorage.setItem(
-          `questionsResults${this.state.count}`,
-          updatedQuestionsStringify
-        );
+        localStorage.setItem(`questionsResults`, updatedQuestionsStringify);
 
-        const updatedUserStringify = JSON.stringify(this.state.user);
-        localStorage.setItem("user", updatedUserStringify);
+        const updatedUsersStringify = JSON.stringify(this.state.users);
+        localStorage.setItem("users", updatedUsersStringify);
 
         const countStringify = JSON.stringify(this.state.count);
         localStorage.setItem("count", countStringify);
@@ -120,6 +117,7 @@ class Questions extends Component {
 
   render() {
     const { questions } = this.state;
+    console.log(this.state.users);
 
     return (
       <div className="container">

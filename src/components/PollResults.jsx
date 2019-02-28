@@ -8,13 +8,13 @@ class PollResults extends Component {
     if (localStorage.getItem("questionsResults") !== null) {
       this.state = {
         questions: JSON.parse(localStorage.getItem("questionsResults")),
-        user: JSON.parse(localStorage.getItem("user")),
+        users: JSON.parse(localStorage.getItem("users")),
         toggle: false
       };
     } else {
       this.state = {
         questions: [],
-        user: {}
+        users: []
       };
     }
   }
@@ -26,14 +26,22 @@ class PollResults extends Component {
   };
 
   render() {
+    console.log(this.state.users);
+
     return (
       <div className="container">
         <div
           className="polls__container-question polls__container-question--date"
           onClick={this.toggleQuestions}
         >
-          <p>Name: {this.state.user.name}</p>
-          <p className="polls-row--2">Date: {this.state.user.date}</p>
+          {this.state.users.map(user => {
+            return (
+              <div key={user.id}>
+                <p>Name: {user.name}</p>
+                <p className="polls-row--2">Date: {user.date}</p>
+              </div>
+            );
+          })}
         </div>
         <div
           className={
