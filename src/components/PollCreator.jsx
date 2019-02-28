@@ -39,7 +39,6 @@ class PollCreator extends Component {
         questions: this.state.questions.filter(question => question.id !== id)
       },
       () => {
-        console.log(this.state.questions);
         let questionsStringify = JSON.stringify(this.state.questions);
         localStorage.setItem("questions", questionsStringify);
       }

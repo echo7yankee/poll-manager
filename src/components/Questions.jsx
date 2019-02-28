@@ -53,8 +53,6 @@ class Questions extends Component {
         localStorage.setItem("user", updatedUserStringify);
       }
     );
-
-    console.log(this.state.questions);
   };
 
   setRadio = (value, id) => {
