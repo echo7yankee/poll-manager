@@ -130,10 +130,7 @@ class Questions extends Component {
                 polls__container-question-gap"
                 >
                   <Question
-                    handleSubmit={this.handleSubmit}
                     question={question}
-                    handleRadioChange={this.handleRadioChange}
-                    handleCheckboxChange={this.handleCheckboxChange}
                     setRadio={this.setRadio}
                     setCheckbox={this.setCheckbox}
                     selected={question.selected}
