@@ -1,6 +1,7 @@
 import React from "react";
 
 import PollQuestionChoices from "./PollQuestionChoices";
+import RadioInput from "../reusableComponents/RadioInput";
 import { YES_NO } from "../types";
 import { BtnEdit, BtnDelete } from "../reusableComponents/buttonIcons";
 
@@ -20,17 +21,8 @@ const PollQuestion = ({
     if (type === YES_NO) {
       return (
         <div className="polls__answers-yesNo">
-          <label className="radio__label-input">
-            <input type="radio" className="polls-radio" disabled /> Yes
-          </label>
-          <label className="radio__label-input">
-            <input
-              type="radio"
-              className="polls-radio polls-radio-ml"
-              disabled
-            />
-            No
-          </label>
+          <RadioInput name={question.id} text={"Yes"} />
+          <RadioInput name={question.id} text={"No"} />
         </div>
       );
     } else {
