@@ -1,4 +1,4 @@
-import { SIGN_IN, SIGN_OUT, DELETE_CHOICE, GET_NEW_CHOICES } from "./types";
+import { SIGN_IN, SIGN_OUT, DELETE_CHOICE, ADD_CHOICE } from "./types";
 
 export const signIn = userId => {
   return {
@@ -13,9 +13,9 @@ export const signOut = () => {
   };
 };
 
-export const getNewChoices = () => {
+export const addChoice = () => {
   return {
-    type: GET_NEW_CHOICES
+    type: ADD_CHOICE
   };
 };
 

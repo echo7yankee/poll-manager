@@ -1,3 +1,8 @@
+import React from "react";
+
+// import { connect } from "react-redux";
+// import { addChoice } from "../../actions/index";
+
 import ChoiceItem from "./ChoiceItem.jsx";
 import "./choices.css";
 
@@ -34,5 +39,21 @@ const Choices = ({
           <button className="button-answer" onClick={clearAllChoices}>
             Clear Choices
           </button>
+        )}
+      </div>
+    </>
+  );
+};
+
+// const mapStateToProps = state => {
+//   return {
+//     answers: addNewChoice(state.answers)
+//   };
+// };
+
+// export default connect(
+//   mapStateToProps,
+//   { addChoice }
+// )(Choices);
 
 export default Choices;
