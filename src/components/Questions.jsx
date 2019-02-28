@@ -15,7 +15,8 @@ class Questions extends Component {
         name: "",
         results: [],
         user: {},
-        showMessage: false
+        showMessage: false,
+        count: 0
       };
     } else {
       this.state = {
@@ -45,11 +46,15 @@ class Questions extends Component {
         questions: [...this.state.questions],
         user: { name: name, date: date },
         name: "",
-        showMessage: true
+        showMessage: true,
+        count: this.state.count + 1
       },
       () => {
         const updatedQuestionsStringify = JSON.stringify(this.state.questions);
-        localStorage.setItem("questionsResults", updatedQuestionsStringify);
+        localStorage.setItem(
+          `questionsResults${this.state.count}`,
+          updatedQuestionsStringify
+        );
 
         const updatedUserStringify = JSON.stringify(this.state.user);
         localStorage.setItem("user", updatedUserStringify);
