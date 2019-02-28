@@ -10,6 +10,15 @@
 .polls__container-question--date {
   border-bottom: 0.4rem solid var(--lg-color);
   grid-template-rows: max-content max-content;
+  cursor: pointer;
+}
+
+.questions__results--hide {
+  display: none;
+}
+
+.questions__results--show {
+  display: block;
 }
 
 .polls-row--2 {

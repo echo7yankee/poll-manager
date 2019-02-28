@@ -60,10 +60,10 @@ class GoogleAuth extends Component {
           Sign Out
         </button>
         <ul className="nav-items">
-          <li>
+          <li className="nav-item">
             <PollCreatorLink />
           </li>
-          <li>
+          <li className="nav-item">
             <PollResultsLink />
           </li>
         </ul>
