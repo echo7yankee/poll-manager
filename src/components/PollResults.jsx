@@ -30,19 +30,18 @@ class PollResults extends Component {
 
     return (
       <div className="container">
-        <div
-          className="polls__container-question polls__container-question--date"
-          onClick={this.toggleQuestions}
-        >
-          {this.state.users.map(user => {
-            return (
-              <div key={user.id}>
-                <p>Name: {user.name}</p>
-                <p className="polls-row--2">Date: {user.date}</p>
-              </div>
-            );
-          })}
-        </div>
+        {this.state.users.map(user => {
+          return (
+            <div
+              className="polls__container-question polls__container-question--date"
+              onClick={this.toggleQuestions}
+              key={user.id}
+            >
+              <p>Name: {user.name}</p>
+              <p className="polls-row--2">Date: {user.date}</p>
+            </div>
+          );
+        })}
         <div
           className={
             this.state.toggle
