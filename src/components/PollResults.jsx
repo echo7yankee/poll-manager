@@ -7,8 +7,8 @@ class PollResults extends Component {
     super(props);
     if (localStorage.getItem("questionsResults") !== null) {
       this.state = {
-        questions: JSON.parse(localStorage.getItem("questionsResults")),
-        users: JSON.parse(localStorage.getItem("users")),
+        questions: JSON.parse(localStorage.getItem("questionsResults")) || [],
+        users: JSON.parse(localStorage.getItem("users")) || [],
         toggle: false
       };
     } else {
