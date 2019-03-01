@@ -44,15 +44,14 @@ class Questions extends Component {
         questions: [...this.state.questions],
         users: [...this.state.users, { name: name, date: date, id: uuid() }],
         name: "",
-        showMessage: true,
-        count: this.state.count + 1
+        showMessage: true
       },
       () => {
         const updatedQuestionsStringify = JSON.stringify(this.state.questions);
         localStorage.setItem(`questionsResults`, updatedQuestionsStringify);
 
         const updatedUsersStringify = JSON.stringify(this.state.users);
-        localStorage.setItem("users", updatedUsersStringify);
+        localStorage.setItem(`users`, updatedUsersStringify);
       }
     );
   };
@@ -110,7 +109,6 @@ class Questions extends Component {
 
   render() {
     const { questions } = this.state;
-    console.log(this.state.users);
 
     return (
       <div className="container">
