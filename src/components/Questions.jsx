@@ -141,9 +141,9 @@ class Questions extends Component {
             })}
             <div className="container-center">
               <div className="questions__show-message">
-                {this.state.showMessage ? (
+                {this.state.showMessage && (
                   <span>Thank you! Your form has been submitted</span>
-                ) : null}
+                )}
               </div>
               <button className="polls-button submit-questions poll-button--hover">
                 Submit
