@@ -13,10 +13,8 @@ class Questions extends Component {
       this.state = {
         questions: JSON.parse(localStorage.getItem("questions")),
         name: "",
-        results: [],
         users: [],
-        showMessage: false,
-        count: 0
+        showMessage: false
       };
     } else {
       this.state = {
@@ -55,11 +53,6 @@ class Questions extends Component {
 
         const updatedUsersStringify = JSON.stringify(this.state.users);
         localStorage.setItem("users", updatedUsersStringify);
-
-        const countStringify = JSON.stringify(this.state.count);
-        localStorage.setItem("count", countStringify);
-
-        console.log(this.state.count);
       }
     );
   };
