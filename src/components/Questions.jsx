@@ -39,19 +39,41 @@ class Questions extends Component {
       return;
     }
 
+    const users = {
+      name,
+      date,
+      id: uuid()
+    };
+
     this.setState(
       {
         questions: [...this.state.questions],
-        users: [...this.state.users, { name: name, date: date, id: uuid() }],
+        users: [...this.state.users, users],
         name: "",
         showMessage: true
       },
       () => {
-        const updatedQuestionsStringify = JSON.stringify(this.state.questions);
-        localStorage.setItem(`questionsResults`, updatedQuestionsStringify);
+        // let retrievedQuestions = localStorage.getItem("questionsResults");
+        // if (retrievedQuestions === null) {
+        //   retrievedQuestions = [];
+        // } else {
+        //   retrievedQuestions = JSON.parse(retrievedQuestions);
+        // }
+        // localStorage.setItem(
+        //   "questionsResults",
+        //   JSON.stringify(retrievedQuestions.concat(this.state.questions))
+        // );
 
-        const updatedUsersStringify = JSON.stringify(this.state.users);
-        localStorage.setItem(`users`, updatedUsersStringify);
+        let retrievedUsers = localStorage.getItem("users");
+        if (retrievedUsers === null) {
+          retrievedUsers = [];
+        } else {
+          retrievedUsers = JSON.parse(retrievedUsers);
+        }
+        localStorage.setItem(
+          "users",
+          JSON.stringify(retrievedUsers.concat(this.state.users))
+        );
       }
     );
   };

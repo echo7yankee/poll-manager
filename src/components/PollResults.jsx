@@ -27,8 +27,6 @@ class PollResults extends Component {
   };
 
   render() {
-    console.log(this.state.users);
-
     return (
       <div className="container">
         {this.state.users.map(user => {
