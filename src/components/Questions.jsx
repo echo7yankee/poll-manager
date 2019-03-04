@@ -14,8 +14,8 @@ class Questions extends Component {
         questions: JSON.parse(localStorage.getItem("questions")),
         results: [],
         name: "",
-        users: [],
-        showMessage: false
+        showMessage: false,
+        inputDisabled: false
       };
     } else {
       this.state = {
@@ -66,7 +66,8 @@ class Questions extends Component {
           toggle: false
         },
         name: "",
-        showMessage: true
+        showMessage: true,
+        inputDisabled: true
       },
       () => {
         let retrievedResults = localStorage.getItem("results");
@@ -134,7 +135,6 @@ class Questions extends Component {
 
   render() {
     const { questions } = this.state;
-    console.log(this.state.results);
 
     return (
       <div className="container">
@@ -161,6 +161,7 @@ class Questions extends Component {
                     setRadio={this.setRadio}
                     setCheckbox={this.setCheckbox}
                     selected={question.selected}
+                    inputDisabled={this.state.inputDisabled}
                   />
                 </div>
               );

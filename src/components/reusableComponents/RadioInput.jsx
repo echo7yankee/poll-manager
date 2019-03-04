@@ -1,7 +1,7 @@
 import React from "react";
 import "../polls.css";
 
-const RadioInput = ({ value, text, type, onChange, name }) => {
+const RadioInput = ({ value, text, type, onChange, name, inputDisabled }) => {
   return (
     <label className="radio__label-input radio__label-input--mt">
       <input
@@ -11,6 +11,7 @@ const RadioInput = ({ value, text, type, onChange, name }) => {
         value={value}
         checked={type}
         onChange={onChange}
+        disabled={inputDisabled}
       />
       {text}
     </label>

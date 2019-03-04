@@ -8,7 +8,13 @@ import "./polls.css";
 import "./PollQuestions/pollsQuestion.css";
 import RadioInput from "./reusableComponents/RadioInput";
 
-const Question = ({ question, setRadio, setCheckbox, selected }) => {
+const Question = ({
+  question,
+  setRadio,
+  setCheckbox,
+  selected,
+  inputDisabled
+}) => {
   const renderAnswers = () => {
     if (question.type === YES_NO) {
       return (
@@ -19,12 +25,14 @@ const Question = ({ question, setRadio, setCheckbox, selected }) => {
             type={selected === YES}
             onChange={e => setRadio(e.target.value, question.id)}
             text={"Yes"}
+            inputDisabled={inputDisabled}
           />
           <RadioInput
             name={question.id}
             value={NO}
             type={selected === NO}
             onChange={e => setRadio(e.target.value, question.id)}
+            inputDisabled={inputDisabled}
             text={"No"}
           />
         </div>

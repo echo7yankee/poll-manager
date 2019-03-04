@@ -21,8 +21,16 @@ const PollQuestion = ({
     if (type === YES_NO) {
       return (
         <div className="polls__answers-yesNo">
-          <RadioInput name={question.id} text={"Yes"} />
-          <RadioInput name={question.id} text={"No"} />
+          <RadioInput
+            name={question.id}
+            text={"Yes"}
+            inputDisabled={inputDisabled}
+          />
+          <RadioInput
+            name={question.id}
+            text={"No"}
+            inputDisabled={inputDisabled}
+          />
         </div>
       );
     } else {
