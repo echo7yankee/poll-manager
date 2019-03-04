@@ -70,10 +70,6 @@
   grid-column-start: 2;
 }
 
-.polls__questions {
-  min-height: 4vh;
-}
-
 .polls-label {
   grid-column: 1;
 }
