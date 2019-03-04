@@ -1,12 +1,12 @@
 import React from "react";
 
-const PollResult = ({ question }) => {
+const PollResult = ({ result }) => {
   return (
     <div className="polls__question">
-      <span>{question.value}</span>
+      <span>{result.value}</span>
 
       <ul className="poll-items">
-        {question.checked.map(check => {
+        {result.checked.map(check => {
           return check.checkedValue === "" ? null : (
             <li key={check.id} className="poll-item">
               {check.checkedValue}
@@ -15,8 +15,8 @@ const PollResult = ({ question }) => {
         })}
       </ul>
       <ul className="poll-items">
-        {question.selected === "" ? null : (
-          <li className="poll-item"> {question.selected}</li>
+        {result.selected === "" ? null : (
+          <li className="poll-item"> {result.selected}</li>
         )}
       </ul>
     </div>

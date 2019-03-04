@@ -6,56 +6,65 @@ import PollResult from "./PollResult";
 class PollResults extends Component {
   constructor(props) {
     super(props);
-    if (localStorage.getItem("questionsResults") !== null) {
+    if (localStorage.getItem("results") !== null) {
       this.state = {
-        questions: JSON.parse(localStorage.getItem("questionsResults")) || [],
-        users: JSON.parse(localStorage.getItem("users")) || [],
-        toggle: false
+        results: JSON.parse(localStorage.getItem("results")) || []
       };
     } else {
       this.state = {
-        questions: [],
-        users: []
+        results: []
       };
     }
   }
 
-  toggleQuestions = () => {
+  toggleQuestions = id => {
+    const { results } = this.state;
+    const indexResults = results.findIndex(result => {
+      return result.id === id;
+    });
+
+    results[indexResults] = {
+      ...results[indexResults],
+      toggle: !results[indexResults].toggle
+    };
+
     this.setState({
-      toggle: !this.state.toggle
+      results
     });
   };
 
   render() {
     return (
       <div className="container">
-        {this.state.users.map(user => {
+        {this.state.results.map(result => {
           return (
-            <div
-              className="polls__container-question polls__container-question--date"
-              onClick={this.toggleQuestions}
-              key={user.id}
-            >
-              <p>Name: {user.name}</p>
-              <p className="polls-row--2">Date: {user.date}</p>
+            <div key={result.users.id}>
+              <div
+                className="polls__container-question polls__container-question--date"
+                onClick={() => this.toggleQuestions(result.id)}
+              >
+                <p>Name: {result.users.name}</p>
+                <p className="polls-row--2">Date: {result.users.date}</p>
+              </div>
+
+              <div
+                className={
+                  result.toggle
+                    ? "questions__results--show"
+                    : "questions__results--hide"
+                }
+              >
+                {result.resultAnswers.map(result => {
+                  return (
+                    <div key={result.id} className="polls__container-question">
+                      <PollResult result={result} />
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           );
         })}
-        <div
-          className={
-            this.state.toggle
-              ? "questions__results--show"
-              : "questions__results--hide"
-          }
-        >
-          {this.state.questions.map(question => {
-            return (
-              <div key={question.id} className="polls__container-question">
-                <PollResult question={question} />
-              </div>
-            );
-          })}
-        </div>
       </div>
     );
   }

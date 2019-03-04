@@ -12,6 +12,7 @@ class Questions extends Component {
     if (localStorage.getItem("questions") !== null) {
       this.state = {
         questions: JSON.parse(localStorage.getItem("questions")),
+        results: [],
         name: "",
         users: [],
         showMessage: false
@@ -45,35 +46,37 @@ class Questions extends Component {
       id: uuid()
     };
 
+    const resultAnswers = this.state.questions.map(question => {
+      const results = {
+        value: question.value,
+        checked: question.checked,
+        selected: question.selected,
+        id: uuid()
+      };
+
+      return results;
+    });
+
     this.setState(
       {
-        questions: [...this.state.questions],
-        users: [...this.state.users, users],
+        results: {
+          resultAnswers,
+          users,
+          id: uuid(),
+          toggle: false
+        },
         name: "",
         showMessage: true
       },
       () => {
-        // let retrievedQuestions = localStorage.getItem("questionsResults");
-        // if (retrievedQuestions === null) {
-        //   retrievedQuestions = [];
-        // } else {
-        //   retrievedQuestions = JSON.parse(retrievedQuestions);
-        // }
-        // localStorage.setItem(
-        //   "questionsResults",
-        //   JSON.stringify(retrievedQuestions.concat(this.state.questions))
-        // );
-
-        let retrievedUsers = localStorage.getItem("users");
-        if (retrievedUsers === null) {
-          retrievedUsers = [];
+        let retrievedResults = localStorage.getItem("results");
+        if (retrievedResults === null) {
+          retrievedResults = [];
         } else {
-          retrievedUsers = JSON.parse(retrievedUsers);
+          retrievedResults = JSON.parse(retrievedResults);
         }
-        localStorage.setItem(
-          "users",
-          JSON.stringify(retrievedUsers.concat(this.state.users))
-        );
+        let resultsArr = retrievedResults.concat(this.state.results);
+        localStorage.setItem("results", JSON.stringify(resultsArr));
       }
     );
   };
@@ -131,6 +134,7 @@ class Questions extends Component {
 
   render() {
     const { questions } = this.state;
+    console.log(this.state.results);
 
     return (
       <div className="container">
