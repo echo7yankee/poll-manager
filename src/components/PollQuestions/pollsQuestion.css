@@ -39,6 +39,12 @@
   text-align: center;
 }
 
+.container-center--results {
+  background-color: transparent;
+  min-height: 100vh;
+  font-size: 16px;
+}
+
 .questions__show-message {
   height: 2rem;
   padding-top: 0.5rem;
