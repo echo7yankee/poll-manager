@@ -72,10 +72,7 @@
 
 .polls-label {
   grid-column: 1;
-}
-
-.polls-label--test {
-  display: flex;
+  margin-top: 0.3rem;
 }
 
 .polls__questions-mt {
