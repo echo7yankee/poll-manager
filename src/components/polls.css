@@ -54,12 +54,10 @@
   align-items: center;
 }
 
-.polls-label {
-  font-weight: bold;
-}
-
 .polls-label--top {
   align-self: flex-start;
+  font-weight: bold;
+  grid-column: 1;
 }
 
 .polls-input {

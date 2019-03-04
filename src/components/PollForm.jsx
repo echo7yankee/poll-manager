@@ -186,7 +186,7 @@ class PollForm extends Component {
             required
           />
         </div>
-        <span className="polls-label polls-label--top">Answers:</span>
+        <span className="polls-label--top">Answers:</span>
         <div className="polls__container-input">
           <div className="polls__container-radio">
             <RadioInput
