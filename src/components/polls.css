@@ -59,6 +59,7 @@
 }
 
 .polls-label--top {
+  margin-top: 0.3rem;
   align-self: flex-start;
 }
 
