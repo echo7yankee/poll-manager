@@ -71,9 +71,11 @@
 }
 
 .polls-label {
-  font-weight: bold;
   grid-column: 1;
-  align-self: center;
+}
+
+.polls-label--test {
+  display: flex;
 }
 
 .polls__questions-mt {
