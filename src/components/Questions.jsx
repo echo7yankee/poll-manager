@@ -33,6 +33,8 @@ class Questions extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
+    console.log("Click");
+
     const { name } = this.state;
     const date = new Date().toLocaleString();
 
@@ -172,7 +174,14 @@ class Questions extends Component {
                   <span>Thank you! Your form has been submitted</span>
                 )}
               </div>
-              <button className="polls-button submit-questions poll-button--hover">
+              <button
+                className={
+                  this.state.inputDisabled
+                    ? "polls-button submit-questions--disabled"
+                    : "polls-button submit-questions poll-button--hover"
+                }
+                disabled={this.state.inputDisabled}
+              >
                 Submit
               </button>
             </div>

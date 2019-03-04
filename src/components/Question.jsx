@@ -45,6 +45,7 @@ const Question = ({
           id={question.id}
           setRadio={setRadio}
           setCheckbox={setCheckbox}
+          inputDisabled={inputDisabled}
           selected={selected}
         />
       );
