@@ -32,6 +32,14 @@ class Questions extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    const formHasErrors = this.state.questions.some(q =>
+      q.required ? q.required === true && q.isChecked === true : true
+    );
+    console.log(formHasErrors);
+
+    if (formHasErrors === false) {
+      return;
+    }
 
     const { name } = this.state;
     const date = new Date().toLocaleString();
@@ -51,11 +59,6 @@ class Questions extends Component {
         id: uuid()
       };
 
-      // if (results.selected === "" && question.checked.length === 0) {
-      //   return console.log("value is empty");
-      // } else {
-      //   return results;
-      // }
       return results;
     });
 
@@ -121,7 +124,8 @@ class Questions extends Component {
         checked: [
           ...questions[indexQuestion].checked,
           { id: uuid(), checkedValue: selectedValue }
-        ]
+        ],
+        isChecked: true
       };
     } else {
       const selectedValueIndex = questions[indexQuestion].checked.indexOf(

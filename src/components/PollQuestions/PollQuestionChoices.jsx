@@ -25,12 +25,7 @@ const PollQuestionChoices = ({
                 value={answer.value}
                 required={
                   type === MULTIPLE_CHOICE
-                    ? question.required &&
-                      question.checked.some(
-                        check => check.checkedValue.length >= 0
-                      )
-                      ? false
-                      : true
+                    ? null
                     : question.required
                     ? true
                     : false
