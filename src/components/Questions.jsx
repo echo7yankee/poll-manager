@@ -33,8 +33,10 @@ class Questions extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    const formHasErrors = this.state.questions.some(q =>
-      q.required ? q.required === true && q.isChecked === true : true
+    const formHasErrors = this.state.questions.some(question =>
+      question.required
+        ? question.required === true && question.isChecked === true
+        : true
     );
 
     const { name } = this.state;
