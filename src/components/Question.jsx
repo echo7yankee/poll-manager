@@ -42,9 +42,6 @@ const Question = ({
       return (
         <PollQuestionChoices
           question={question}
-          type={question.type}
-          answers={question.answers}
-          id={question.id}
           setRadio={setRadio}
           setCheckbox={setCheckbox}
           inputDisabled={inputDisabled}
