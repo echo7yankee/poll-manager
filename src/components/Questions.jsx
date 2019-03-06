@@ -32,23 +32,17 @@ class Questions extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+
     const formHasErrors = this.state.questions.some(q =>
       q.required ? q.required === true && q.isChecked === true : true
     );
-    console.log(formHasErrors);
-
-    if (formHasErrors === false) {
-      return;
-    }
 
     const { name } = this.state;
     const date = new Date().toLocaleString();
 
-    const users = {
-      name,
-      date,
-      id: uuid()
-    };
+    if (name === "" || formHasErrors === false) {
+      return;
+    }
 
     const resultAnswers = this.state.questions.map(question => {
       const results = {
@@ -62,11 +56,11 @@ class Questions extends Component {
       return results;
     });
 
-    if (name === "") {
-      return;
-    }
-
-    //console.log(resultAnswers[0].required);
+    const users = {
+      name,
+      date,
+      id: uuid()
+    };
 
     this.setState(
       {
