@@ -9,7 +9,8 @@ import "./polls.css";
 
 class PollForm extends Component {
   state = {
-    question: []
+    question: [],
+    required: false
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -110,6 +111,7 @@ class PollForm extends Component {
     if (type === YES_NO) {
       question = {
         ...this.state.question,
+        required: this.state.required,
         answers: [createChoice(), createChoice()]
       };
     } else {
@@ -123,6 +125,7 @@ class PollForm extends Component {
 
       question = {
         ...this.state.question,
+        required: this.state.required,
         answers: filledInAnswers
       };
     }
@@ -138,6 +141,12 @@ class PollForm extends Component {
         ...question,
         type: e.target.value
       }
+    });
+  };
+
+  handleCheckboxInput = e => {
+    this.setState({
+      required: !this.state.required
     });
   };
 
@@ -208,6 +217,14 @@ class PollForm extends Component {
               type={type === SINGLE_CHOICE}
               onChange={this.handleRadioInput}
             />
+            <label className="radio__label-input  radio__label-input--mt">
+              <input
+                type="checkbox"
+                className="radio__label-input--mr"
+                onChange={this.handleCheckboxInput}
+              />
+              Required
+            </label>
           </div>
           <div className="polls__answers-container">
             {this.renderChoicesComponent()}

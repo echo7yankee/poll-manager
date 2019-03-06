@@ -1,8 +1,8 @@
 import React from "react";
 
 const PollResult = ({ result }) => {
-  return (
-    <div className="polls__question">
+  return result.selected === "" && result.checked.length === 0 ? null : (
+    <div className="polls__question polls__container-question">
       <span>{result.value}</span>
 
       <ul className="poll-items">

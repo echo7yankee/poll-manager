@@ -31,6 +31,8 @@ class PollCreator extends Component {
         localStorage.setItem("questions", questionsStringify);
       }
     );
+
+    console.log(newQuestion);
   };
 
   handleDeleteQuestion = id => {

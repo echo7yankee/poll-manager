@@ -24,6 +24,7 @@ const Question = ({
             value={YES}
             type={selected === YES}
             onChange={e => setRadio(e.target.value, question.id)}
+            required={question.required ? true : false}
             text={"Yes"}
             inputDisabled={inputDisabled}
           />
@@ -40,6 +41,7 @@ const Question = ({
     } else {
       return (
         <PollQuestionChoices
+          question={question}
           type={question.type}
           answers={question.answers}
           id={question.id}
@@ -54,7 +56,9 @@ const Question = ({
 
   return (
     <div className="polls__question">
-      <label className="polls-label">Question:</label>
+      <label className="polls-label">
+        {question.required ? "*Question:" : "Question:"}
+      </label>
       <p className="polls-text">{question.value}</p>
 
       <div className="polls__questions polls__question--colstart2">

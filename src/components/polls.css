@@ -96,6 +96,10 @@
   margin-right: 0.5rem;
 }
 
+.radio__label-input--mr {
+  margin-right: 0.3rem;
+}
+
 .polls__container-buttons {
   grid-column-start: 2;
 }

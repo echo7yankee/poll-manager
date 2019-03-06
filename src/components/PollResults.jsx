@@ -64,10 +64,7 @@ class PollResults extends Component {
                 >
                   {result.resultAnswers.map(result => {
                     return (
-                      <div
-                        key={result.id}
-                        className="polls__container-question"
-                      >
+                      <div key={result.id}>
                         <PollResult result={result} />
                       </div>
                     );

@@ -3,6 +3,7 @@ import { MULTIPLE_CHOICE } from "../types";
 import "../polls.css";
 
 const PollQuestionChoices = ({
+  question,
   type,
   answers,
   setRadio,
@@ -22,6 +23,18 @@ const PollQuestionChoices = ({
                 name={id}
                 className="polls-radio"
                 value={answer.value}
+                required={
+                  type === MULTIPLE_CHOICE
+                    ? question.required &&
+                      question.checked.some(
+                        check => check.checkedValue.length >= 0
+                      )
+                      ? false
+                      : true
+                    : question.required
+                    ? true
+                    : false
+                }
                 checked={
                   type === MULTIPLE_CHOICE ? null : selected === answer.value
                 }

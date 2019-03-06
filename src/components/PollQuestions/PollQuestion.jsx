@@ -39,6 +39,7 @@ const PollQuestion = ({
           type={type}
           answers={answers}
           inputDisabled={inputDisabled}
+          question={question}
         />
       );
     }

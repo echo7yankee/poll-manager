@@ -33,14 +33,8 @@ class Questions extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    console.log("Click");
-
     const { name } = this.state;
     const date = new Date().toLocaleString();
-
-    if (name === "") {
-      return;
-    }
 
     const users = {
       name,
@@ -53,11 +47,23 @@ class Questions extends Component {
         value: question.value,
         checked: question.checked,
         selected: question.selected,
+        required: question.required,
         id: uuid()
       };
 
+      // if (results.selected === "" && question.checked.length === 0) {
+      //   return console.log("value is empty");
+      // } else {
+      //   return results;
+      // }
       return results;
     });
+
+    if (name === "") {
+      return;
+    }
+
+    //console.log(resultAnswers[0].required);
 
     this.setState(
       {
