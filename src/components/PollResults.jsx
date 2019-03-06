@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./polls.css";
 import "./PollQuestions/pollsQuestion.css";
-import PollResult from "./PollResult";
+import PollResultItem from "./PollResultItem";
 
 class PollResults extends Component {
   constructor(props) {
@@ -77,7 +77,7 @@ class PollResults extends Component {
                   {result.resultAnswers.map(result => {
                     return (
                       <div key={result.id}>
-                        <PollResult result={result} />
+                        <PollResultItem result={result} />
                       </div>
                     );
                   })}

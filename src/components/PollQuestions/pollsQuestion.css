@@ -14,11 +14,16 @@
 }
 
 .questions__results--hide {
-  display: none;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.3s ease-in-out, opacity 0.3s ease;
 }
 
 .questions__results--show {
-  display: block;
+  opacity: 1;
+  max-height: 2000px;
+  transition: max-height 0.3s ease-in-out, opacity 0.5s ease;
 }
 
 .polls-row--2 {

@@ -15,6 +15,7 @@ class Questions extends Component {
         results: [],
         name: "",
         showMessage: false,
+        showError: false,
         inputDisabled: false
       };
     } else {
@@ -37,11 +38,17 @@ class Questions extends Component {
       question.required === true && question.isChecked === true ? true : false
     );
 
+    this.state.questions.forEach(question => {
+      if (question.required === true && question.isChecked === false) {
+        this.setState({
+          showError: true
+        });
+      }
+    });
+
     if (formHasErrors === false) {
       return;
     }
-
-    console.log(formHasErrors);
 
     const { name } = this.state;
     const date = new Date().toLocaleString();
@@ -78,6 +85,7 @@ class Questions extends Component {
         },
         name: "",
         showMessage: true,
+        showError: false,
         inputDisabled: true
       },
       () => {
@@ -183,6 +191,11 @@ class Questions extends Component {
               <div className="questions__show-message">
                 {this.state.showMessage && (
                   <span>Thank you! Your form has been submitted</span>
+                )}
+              </div>
+              <div className="questions__show-message">
+                {this.state.showError && (
+                  <span>You need to check at least one checkbox</span>
                 )}
               </div>
               <button
