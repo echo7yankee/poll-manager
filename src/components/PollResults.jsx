@@ -33,6 +33,18 @@ class PollResults extends Component {
     });
   };
 
+  clearResults = () => {
+    this.setState(
+      {
+        results: []
+      },
+      () => {
+        const resultsStringify = JSON.stringify(this.state.results);
+        localStorage.setItem("results", JSON.stringify(resultsStringify));
+      }
+    );
+  };
+
   render() {
     return (
       <>
@@ -73,6 +85,14 @@ class PollResults extends Component {
               </div>
             );
           })}
+          <div className="container-center">
+            <button
+              className="polls-button submit-questions poll-button--hover"
+              onClick={this.clearResults}
+            >
+              Clear
+            </button>
+          </div>
         </div>
       </>
     );
