@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./polls.css";
 import "./PollQuestions/pollsQuestion.css";
-import PollResultItem from "./PollResultItem";
+import PollResult from "./PollResult";
 
 class PollResults extends Component {
   constructor(props) {
@@ -17,7 +17,7 @@ class PollResults extends Component {
     }
   }
 
-  toggleQuestions = id => {
+  toggleResults = id => {
     const { results } = this.state;
     const indexResults = results.findIndex(result => {
       return result.id === id;
@@ -59,29 +59,10 @@ class PollResults extends Component {
           {this.state.results.map(result => {
             return (
               <div key={result.users.id}>
-                <div
-                  className="polls__container-question polls__container-question--date"
-                  onClick={() => this.toggleQuestions(result.id)}
-                >
-                  <p>Name: {result.users.name}</p>
-                  <p className="polls-row--2">Date: {result.users.date}</p>
-                </div>
-
-                <div
-                  className={
-                    result.toggle
-                      ? "questions__results--show"
-                      : "questions__results--hide"
-                  }
-                >
-                  {result.resultAnswers.map(result => {
-                    return (
-                      <div key={result.id}>
-                        <PollResultItem result={result} />
-                      </div>
-                    );
-                  })}
-                </div>
+                <PollResult
+                  result={result}
+                  toggleResults={this.toggleResults}
+                />
               </div>
             );
           })}
