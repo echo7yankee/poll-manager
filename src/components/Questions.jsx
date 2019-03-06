@@ -34,15 +34,19 @@ class Questions extends Component {
     e.preventDefault();
 
     const formHasErrors = this.state.questions.some(question =>
-      question.required
-        ? question.required === true && question.isChecked === true
-        : true
+      question.required === true && question.isChecked === true ? true : false
     );
+
+    if (formHasErrors === false) {
+      return;
+    }
+
+    console.log(formHasErrors);
 
     const { name } = this.state;
     const date = new Date().toLocaleString();
 
-    if (name === "" || formHasErrors === false) {
+    if (name === "") {
       return;
     }
 
@@ -143,6 +147,7 @@ class Questions extends Component {
 
   render() {
     const { questions } = this.state;
+    console.log(questions);
 
     return (
       <div className="container">
