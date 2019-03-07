@@ -12,6 +12,21 @@ const PollQuestionChoices = ({
   return (
     <ul>
       {question.answers.map(answer => {
+        const required =
+          question.type === MULTIPLE_CHOICE
+            ? null
+            : question.required
+            ? true
+            : false;
+
+        const checked =
+          question.type === MULTIPLE_CHOICE ? null : selected === answer.value;
+
+        const onChange =
+          question.type === MULTIPLE_CHOICE
+            ? e => setCheckbox(e, question.id)
+            : e => setRadio(e.target.value, question.id);
+
         return (
           <li key={answer.id} className="radio__label-input--mt">
             <label className="polls__question-choices">
@@ -20,24 +35,10 @@ const PollQuestionChoices = ({
                 name={question.id}
                 className="polls-radio"
                 value={answer.value}
-                required={
-                  question.type === MULTIPLE_CHOICE
-                    ? null
-                    : question.required
-                    ? true
-                    : false
-                }
-                checked={
-                  question.type === MULTIPLE_CHOICE
-                    ? null
-                    : selected === answer.value
-                }
+                required={required}
+                checked={checked}
                 disabled={inputDisabled}
-                onChange={
-                  question.type === MULTIPLE_CHOICE
-                    ? e => setCheckbox(e, question.id)
-                    : e => setRadio(e.target.value, question.id)
-                }
+                onChange={onChange}
               />
               {answer.value}
             </label>
