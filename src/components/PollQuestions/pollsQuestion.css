@@ -64,6 +64,8 @@
   background-color: #ffd2d2;
   border-radius: 0.3rem;
   padding: 0.5rem 0.8rem;
+  display: flex;
+  align-items: center;
 }
 
 .container-center--border {

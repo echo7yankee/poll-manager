@@ -15,7 +15,6 @@ class Questions extends Component {
         results: [],
         name: "",
         showMessage: false,
-        showError: false,
         inputDisabled: false
       };
     } else {
@@ -33,23 +32,33 @@ class Questions extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    const { name } = this.state;
     let formHasErrors;
 
     formHasErrors = this.state.questions.some(question => {
       return question.required === true && question.isChecked === false;
     });
 
-    if (formHasErrors === true) {
-      this.setState({
-        showError: true
+    if (formHasErrors === true || name === "") {
+      const { questions } = this.state;
+
+      questions.map(question => {
+        const indexQuestions = questions.findIndex(questionId => {
+          return questionId.id === question.id;
+        });
+
+        questions[indexQuestions] = {
+          ...questions[indexQuestions],
+          showError: true
+        };
+
+        this.setState({
+          questions
+        });
+
+        return indexQuestions;
       });
-      return;
-    }
 
-    const { name } = this.state;
-    const date = new Date().toLocaleString();
-
-    if (name === "") {
       return;
     }
 
@@ -64,6 +73,8 @@ class Questions extends Component {
 
       return results;
     });
+
+    const date = new Date().toLocaleString();
 
     const users = {
       name,
@@ -81,7 +92,6 @@ class Questions extends Component {
         },
         name: "",
         showMessage: true,
-        showError: false,
         inputDisabled: true
       },
       () => {
@@ -151,6 +161,22 @@ class Questions extends Component {
     });
   };
 
+  deleteErrorMessage = id => {
+    const { questions } = this.state;
+    const indexQuestions = questions.findIndex(question => {
+      return question.id === id;
+    });
+
+    questions[indexQuestions] = {
+      ...questions[indexQuestions],
+      showError: false
+    };
+
+    this.setState({
+      questions
+    });
+  };
+
   render() {
     const { questions } = this.state;
 
@@ -175,7 +201,9 @@ class Questions extends Component {
                 polls__container-question-gap"
                 >
                   <Question
-                    showError={this.state.showError}
+                    deleteErrorMessage={this.deleteErrorMessage}
+                    //showError={this.state.showError}
+
                     question={question}
                     setRadio={this.setRadio}
                     setCheckbox={this.setCheckbox}
@@ -191,13 +219,6 @@ class Questions extends Component {
                   <span>Thank you! Your form has been submitted</span>
                 )}
               </div>
-              {/* <div className="questions__show-message">
-                {this.state.showError && (
-                  <span>
-                    You need to complete all the questions that are required
-                  </span>
-                )}
-              </div> */}
               <button
                 className={
                   this.state.inputDisabled

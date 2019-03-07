@@ -87,6 +87,19 @@
   fill: var(--grey-color);
 }
 
+.button-icon--sm {
+  width: 12px;
+  height: 12px;
+  margin-right: 0.5rem;
+  margin-top: 0.3rem;
+  cursor: pointer;
+  fill: #d8000c;
+}
+
+.button-icon--sm:hover {
+  fill: #f50e0e;
+}
+
 .button-icon:hover {
   fill: var(--dark-grey-color);
 }

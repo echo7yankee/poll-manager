@@ -3,12 +3,14 @@ import React from "react";
 import PollQuestionChoices from "./PollQuestions/PollQuestionChoices";
 
 import { YES_NO, YES, NO } from "./types";
+import { BtnDelete } from "./reusableComponents/buttonIcons";
 
 import "./polls.css";
 import "./PollQuestions/pollsQuestion.css";
 import RadioInput from "./reusableComponents/RadioInput";
 
 const Question = ({
+  deleteErrorMessage,
   question,
   showError,
   setRadio,
@@ -63,8 +65,12 @@ const Question = ({
       </div>
       {question.required === true ? (
         <div className="questions__show-message questions__show-message--col2">
-          {showError && (
+          {question.showError && (
             <span className="question__show-message-error">
+              <BtnDelete
+                imgClassName={"button-icon--sm"}
+                onClick={() => deleteErrorMessage(question.id)}
+              />
               This question is required
             </span>
           )}

@@ -16,6 +16,7 @@ export const createQuestion = () => {
     isEdit: false,
     selected: "",
     isChecked: false,
+    showError: false,
     checked: []
   };
 };
