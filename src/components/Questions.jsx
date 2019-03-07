@@ -33,20 +33,16 @@ class Questions extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    let formCanSubmit;
+    let formHasErrors;
 
-    const formHasErrors = this.state.questions.some(question =>
-      question.required === true && question.isChecked === true ? true : false
-    );
-
-    this.state.questions.forEach(question => {
-      if (question.required === true && question.isChecked === false) {
-        this.setState({
-          showError: true
-        });
-      }
+    formHasErrors = this.state.questions.some(question => {
+      return question.required === true && question.isChecked === false;
     });
 
-    if (formHasErrors === false) {
+    console.log({ formCanSubmit, formHasErrors });
+
+    if (formHasErrors === true) {
       return;
     }
 
@@ -110,7 +106,8 @@ class Questions extends Component {
 
     questions[indexQuestion] = {
       ...questions[indexQuestion],
-      selected: value
+      selected: value,
+      isChecked: true
     };
 
     this.setState({
@@ -144,7 +141,8 @@ class Questions extends Component {
 
       questions[indexQuestion] = {
         ...questions[indexQuestion],
-        checked: questions[indexQuestion].checked
+        checked: questions[indexQuestion].checked,
+        isChecked: false
       };
     }
 
