@@ -63,11 +63,7 @@ const Question = ({
       </div>
       {question.required === true ? (
         <div className="questions__show-message questions__show-message--col2">
-          {showError && (
-            <span>
-              You need to complete all the questions that are required
-            </span>
-          )}
+          {showError && <span>This question is required</span>}
         </div>
       ) : null}
     </div>
