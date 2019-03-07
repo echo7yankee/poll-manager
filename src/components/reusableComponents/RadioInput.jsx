@@ -20,7 +20,6 @@ const RadioInput = ({
         checked={type}
         onChange={onChange}
         disabled={inputDisabled}
-        required={required}
       />
       {text}
     </label>

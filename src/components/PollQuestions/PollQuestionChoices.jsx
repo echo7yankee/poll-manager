@@ -12,13 +12,6 @@ const PollQuestionChoices = ({
   return (
     <ul>
       {question.answers.map(answer => {
-        const required =
-          question.type === MULTIPLE_CHOICE
-            ? null
-            : question.required
-            ? true
-            : false;
-
         const checked =
           question.type === MULTIPLE_CHOICE ? null : selected === answer.value;
 
@@ -35,7 +28,6 @@ const PollQuestionChoices = ({
                 name={question.id}
                 className="polls-radio"
                 value={answer.value}
-                //required={required}
                 checked={checked}
                 disabled={inputDisabled}
                 onChange={onChange}

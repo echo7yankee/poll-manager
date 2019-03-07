@@ -25,7 +25,6 @@ const Question = ({
             value={YES}
             type={selected === YES}
             onChange={e => setRadio(e.target.value, question.id)}
-            //required={question.required ? true : false}
             text={"Yes"}
             inputDisabled={inputDisabled}
           />
