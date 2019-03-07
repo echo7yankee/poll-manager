@@ -10,6 +10,7 @@ import RadioInput from "./reusableComponents/RadioInput";
 
 const Question = ({
   question,
+  showError,
   setRadio,
   setCheckbox,
   selected,
@@ -24,7 +25,7 @@ const Question = ({
             value={YES}
             type={selected === YES}
             onChange={e => setRadio(e.target.value, question.id)}
-            required={question.required ? true : false}
+            //required={question.required ? true : false}
             text={"Yes"}
             inputDisabled={inputDisabled}
           />
@@ -61,6 +62,15 @@ const Question = ({
       <div className="polls__questions polls__question--colstart2">
         {renderAnswers()}
       </div>
+      {question.required === true ? (
+        <div className="questions__show-message questions__show-message--col2">
+          {showError && (
+            <span>
+              You need to complete all the questions that are required
+            </span>
+          )}
+        </div>
+      ) : null}
     </div>
   );
 };

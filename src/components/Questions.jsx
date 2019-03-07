@@ -33,16 +33,16 @@ class Questions extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    let formCanSubmit;
     let formHasErrors;
 
     formHasErrors = this.state.questions.some(question => {
       return question.required === true && question.isChecked === false;
     });
 
-    console.log({ formCanSubmit, formHasErrors });
-
     if (formHasErrors === true) {
+      this.setState({
+        showError: true
+      });
       return;
     }
 
@@ -153,7 +153,6 @@ class Questions extends Component {
 
   render() {
     const { questions } = this.state;
-    console.log(questions);
 
     return (
       <div className="container">
@@ -176,6 +175,7 @@ class Questions extends Component {
                 polls__container-question-gap"
                 >
                   <Question
+                    showError={this.state.showError}
                     question={question}
                     setRadio={this.setRadio}
                     setCheckbox={this.setCheckbox}
@@ -191,11 +191,13 @@ class Questions extends Component {
                   <span>Thank you! Your form has been submitted</span>
                 )}
               </div>
-              <div className="questions__show-message">
+              {/* <div className="questions__show-message">
                 {this.state.showError && (
-                  <span>You need to check at least one checkbox</span>
+                  <span>
+                    You need to complete all the questions that are required
+                  </span>
                 )}
-              </div>
+              </div> */}
               <button
                 className={
                   this.state.inputDisabled
