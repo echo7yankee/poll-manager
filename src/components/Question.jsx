@@ -63,7 +63,7 @@ const Question = ({
       <div className="polls__questions polls__question--colstart2">
         {renderAnswers()}
       </div>
-      {question.required === true ? (
+      {question.required === true && question.isChecked === false ? (
         <div className="questions__show-message questions__show-message--col2">
           {question.showError && (
             <span className="question__show-message-error">

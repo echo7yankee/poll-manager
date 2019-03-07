@@ -232,7 +232,7 @@ class Questions extends Component {
             </div>
           </div>
         </form>
-        <div className="question__container-button" />
+        <div>Hint: All questions with * are required</div>
       </div>
     );
   }
