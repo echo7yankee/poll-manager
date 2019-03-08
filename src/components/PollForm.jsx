@@ -66,12 +66,6 @@ class PollForm extends Component {
     const { question } = this.state;
     const { answers } = this.state.question;
 
-    const test = answers.map(answer => {
-      return answer.value === value;
-    });
-
-    console.log(test);
-
     const indexAnswers = answers.findIndex(answer => {
       return answer.id === id;
     });
