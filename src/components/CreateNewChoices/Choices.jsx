@@ -45,15 +45,4 @@ const Choices = ({
   );
 };
 
-// const mapStateToProps = state => {
-//   return {
-//     answers: addNewChoice(state.answers)
-//   };
-// };
-
-// export default connect(
-//   mapStateToProps,
-//   { addChoice }
-// )(Choices);
-
 export default Choices;
