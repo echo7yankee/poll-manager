@@ -59,8 +59,6 @@ class Questions extends Component {
       return;
     }
 
-    console.log(formHasErrors);
-
     const resultAnswers = this.state.questions.map(question => {
       const results = {
         value: question.value,
