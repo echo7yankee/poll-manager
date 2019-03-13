@@ -8,6 +8,7 @@ import PollCreatorLink from "./PollCreatorLink";
 
 import { GooglePlusIcon } from "./reusableComponents/icons";
 import PollResultsLink from "./PollResultsLink";
+import ResultsByQuestionsLink from "./ResultsByQuestionsLink";
 
 class GoogleAuth extends Component {
   componentDidMount() {
@@ -65,6 +66,9 @@ class GoogleAuth extends Component {
           </li>
           <li className="nav-item">
             <PollResultsLink />
+          </li>
+          <li className="nav-item">
+            <ResultsByQuestionsLink />
           </li>
         </ul>
       </div>
