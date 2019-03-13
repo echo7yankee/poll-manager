@@ -29,6 +29,7 @@ class Questions extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const { name } = this.state;
+
     let formHasErrors;
 
     formHasErrors = this.state.questions.some(question => {
@@ -57,6 +58,8 @@ class Questions extends Component {
 
       return;
     }
+
+    console.log(formHasErrors);
 
     const resultAnswers = this.state.questions.map(question => {
       const results = {
@@ -148,7 +151,7 @@ class Questions extends Component {
       newQuestions[indexQuestion] = {
         ...newQuestions[indexQuestion],
         checked: newQuestions[indexQuestion].checked,
-        isChecked: false
+        isChecked: true
       };
     }
 
@@ -176,6 +179,13 @@ class Questions extends Component {
   render() {
     const { questions } = this.state;
 
+    const questionsRequired = questions.filter(question => {
+      return question.required === true;
+    });
+    const questionsChecked = questions.filter(question => {
+      return question.required === true && question.isChecked === true;
+    });
+
     return questions.length === 0 ? (
       <div className="container-center container-center--transparent">
         <span>Questions list is empty</span>
@@ -183,7 +193,10 @@ class Questions extends Component {
     ) : (
       <div className="container">
         <div className="questions__status-container container-center--border">
-          <span>You have 3 out of 9 questions to answer</span>
+          <span>
+            You have {questionsChecked.length} out of {questionsRequired.length}{" "}
+            questions to answer
+          </span>
         </div>
         <form onSubmit={this.handleSubmit}>
           <div className="container">
