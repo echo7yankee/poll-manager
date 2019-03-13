@@ -105,7 +105,6 @@ class Questions extends Component {
 
   setRadio = (value, id) => {
     let newQuestions = [...this.state.questions];
-    console.log(newQuestions);
 
     const indexQuestions = newQuestions.findIndex(question => {
       return question.id === id;
@@ -177,8 +176,15 @@ class Questions extends Component {
   render() {
     const { questions } = this.state;
 
-    return (
+    return questions.length === 0 ? (
+      <div className="container-center container-center--transparent">
+        <span>Questions list is empty</span>
+      </div>
+    ) : (
       <div className="container">
+        <div className="questions__status-container container-center--border">
+          <span>You have 3 out of 9 questions to answer</span>
+        </div>
         <form onSubmit={this.handleSubmit}>
           <div className="container">
             <div className="container-center container-center--border">
@@ -195,7 +201,7 @@ class Questions extends Component {
                 <div
                   key={question.id}
                   className="polls__container-question
-                polls__container-question-gap"
+              polls__container-question-gap"
                 >
                   <Question
                     deleteErrorMessage={this.deleteErrorMessage}

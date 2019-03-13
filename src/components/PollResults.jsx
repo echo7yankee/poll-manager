@@ -8,7 +8,7 @@ class PollResults extends Component {
     super(props);
     if (localStorage.getItem("results") !== null) {
       this.state = {
-        results: JSON.parse(localStorage.getItem("results")) || []
+        results: JSON.parse(localStorage.getItem("results"))
       };
     } else {
       this.state = {
@@ -18,38 +18,38 @@ class PollResults extends Component {
   }
 
   toggleResults = id => {
-    const { results } = this.state;
-    const indexResults = results.findIndex(result => {
+    const newResults = [...this.state.results];
+    const indexResults = newResults.findIndex(result => {
       return result.id === id;
     });
 
-    results[indexResults] = {
-      ...results[indexResults],
-      toggle: !results[indexResults].toggle
+    newResults[indexResults] = {
+      ...newResults[indexResults],
+      toggle: !newResults[indexResults].toggle
     };
 
     this.setState({
-      results
+      results: newResults
     });
   };
 
-  clearResults = () => {
-    this.setState(
-      {
-        results: []
-      },
-      () => {
-        const resultsStringify = JSON.stringify(this.state.results);
-        localStorage.setItem("results", JSON.stringify(resultsStringify));
-      }
-    );
-  };
+  // clearResults = () => {
+  //   this.setState(
+  //     {
+  //       results: []
+  //     },
+  //     () => {
+  //       const resultsStringify = JSON.stringify(this.state.results);
+  //       localStorage.setItem("results", JSON.stringify(resultsStringify));
+  //     }
+  //   );
+  // };
 
   render() {
     return (
       <>
         {this.state.results.length === 0 && (
-          <div className="container-center container-center--results">
+          <div className="container-center container-center--transparent">
             <div className="questions__show-message">
               <span>Poll results is empty</span>
             </div>
@@ -66,14 +66,14 @@ class PollResults extends Component {
               </div>
             );
           })}
-          <div className="container-center">
+          {/* <div className="container-center">
             <button
               className="polls-button submit-questions poll-button--hover"
               onClick={this.clearResults}
             >
               Clear
             </button>
-          </div>
+          </div> */}
         </div>
       </>
     );

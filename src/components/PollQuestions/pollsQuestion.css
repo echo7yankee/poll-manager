@@ -39,12 +39,17 @@
   align-items: center;
 }
 
+.questions__status-container {
+  background-color: var(--main-lg-color);
+  padding: 1rem;
+}
+
 .container-center {
   background-color: var(--main-lg-color);
   text-align: center;
 }
 
-.container-center--results {
+.container-center--transparent {
   background-color: transparent;
   min-height: 100vh;
   font-size: 16px;
