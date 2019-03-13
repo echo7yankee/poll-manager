@@ -75,16 +75,20 @@ class PollForm extends Component {
     const { question } = this.state;
     const { answers } = this.state.question;
 
-    answers.map(answer => {
+    const newAnswers = answers.map(answer => {
       if (answer.id === id) {
-        answer.value = value;
+        //answer.value = value;
+        answer = {
+          ...answer,
+          value: value
+        };
       }
 
-      return answer.value;
+      return answer;
     });
 
     this.setState({
-      question: { ...question, answers }
+      question: { ...question, answers: newAnswers }
     });
   };
 

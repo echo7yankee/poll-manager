@@ -107,17 +107,17 @@ class Questions extends Component {
   };
 
   setRadio = (value, id) => {
-    let newQuestions = [...this.state.questions];
+    const newQuestions = this.state.questions.map(question => {
+      if (question.id === id) {
+        question = {
+          ...question,
+          selected: value,
+          isChecked: true
+        };
+      }
 
-    const indexQuestions = newQuestions.findIndex(question => {
-      return question.id === id;
+      return question;
     });
-
-    newQuestions[indexQuestions] = {
-      ...newQuestions[indexQuestions],
-      selected: value,
-      isChecked: true
-    };
 
     this.setState({
       questions: newQuestions
@@ -125,35 +125,34 @@ class Questions extends Component {
   };
 
   setCheckbox = (e, id) => {
-    const newQuestions = [...this.state.questions];
     const selectedValue = e.target.value;
 
-    const indexQuestion = newQuestions.findIndex(question => {
-      return question.id === id;
+    const newQuestions = this.state.questions.map(question => {
+      if (question.id === id) {
+        if (e.target.checked === true) {
+          question = {
+            ...question,
+            checked: [
+              ...question.checked,
+              { id: uuid(), checkedValue: selectedValue }
+            ],
+            isChecked: true
+          };
+        } else {
+          const selectedValueIndex = question.checked.indexOf(selectedValue);
+
+          question.checked.splice(selectedValueIndex, 1);
+
+          question = {
+            ...question,
+            checked: question.checked,
+            isChecked: true
+          };
+        }
+      }
+
+      return question;
     });
-
-    if (e.target.checked === true) {
-      newQuestions[indexQuestion] = {
-        ...newQuestions[indexQuestion],
-        checked: [
-          ...newQuestions[indexQuestion].checked,
-          { id: uuid(), checkedValue: selectedValue }
-        ],
-        isChecked: true
-      };
-    } else {
-      const selectedValueIndex = newQuestions[indexQuestion].checked.indexOf(
-        selectedValue
-      );
-
-      newQuestions[indexQuestion].checked.splice(selectedValueIndex, 1);
-
-      newQuestions[indexQuestion] = {
-        ...newQuestions[indexQuestion],
-        checked: newQuestions[indexQuestion].checked,
-        isChecked: true
-      };
-    }
 
     this.setState({
       questions: newQuestions
@@ -161,15 +160,15 @@ class Questions extends Component {
   };
 
   deleteErrorMessage = id => {
-    const newQuestions = [...this.state.questions];
-    const indexQuestions = newQuestions.findIndex(question => {
-      return question.id === id;
+    const newQuestions = this.state.questions.map(question => {
+      if (question.id === id) {
+        question = {
+          ...question,
+          showError: false
+        };
+      }
+      return question;
     });
-
-    newQuestions[indexQuestions] = {
-      ...newQuestions[indexQuestions],
-      showError: false
-    };
 
     this.setState({
       questions: newQuestions
@@ -192,12 +191,14 @@ class Questions extends Component {
       </div>
     ) : (
       <div className="container">
-        <div className="questions__status-container container-center--border">
-          <span>
-            You have {questionsChecked.length} out of {questionsRequired.length}{" "}
-            questions to answer
-          </span>
-        </div>
+        {questionsRequired.length === 0 ? null : (
+          <div className="questions__status-container container-center--border">
+            <span>
+              You have {questionsChecked.length} out of{" "}
+              {questionsRequired.length} questions to answer
+            </span>
+          </div>
+        )}
         <form onSubmit={this.handleSubmit}>
           <div className="container">
             <div className="container-center container-center--border">

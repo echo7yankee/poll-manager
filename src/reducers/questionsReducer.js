@@ -12,26 +12,31 @@ export default (state = [], action) => {
       return [...state, { ...action.payload }];
 
     case TOGGLE_EDITABLE:
-      state.map(question => {
+      const questionsToggleEditable = state.map(question => {
         if (question.id === action.id) {
-          question.isEdit = !question.isEdit;
+          question = {
+            ...question,
+            isEdit: !question.isEdit
+          };
         }
-        return question.isEdit;
+        return question;
       });
 
-      return [...state];
+      return [...questionsToggleEditable];
 
     case EDIT_QUESTION:
-      let newQuestion = [...state];
-      const indexQuestion = state.findIndex(item => {
-        return item.id === action.payload.id;
-      });
-      newQuestion[indexQuestion] = {
-        ...action.payload,
-        isEdit: false
-      };
+      const questionsEdit = state.map(question => {
+        if (question.id === action.payload.id) {
+          question = {
+            ...question,
+            isEdit: false
+          };
+        }
 
-      return newQuestion;
+        return question;
+      });
+
+      return [...questionsEdit];
 
     case DELETE_QUESTION:
       return state.filter(item => {
