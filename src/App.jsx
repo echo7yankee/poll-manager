@@ -10,8 +10,8 @@ import PrivateRoute from "./PrivateRoute.jsx";
 import PollCreatorLink from "./components/PollCreatorLink";
 import PollResults from "./components/PollResults";
 import PollResultsLink from "./components/PollResultsLink";
-import ResultsByQuestions from "./components/ResultsByQuestions";
-import ResultsByQuestionsLink from "./components/ResultsByQuestionsLink";
+import Summary from "./components/Summary";
+import SummaryLink from "./components/SummaryLink";
 
 class App extends Component {
   render() {
@@ -24,14 +24,8 @@ class App extends Component {
           <PrivateRoute path="/pollCreatorLink" component={PollCreatorLink} />
           <PrivateRoute path="/pollResults" component={PollResults} />
           <PrivateRoute path="/pollResultsLink" component={PollResultsLink} />
-          <PrivateRoute
-            path="/resultsByQuestions"
-            component={ResultsByQuestions}
-          />
-          <PrivateRoute
-            path="/resultsByQuestionsLink"
-            component={ResultsByQuestionsLink}
-          />
+          <PrivateRoute path="/summary" component={Summary} />
+          <PrivateRoute path="/summaryLink" component={SummaryLink} />
           <Route path="*" component={() => "404 NOT FOUND"} />
         </Switch>
       </div>

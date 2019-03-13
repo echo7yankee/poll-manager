@@ -3,15 +3,15 @@ import { withRouter, Link } from "react-router-dom";
 import "./navbar.css";
 import auth from "../Auth";
 
-class ResultsByQuestionsLink extends React.Component {
+class SummaryLink extends React.Component {
   render() {
     return (
       <Link
         className="nav-el"
-        to="/resultsByQuestions"
+        to="/summary"
         onClick={() =>
           auth.login(() => {
-            this.props.history.push("/resultsByQuestions");
+            this.props.history.push("/summary");
           })
         }
       >
@@ -21,4 +21,4 @@ class ResultsByQuestionsLink extends React.Component {
   }
 }
 
-export default withRouter(ResultsByQuestionsLink);
+export default withRouter(SummaryLink);

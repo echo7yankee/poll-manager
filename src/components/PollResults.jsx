@@ -18,15 +18,15 @@ class PollResults extends Component {
   }
 
   toggleResults = id => {
-    const newResults = [...this.state.results];
-    const indexResults = newResults.findIndex(result => {
-      return result.id === id;
+    const newResults = this.state.results.map(result => {
+      if (result.id === id) {
+        result = {
+          ...result,
+          toggle: !result.toggle
+        };
+      }
+      return result;
     });
-
-    newResults[indexResults] = {
-      ...newResults[indexResults],
-      toggle: !newResults[indexResults].toggle
-    };
 
     this.setState({
       results: newResults
