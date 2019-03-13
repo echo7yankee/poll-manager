@@ -10,11 +10,11 @@ export const createChoice = () => {
 export const createQuestion = () => {
   return {
     id: uuid(),
-    value: "",
     answers: [createChoice(), createChoice()],
-    type: YES_NO,
     isEdit: false,
     selected: "",
+    value: "",
+    type: YES_NO,
     isChecked: false,
     showError: false,
     checked: []

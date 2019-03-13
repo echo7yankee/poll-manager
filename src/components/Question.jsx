@@ -12,7 +12,6 @@ import RadioInput from "./reusableComponents/RadioInput";
 const Question = ({
   deleteErrorMessage,
   question,
-  showError,
   setRadio,
   setCheckbox,
   selected,

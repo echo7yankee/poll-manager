@@ -3,93 +3,31 @@ import React, { Component } from "react";
 import PollQuestion from "./PollQuestions/PollQuestion";
 import { createQuestion } from "./types";
 import PollForm from "./PollForm";
+import { connect } from "react-redux";
+import {
+  addQuestion,
+  editQuestion,
+  toggleEditable,
+  deleteQuestion,
+  clearQuestions
+} from "../actions/questions";
 
 import "./polls.css";
 
 class PollCreator extends Component {
   constructor(props) {
     super(props);
-    if (localStorage.getItem("questions") !== null) {
-      this.state = {
-        questions: JSON.parse(localStorage.getItem("questions"))
-      };
-    } else {
-      this.state = {
-        questions: [],
-        isOpen: false
-      };
-    }
+    this.state = {
+      isOpen: false
+    };
   }
 
-  addQuestion = newQuestion => {
-    this.setState(
-      {
-        questions: [...this.state.questions, { ...newQuestion }]
-      },
-      () => {
-        let questionsStringify = JSON.stringify(this.state.questions);
-        localStorage.setItem("questions", questionsStringify);
-      }
-    );
-  };
-
-  handleDeleteQuestion = id => {
-    this.setState(
-      {
-        questions: this.state.questions.filter(question => question.id !== id)
-      },
-      () => {
-        let questionsStringify = JSON.stringify(this.state.questions);
-        localStorage.setItem("questions", questionsStringify);
-      }
-    );
-  };
-
-  clearAllQuestions = () => {
+  clearQuestions = () => {
     this.setState({
-      questions: [],
       isOpen: !this.state.isOpen
     });
 
-    localStorage.clear();
-  };
-
-  toggleEditable = id => {
-    const { questions } = this.state;
-    const indexQuestion = questions.findIndex(question => {
-      return question.id === id;
-    });
-
-    questions[indexQuestion] = {
-      ...questions[indexQuestion],
-      isEdit: !questions[indexQuestion].isEdit
-    };
-
-    this.setState({
-      questions
-    });
-  };
-
-  editQuestion = updatedQuestion => {
-    const { questions } = this.state;
-    const indexQuestion = questions.findIndex(question => {
-      return question.id === updatedQuestion.id;
-    });
-
-    questions[indexQuestion] = {
-      ...updatedQuestion,
-      isEdit: false
-    };
-
-    this.setState(
-      {
-        questions
-      },
-      () => {
-        let updatedQuestionStringify = JSON.stringify(questions);
-        localStorage.setItem("questions", updatedQuestionStringify);
-      }
-    );
+    this.props.clearQuestions();
   };
 
   toggleModal = () => {
@@ -97,7 +35,7 @@ class PollCreator extends Component {
   };
 
   render() {
-    const { questions } = this.state;
+    const { questions } = this.props;
 
     return (
       <div className="container">
@@ -106,13 +44,13 @@ class PollCreator extends Component {
           <span className="polls__counter">{questions.length + 1}</span>
           <PollForm
             question={createQuestion()}
-            onSubmit={this.addQuestion}
+            onSubmit={this.props.addQuestion}
             toggleEditable={this.toggleEditable}
-            clearAllQuestions={this.clearAllQuestions}
+            clearQuestions={this.clearQuestions}
             isEdit={createQuestion().isEdit}
             toggleModal={this.toggleModal}
             isOpen={this.state.isOpen}
-            questions={this.state.questions}
+            questions={questions}
           />
         </div>
         {questions.map((question, index) => {
@@ -122,13 +60,12 @@ class PollCreator extends Component {
                 {index + 1}
               </span>
               <PollQuestion
-                toggleEditable={() => this.toggleEditable(question.id)}
+                toggleEditable={() => this.props.toggleEditable(question.id)}
                 question={question}
-                handleDeleteQuestion={() =>
-                  this.handleDeleteQuestion(question.id)
-                }
+                deleteQuestion={() => this.props.deleteQuestion(question.id)}
                 index={index + 1}
                 inputDisabled={true}
+                required={question.required}
               />
             </div>
           ) : (
@@ -137,9 +74,9 @@ class PollCreator extends Component {
                 {index + 1}
               </span>
               <PollForm
-                onSubmit={this.editQuestion}
+                onSubmit={this.props.editQuestion}
                 question={question}
-                toggleEditable={() => this.toggleEditable(question.id)}
+                toggleEditable={() => this.props.toggleEditable(question.id)}
               />
             </div>
           );
@@ -149,4 +86,23 @@ class PollCreator extends Component {
   }
 }
 
-export default PollCreator;
+const mapStateToProps = state => {
+  return {
+    questions: state.questionsReducer
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    addQuestion: payload => dispatch(addQuestion(payload)),
+    deleteQuestion: id => dispatch(deleteQuestion(id)),
+    clearQuestions: () => dispatch(clearQuestions()),
+    toggleEditable: id => dispatch(toggleEditable(id)),
+    editQuestion: payload => dispatch(editQuestion(payload))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PollCreator);

@@ -5,23 +5,19 @@ import "./PollQuestions/pollsQuestion.css";
 import "./buttons.css";
 
 import uuid from "uuid";
+import { connect } from "react-redux";
 
 class Questions extends Component {
   constructor(props) {
     super(props);
-    if (localStorage.getItem("questions") !== null) {
-      this.state = {
-        questions: JSON.parse(localStorage.getItem("questions")),
-        results: [],
-        name: "",
-        showMessage: false,
-        inputDisabled: false
-      };
-    } else {
-      this.state = {
-        questions: []
-      };
-    }
+
+    this.state = {
+      questions: this.props.questions,
+      results: [],
+      name: "",
+      showMessage: false,
+      inputDisabled: false
+    };
   }
 
   handleInputChange = value => {
@@ -108,72 +104,73 @@ class Questions extends Component {
   };
 
   setRadio = (value, id) => {
-    const { questions } = this.state;
+    let newQuestions = [...this.state.questions];
+    console.log(newQuestions);
 
-    const indexQuestion = questions.findIndex(question => {
+    const indexQuestions = newQuestions.findIndex(question => {
       return question.id === id;
     });
 
-    questions[indexQuestion] = {
-      ...questions[indexQuestion],
+    newQuestions[indexQuestions] = {
+      ...newQuestions[indexQuestions],
       selected: value,
       isChecked: true
     };
 
     this.setState({
-      questions
+      questions: newQuestions
     });
   };
 
   setCheckbox = (e, id) => {
-    const { questions } = this.state;
+    const newQuestions = [...this.state.questions];
     const selectedValue = e.target.value;
 
-    const indexQuestion = questions.findIndex(question => {
+    const indexQuestion = newQuestions.findIndex(question => {
       return question.id === id;
     });
 
     if (e.target.checked === true) {
-      questions[indexQuestion] = {
-        ...questions[indexQuestion],
+      newQuestions[indexQuestion] = {
+        ...newQuestions[indexQuestion],
         checked: [
-          ...questions[indexQuestion].checked,
+          ...newQuestions[indexQuestion].checked,
           { id: uuid(), checkedValue: selectedValue }
         ],
         isChecked: true
       };
     } else {
-      const selectedValueIndex = questions[indexQuestion].checked.indexOf(
+      const selectedValueIndex = newQuestions[indexQuestion].checked.indexOf(
         selectedValue
       );
 
-      questions[indexQuestion].checked.splice(selectedValueIndex, 1);
+      newQuestions[indexQuestion].checked.splice(selectedValueIndex, 1);
 
-      questions[indexQuestion] = {
-        ...questions[indexQuestion],
-        checked: questions[indexQuestion].checked,
+      newQuestions[indexQuestion] = {
+        ...newQuestions[indexQuestion],
+        checked: newQuestions[indexQuestion].checked,
         isChecked: false
       };
     }
 
     this.setState({
-      questions
+      questions: newQuestions
     });
   };
 
   deleteErrorMessage = id => {
-    const { questions } = this.state;
-    const indexQuestions = questions.findIndex(question => {
+    const newQuestions = [...this.state.questions];
+    const indexQuestions = newQuestions.findIndex(question => {
       return question.id === id;
     });
 
-    questions[indexQuestions] = {
-      ...questions[indexQuestions],
+    newQuestions[indexQuestions] = {
+      ...newQuestions[indexQuestions],
       showError: false
     };
 
     this.setState({
-      questions
+      questions: newQuestions
     });
   };
 
@@ -202,8 +199,6 @@ class Questions extends Component {
                 >
                   <Question
                     deleteErrorMessage={this.deleteErrorMessage}
-                    //showError={this.state.showError}
-
                     question={question}
                     setRadio={this.setRadio}
                     setCheckbox={this.setCheckbox}
@@ -238,4 +233,13 @@ class Questions extends Component {
   }
 }
 
-export default Questions;
+const mapStateToProps = state => {
+  return {
+    questions: state.questionsReducer
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(Questions);

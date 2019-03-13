@@ -2,7 +2,7 @@ import React from "react";
 import "../buttons.css";
 import "../polls.css";
 
-const Modal = ({ clearAllQuestions, toggleModal }) => {
+const Modal = ({ clearQuestions, toggleModal }) => {
   return (
     <div className="modal-background">
       <div className="modal">
@@ -10,7 +10,7 @@ const Modal = ({ clearAllQuestions, toggleModal }) => {
         <div className="polls-buttons">
           <button
             className="polls-button yes-poll poll-button--hover"
-            onClick={clearAllQuestions}
+            onClick={() => clearQuestions(toggleModal)}
           >
             Yes
           </button>

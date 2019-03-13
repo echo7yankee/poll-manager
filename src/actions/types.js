@@ -1,4 +1,8 @@
 export const SIGN_IN = "SIGN_IN";
 export const SIGN_OUT = "SIGN_OUT";
-export const ADD_CHOICE = "ADD_NEW_CHOICE";
-export const DELETE_CHOICE = "DELETE_CHOICE";
+
+export const ADD_QUESTION = "ADD_QUESTION";
+export const TOGGLE_EDITABLE = "TOGGLE_EDITABLE";
+export const EDIT_QUESTION = "EDIT_QUESTION";
+export const DELETE_QUESTION = "DELETE_QUESTION";
+export const CLEAR_QUESTIONS = "CLEAR_QUESTIONS";

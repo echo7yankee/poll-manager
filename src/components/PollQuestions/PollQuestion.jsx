@@ -11,9 +11,10 @@ import "../polls.css";
 
 const PollQuestion = ({
   toggleEditable,
-  handleDeleteQuestion,
+  deleteQuestion,
   question,
-  inputDisabled
+  inputDisabled,
+  required
 }) => {
   const { answers, type, value } = question;
 
@@ -47,14 +48,15 @@ const PollQuestion = ({
 
   return (
     <div className="polls__question">
-      <label className="polls-label">Question:</label>
+      {required === true ? (
+        <label className="polls-label">*Question:</label>
+      ) : (
+        <label className="polls-label">Question:</label>
+      )}
       <p className="polls-text">{value}</p>
       <div className="buttons__container-icons">
         <BtnEdit onClick={toggleEditable} spanClassName={"button-icon"} />
-        <BtnDelete
-          onClick={handleDeleteQuestion}
-          imgClassName={"button-icon"}
-        />
+        <BtnDelete onClick={deleteQuestion} imgClassName={"button-icon"} />
       </div>
       <label className="polls-label polls-label--top">Answers:</label>
       <div className="polls__questions">{renderAnswers()}</div>

@@ -9,7 +9,7 @@ import "./polls.css";
 
 class PollForm extends Component {
   state = {
-    question: [],
+    question: this.props.question,
     required: false
   };
 
@@ -23,10 +23,19 @@ class PollForm extends Component {
     };
   }
 
+  handleQuestionInput = e => {
+    const { question } = this.state;
+    this.setState({
+      question: {
+        ...question,
+        value: e.target.value
+      }
+    });
+  };
+
   addChoice = () => {
     const { question } = this.state;
     const { answers } = this.state.question;
-
     this.setState({
       question: {
         ...question,
@@ -43,15 +52,15 @@ class PollForm extends Component {
       this.setState({
         question: {
           ...question,
-          answers: answers.filter(newAnswer => {
-            return newAnswer.id !== id;
+          answers: answers.filter(answer => {
+            return answer.id !== id;
           })
         }
       });
     }
   };
 
-  clearAllChoices = () => {
+  clearChoices = () => {
     const { question } = this.state;
 
     this.setState({
@@ -66,32 +75,51 @@ class PollForm extends Component {
     const { question } = this.state;
     const { answers } = this.state.question;
 
-    const indexAnswers = answers.findIndex(answer => {
-      return answer.id === id;
+    answers.map(answer => {
+      if (answer.id === id) {
+        answer.value = value;
+      }
+
+      return answer.value;
     });
 
-    answers[indexAnswers] = {
-      ...answers[indexAnswers],
-      value: value
-    };
+    this.setState({
+      question: { ...question, answers }
+    });
+  };
 
+  handleCheckboxInput = () => {
+    this.setState({
+      required: !this.state.required
+    });
+  };
+
+  handleRadioInput = e => {
     this.setState({
       question: {
-        ...question,
-        answers: answers
+        ...this.state.question,
+        type: e.target.value
       }
     });
   };
 
-  handleQuestionInput = e => {
-    const { question } = this.state;
+  renderChoicesComponent = () => {
+    const { answers } = this.state.question;
+    const { type } = this.state.question;
 
-    this.setState({
-      question: {
-        ...question,
-        value: e.target.value
-      }
-    });
+    if (type === YES_NO) {
+      return null;
+    }
+
+    return (
+      <Choices
+        answers={answers}
+        deleteChoice={this.deleteChoice}
+        clearChoices={this.clearChoices}
+        addChoice={this.addChoice}
+        handleChoiceInput={this.handleChoiceInput}
+      />
+    );
   };
 
   submitQuestion = e => {
@@ -99,12 +127,10 @@ class PollForm extends Component {
 
     const { type, answers, value } = this.state.question;
     const { onSubmit } = this.props;
+
     let question;
 
     if (value === "") {
-      this.setState({
-        renderError: true
-      });
       return;
     }
 
@@ -133,51 +159,17 @@ class PollForm extends Component {
     onSubmit(question);
   };
 
-  handleRadioInput = e => {
-    const { question } = this.state;
-
-    this.setState({
-      question: {
-        ...question,
-        type: e.target.value
-      }
-    });
-  };
-
-  handleCheckboxInput = e => {
-    this.setState({
-      required: !this.state.required
-    });
-  };
-
-  renderChoicesComponent = () => {
-    const { type, answers } = this.state.question;
-
-    if (type === YES_NO) {
-      return null;
-    }
-
-    return (
-      <Choices
-        answers={answers}
-        deleteChoice={this.deleteChoice}
-        clearAllChoices={this.clearAllChoices}
-        addChoice={this.addChoice}
-        handleChoiceInput={this.handleChoiceInput}
-      />
-    );
-  };
-
   render() {
     const {
       toggleEditable,
-      clearAllQuestions,
+      clearQuestions,
       isEdit,
       isOpen,
       toggleModal,
       questions
     } = this.props;
-    const { type, value, id } = this.state.question;
+
+    const { value, type, id } = this.state.question;
 
     return (
       <form className="polls__form" onSubmit={this.submitQuestion}>
@@ -267,7 +259,7 @@ class PollForm extends Component {
             {isOpen && (
               <Modal
                 toggleModal={toggleModal}
-                clearAllQuestions={clearAllQuestions}
+                clearQuestions={clearQuestions}
               />
             )}
           </div>

@@ -1,8 +1,5 @@
 import React from "react";
 
-// import { connect } from "react-redux";
-// import { addChoice } from "../../actions/index";
-
 import ChoiceItem from "./ChoiceItem.jsx";
 import "./choices.css";
 
@@ -11,7 +8,7 @@ const Choices = ({
   handleChoiceInput,
   deleteChoice,
   addChoice,
-  clearAllChoices
+  clearChoices
 }) => {
   return (
     <>
@@ -24,7 +21,7 @@ const Choices = ({
               handleChoiceInput={e =>
                 handleChoiceInput(e.target.value, choice.id)
               }
-              deleteChoice={() => deleteChoice(choice.id, index)}
+              deleteChoice={() => deleteChoice(choice.id)}
               index={index + 1}
             />
           );
@@ -32,11 +29,19 @@ const Choices = ({
       </div>
 
       <div className="polls__answers-buttons">
-        <button className="button-answer" onClick={addChoice} type="button">
+        <button
+          className="button-answer"
+          onClick={() => addChoice(answers)}
+          type="button"
+        >
           + Add new choice
         </button>
         {answers.length > 2 && (
-          <button className="button-answer" onClick={clearAllChoices}>
+          <button
+            className="button-answer"
+            onClick={clearChoices}
+            type="button"
+          >
             Clear Choices
           </button>
         )}
