@@ -15,7 +15,7 @@ class SummaryLink extends React.Component {
           })
         }
       >
-        Results by questions
+        Summary
       </Link>
     );
   }
