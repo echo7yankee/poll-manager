@@ -145,7 +145,7 @@ class Questions extends Component {
           question = {
             ...question,
             checked: question.checked,
-            isChecked: true
+            isChecked: false
           };
         }
       }
@@ -190,7 +190,11 @@ class Questions extends Component {
       </div>
     ) : (
       <div className="container">
-        {questionsRequired.length === 0 ? (
+        {questionsChecked.length === questionsRequired.length ? (
+          <div className="questions__status-container container-center--border">
+            <span>Thank you for taking the time. Click submit to finish</span>
+          </div>
+        ) : questionsChecked.length === 0 ? (
           <div className="questions__status-container container-center--border">
             <span>Start answering the questions</span>
           </div>
