@@ -40,16 +40,23 @@ class Summary extends Component {
   };
 
   render() {
+    const users = this.state.results.map(result => {
+      const users = {
+        id: result.users.id,
+        users: result.users.name
+      };
+      return users;
+    });
+
     return (
       <div className="container">
-        {this.state.results.map(result => {
+        {this.state.results.slice(0, 1).map(result => {
           return (
             <div key={result.id} className="">
               {result.resultAnswers.map(resultAnswer => {
                 return (
                   <div key={resultAnswer.id}>
                     <div
-                      key={resultAnswer.id}
                       className="polls__container-question polls__container-question--date"
                       onClick={() =>
                         this.toggleResults(result.id, resultAnswer.id)
@@ -57,7 +64,6 @@ class Summary extends Component {
                     >
                       <p>{resultAnswer.value}</p>
                     </div>
-
                     <div
                       className={
                         resultAnswer.toggleAnswers
@@ -67,17 +73,27 @@ class Summary extends Component {
                     >
                       <ul className="poll-items">
                         {resultAnswer.checked.map(check => {
-                          return check.checkedValue === "" ? null : (
-                            <li key={check.id} className="poll-item">
-                              {check.checkedValue}
-                            </li>
-                          );
+                          return check.checkedValue === ""
+                            ? null
+                            : users.map(user => {
+                                return (
+                                  <li key={user.id} className="poll-item">
+                                    {user.users}:{check.checkedValue}
+                                  </li>
+                                );
+                              });
                         })}
                       </ul>
                       <ul className="poll-items">
-                        {resultAnswer.selected === "" ? null : (
-                          <li className="poll-item">{resultAnswer.selected}</li>
-                        )}
+                        {resultAnswer.selected === ""
+                          ? null
+                          : users.map(user => {
+                              return (
+                                <li key={user.id} className="poll-item">
+                                  {user.users}:{resultAnswer.selected}
+                                </li>
+                              );
+                            })}
                       </ul>
                     </div>
                   </div>
