@@ -22,13 +22,13 @@ export default (state = [], action) => {
         return question;
       });
 
-      return [...questionsToggleEditable];
+      return questionsToggleEditable;
 
     case EDIT_QUESTION:
       const questionsEdit = state.map(question => {
         if (question.id === action.payload.id) {
           question = {
-            ...question,
+            ...action.payload,
             isEdit: false
           };
         }
@@ -36,7 +36,7 @@ export default (state = [], action) => {
         return question;
       });
 
-      return [...questionsEdit];
+      return questionsEdit;
 
     case DELETE_QUESTION:
       return state.filter(item => {

@@ -190,7 +190,11 @@ class Questions extends Component {
       </div>
     ) : (
       <div className="container">
-        {questionsRequired.length === 0 ? null : (
+        {questionsRequired.length === 0 ? (
+          <div className="questions__status-container container-center--border">
+            <span>Start answering the questions</span>
+          </div>
+        ) : (
           <div className="questions__status-container container-center--border">
             <span>
               You have {questionsChecked.length} out of{" "}
