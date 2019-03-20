@@ -61,11 +61,11 @@ class Questions extends Component {
 
     const resultAnswers = this.state.questions.map(question => {
       const results = {
-        value: question.value,
         checked: question.checked,
         selected: question.selected,
         required: question.required,
-        id: uuid()
+        id: uuid(),
+        toggle: false
       };
 
       return results;

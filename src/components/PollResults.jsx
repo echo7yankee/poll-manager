@@ -1,23 +1,25 @@
 import React, { Component } from "react";
 import "./polls.css";
 import "./PollQuestions/pollsQuestion.css";
-import PollResult from "./PollResult";
+import { connect } from "react-redux";
 
 class PollResults extends Component {
   constructor(props) {
     super(props);
     if (localStorage.getItem("results") !== null) {
       this.state = {
-        results: JSON.parse(localStorage.getItem("results"))
+        results: JSON.parse(localStorage.getItem("results")),
+        questions: this.props.questions
       };
     } else {
       this.state = {
-        results: []
+        results: [],
+        questions: []
       };
     }
   }
 
-  toggleResults = id => {
+  handleToggle = id => {
     const newResults = this.state.results.map(result => {
       if (result.id === id) {
         result = {
@@ -46,6 +48,9 @@ class PollResults extends Component {
   // };
 
   render() {
+    console.log(this.state.questions);
+    console.log(this.state.results);
+
     return (
       <>
         {this.state.results.length === 0 && (
@@ -58,26 +63,58 @@ class PollResults extends Component {
         <div className="container">
           {this.state.results.map(result => {
             return (
-              <div key={result.users.id}>
-                <PollResult
-                  result={result}
-                  toggleResults={this.toggleResults}
-                />
+              <div key={result.id}>
+                <div
+                  className="polls__container-question polls__container-question--date"
+                  onClick={() => this.handleToggle(result.id)}
+                >
+                  <span>{result.users.name}</span>
+                  <span className="polls-row--2">{result.users.date}</span>
+                </div>
+                <div
+                  className={
+                    result.toggle
+                      ? "questions__results--show"
+                      : "questions__results--hide"
+                  }
+                >
+                  {this.state.questions.map((question, index) => {
+                    return (
+                      <div
+                        key={question.id}
+                        className="polls__question polls__container-question"
+                      >
+                        <span>{question.value}</span>
+                        <ul className="poll-items">
+                          <li className="poll-item">
+                            {result.resultAnswers[index].selected}
+                          </li>
+                          <li className="poll-item">
+                            {result.resultAnswers[index].checked.map(check => {
+                              return check.checkedValue + " ";
+                            })}
+                          </li>
+                        </ul>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             );
           })}
-          {/* <div className="container-center">
-            <button
-              className="polls-button submit-questions poll-button--hover"
-              onClick={this.clearResults}
-            >
-              Clear
-            </button>
-          </div> */}
         </div>
       </>
     );
   }
 }
 
-export default PollResults;
+const mapStateToProps = state => {
+  return {
+    questions: state.questionsReducer
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(PollResults);
