@@ -51,7 +51,7 @@ class PollResults extends Component {
         {this.state.results.length === 0 && (
           <div className="container-center container-center--transparent">
             <div className="questions__show-message">
-              <span>Poll results is empty</span>
+              <span>Poll results list is empty</span>
             </div>
           </div>
         )}

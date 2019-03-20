@@ -17,6 +17,7 @@ export const createQuestion = () => {
     type: YES_NO,
     isChecked: false,
     showError: false,
+    toggle: false,
     checked: []
   };
 };

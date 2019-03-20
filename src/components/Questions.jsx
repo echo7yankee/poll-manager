@@ -65,8 +65,7 @@ class Questions extends Component {
         checked: question.checked,
         selected: question.selected,
         required: question.required,
-        id: uuid(),
-        toggleAnswers: false
+        id: uuid()
       };
 
       return results;
