@@ -1,5 +1,8 @@
-export const SIGN_IN = "SIGN_IN";
+export const SIGNIN_SUCCESS = "SIGNIN_SUCCESS";
+export const SIGNIN_FAILED = "SIGNIN_FAILED";
 export const SIGN_OUT = "SIGN_OUT";
+export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
+export const SIGNUP_FAILED = "SIGNUP_FAILED";
 
 export const ADD_QUESTION = "ADD_QUESTION";
 export const TOGGLE_EDITABLE = "TOGGLE_EDITABLE";

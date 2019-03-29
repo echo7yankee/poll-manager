@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-
-import PollQuestion from "./PollQuestions/PollQuestion";
-import { createQuestion } from "./types";
 import PollForm from "./PollForm";
+import PollQuestion from "./PollQuestions/PollQuestion";
+
+import { createQuestion } from "./types";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import {
   addQuestion,
@@ -10,7 +11,7 @@ import {
   toggleEditable,
   deleteQuestion,
   clearQuestions
-} from "../actions/questions";
+} from "../store/actions/questions";
 
 import "./polls.css";
 
@@ -35,7 +36,9 @@ class PollCreator extends Component {
   };
 
   render() {
-    const { questions } = this.props;
+    const { questions, auth } = this.props;
+
+    if (!auth.uid) return <Redirect to="/signin" />;
 
     return (
       <div className="container">
@@ -88,7 +91,8 @@ class PollCreator extends Component {
 
 const mapStateToProps = state => {
   return {
-    questions: state.questionsReducer
+    questions: state.questionsReducer,
+    auth: state.firebase.auth
   };
 };
 

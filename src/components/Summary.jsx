@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 class Summary extends Component {
   constructor(props) {
@@ -34,6 +35,10 @@ class Summary extends Component {
   };
 
   render() {
+    const { auth } = this.props;
+
+    if (!auth.uid) return <Redirect to="/signin" />;
+
     return (
       <>
         {this.state.results.length === 0 && this.state.questions.length === 0 && (
@@ -90,7 +95,8 @@ class Summary extends Component {
 
 const mapStateToProps = state => {
   return {
-    questions: state.questionsReducer
+    questions: state.questionsReducer,
+    auth: state.firebase.auth
   };
 };
 

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./polls.css";
 import "./PollQuestions/pollsQuestion.css";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 class PollResults extends Component {
   constructor(props) {
@@ -35,20 +36,10 @@ class PollResults extends Component {
     });
   };
 
-  // clear = () => {
-  //   this.setState(
-  //     {
-  //       results: [],
-  //       questions: []
-  //     },
-  //     () => {
-  //       const resultsStringify = JSON.stringify(this.state.results);
-  //       localStorage.setItem("results", JSON.stringify(resultsStringify));
-  //     }
-  //   );
-  // };
-
   render() {
+    const { auth } = this.props;
+    if (!auth.uid) return <Redirect to="/signin" />;
+
     return (
       <>
         {this.state.results.length === 0 && this.state.questions.length === 0 && (
@@ -100,18 +91,6 @@ class PollResults extends Component {
               </div>
             );
           })}
-          {/* <div className="container-center">
-            <button
-              onClick={this.clear}
-              className={
-                this.state.inputDisabled
-                  ? "polls-button submit-questions--disabled"
-                  : "polls-button submit-questions poll-button--hover"
-              }
-            >
-              Clear
-            </button>
-          </div> */}
         </div>
       </>
     );
@@ -120,7 +99,8 @@ class PollResults extends Component {
 
 const mapStateToProps = state => {
   return {
-    questions: state.questionsReducer
+    questions: state.questionsReducer,
+    auth: state.firebase.auth
   };
 };
 

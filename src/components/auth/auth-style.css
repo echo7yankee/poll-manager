@@ -47,3 +47,9 @@
 .auth-button:hover {
   background: var(--green-linear-gradient-reverse);
 }
+
+.error-container-auth {
+  text-align: center;
+  margin-top: 2rem;
+  color: red;
+}
