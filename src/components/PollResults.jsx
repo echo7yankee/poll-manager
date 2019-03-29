@@ -35,10 +35,11 @@ class PollResults extends Component {
     });
   };
 
-  // clearResults = () => {
+  // clear = () => {
   //   this.setState(
   //     {
-  //       results: []
+  //       results: [],
+  //       questions: []
   //     },
   //     () => {
   //       const resultsStringify = JSON.stringify(this.state.results);
@@ -48,9 +49,6 @@ class PollResults extends Component {
   // };
 
   render() {
-    console.log(this.state.questions);
-    console.log(this.state.results);
-
     return (
       <>
         {this.state.results.length === 0 && this.state.questions.length === 0 && (
@@ -102,6 +100,18 @@ class PollResults extends Component {
               </div>
             );
           })}
+          {/* <div className="container-center">
+            <button
+              onClick={this.clear}
+              className={
+                this.state.inputDisabled
+                  ? "polls-button submit-questions--disabled"
+                  : "polls-button submit-questions poll-button--hover"
+              }
+            >
+              Clear
+            </button>
+          </div> */}
         </div>
       </>
     );
