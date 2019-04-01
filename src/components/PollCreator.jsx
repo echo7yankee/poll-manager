@@ -5,6 +5,8 @@ import PollQuestion from "./PollQuestions/PollQuestion";
 import { createQuestion } from "./types";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import { compose } from "redux";
+import { firestoreConnect } from "react-redux-firebase";
 import {
   addQuestion,
   editQuestion,
@@ -36,7 +38,10 @@ class PollCreator extends Component {
   };
 
   render() {
-    const { questions, auth } = this.props;
+    let { questions, auth } = this.props;
+    if (questions === undefined) {
+      questions = [];
+    }
 
     if (!auth.uid) return <Redirect to="/signin" />;
 
@@ -90,8 +95,11 @@ class PollCreator extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state.firestore);
+
   return {
-    questions: state.questionsReducer,
+    //questions: state.questionsReducer,
+    questions: state.firestore.ordered.questions,
     auth: state.firebase.auth
   };
 };
@@ -106,7 +114,15 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
+  firestoreConnect([
+    {
+      collection: "questions",
+      orderBy: ["createdAt"]
+    }
+  ])
 )(PollCreator);

@@ -3,13 +3,17 @@ import {
   EDIT_QUESTION,
   TOGGLE_EDITABLE,
   DELETE_QUESTION,
-  CLEAR_QUESTIONS
+  CLEAR_QUESTIONS,
+  ADD_QUESTION_ERROR
 } from "../actions/types";
 
 export default (state = [], action) => {
   switch (action.type) {
     case ADD_QUESTION:
-      return [...state, { ...action.payload }];
+      return state;
+
+    case ADD_QUESTION_ERROR:
+      return state;
 
     case TOGGLE_EDITABLE:
       const questionsToggleEditable = state.map(question => {
