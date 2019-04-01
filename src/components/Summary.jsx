@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
+import { firestoreConnect } from "react-redux-firebase";
+import { compose } from "redux";
 
 class Summary extends Component {
   constructor(props) {
@@ -12,11 +14,20 @@ class Summary extends Component {
       };
     } else {
       this.state = {
-        results: [],
-        questions: []
+        results: []
       };
     }
   }
+
+  componentWillReceiveProps = nextProps => {
+    console.log(nextProps);
+
+    if (nextProps.questions !== undefined) {
+      this.setState({
+        questions: nextProps.questions
+      });
+    }
+  };
 
   handleToggle = id => {
     const newQuestions = this.state.questions.map(question => {
@@ -36,12 +47,13 @@ class Summary extends Component {
 
   render() {
     const { auth } = this.props;
+    const { questions = [] } = this.state;
 
     if (!auth.uid) return <Redirect to="/signin" />;
 
     return (
       <>
-        {this.state.results.length === 0 && this.state.questions.length === 0 && (
+        {this.state.results.length === 0 && questions.length === 0 && (
           <div className="container-center container-center--transparent">
             <div className="questions__show-message">
               <span>Summary list is empty</span>
@@ -49,7 +61,7 @@ class Summary extends Component {
           </div>
         )}
         <div className="container">
-          {this.state.questions.map((question, index) => {
+          {questions.map((question, index) => {
             return (
               <div key={question.id}>
                 <div
@@ -95,12 +107,20 @@ class Summary extends Component {
 
 const mapStateToProps = state => {
   return {
-    questions: state.questionsReducer,
+    questions: state.firestore.ordered.questions,
     auth: state.firebase.auth
   };
 };
 
-export default connect(
-  mapStateToProps,
-  null
+export default compose(
+  connect(
+    mapStateToProps,
+    null
+  ),
+  firestoreConnect([
+    {
+      collection: "questions",
+      orderBy: ["createdAt"]
+    }
+  ])
 )(Summary);

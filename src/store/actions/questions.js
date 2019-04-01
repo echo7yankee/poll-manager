@@ -7,13 +7,6 @@ import {
   ADD_QUESTION_ERROR
 } from "./types";
 
-// export const addQuestion = payload => {
-//   return {
-//     type: ADD_QUESTION,
-//     payload
-//   };
-// };
-
 export const addQuestion = questions => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firestore = getFirestore();
@@ -51,10 +44,20 @@ export const editQuestion = payload => {
   };
 };
 
-export const deleteQuestion = id => {
-  return {
-    type: DELETE_QUESTION,
-    id
+export const deleteQuestion = (id, questions) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firestore = getFirestore();
+
+    firestore
+      .collection("questions")
+      .doc()
+      .delete()
+      .then(() => {
+        dispatch({ type: DELETE_QUESTION });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 };
 

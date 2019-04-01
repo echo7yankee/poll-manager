@@ -11,7 +11,6 @@ export default (state = [], action) => {
   switch (action.type) {
     case ADD_QUESTION:
       return state;
-
     case ADD_QUESTION_ERROR:
       return state;
 
@@ -43,12 +42,12 @@ export default (state = [], action) => {
       return questionsEdit;
 
     case DELETE_QUESTION:
-      return state.filter(item => {
-        return item.id !== action.id;
-      });
+      return state;
 
     case CLEAR_QUESTIONS:
-      return [];
+      console.log("Questions were deleted");
+      return state;
+
     default:
       return state;
   }

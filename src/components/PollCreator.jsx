@@ -38,10 +38,7 @@ class PollCreator extends Component {
   };
 
   render() {
-    let { questions, auth } = this.props;
-    if (questions === undefined) {
-      questions = [];
-    }
+    let { questions = [], auth } = this.props;
 
     if (!auth.uid) return <Redirect to="/signin" />;
 
@@ -70,7 +67,9 @@ class PollCreator extends Component {
               <PollQuestion
                 toggleEditable={() => this.props.toggleEditable(question.id)}
                 question={question}
-                deleteQuestion={() => this.props.deleteQuestion(question.id)}
+                deleteQuestion={() =>
+                  this.props.deleteQuestion(question.id, questions)
+                }
                 index={index + 1}
                 inputDisabled={true}
                 required={question.required}
@@ -95,10 +94,7 @@ class PollCreator extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state.firestore);
-
   return {
-    //questions: state.questionsReducer,
     questions: state.firestore.ordered.questions,
     auth: state.firebase.auth
   };
@@ -107,7 +103,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     addQuestion: payload => dispatch(addQuestion(payload)),
-    deleteQuestion: id => dispatch(deleteQuestion(id)),
+    deleteQuestion: (id, questions) => dispatch(deleteQuestion(id, questions)),
     clearQuestions: () => dispatch(clearQuestions()),
     toggleEditable: id => dispatch(toggleEditable(id)),
     editQuestion: payload => dispatch(editQuestion(payload))

@@ -6,6 +6,8 @@ import "./buttons.css";
 
 import uuid from "uuid";
 import { connect } from "react-redux";
+import { firestoreConnect } from "react-redux-firebase";
+import { compose } from "redux";
 
 class Questions extends Component {
   constructor(props) {
@@ -19,6 +21,14 @@ class Questions extends Component {
       inputDisabled: false
     };
   }
+
+  componentWillReceiveProps = nextProps => {
+    if (nextProps.questions !== undefined) {
+      this.setState({
+        questions: nextProps.questions
+      });
+    }
+  };
 
   handleInputChange = value => {
     this.setState({
@@ -174,7 +184,7 @@ class Questions extends Component {
   };
 
   render() {
-    const { questions } = this.state;
+    const { questions = [] } = this.state;
 
     const questionsRequired = questions.filter(question => {
       return question.required === true;
@@ -191,7 +201,7 @@ class Questions extends Component {
       <div className="container">
         {questionsChecked.length === questionsRequired.length ? (
           <div className="questions__status-container container-center--border">
-            <span>Thank you for taking the time. Click submit to finish</span>
+            <span>Thank you for taking your time. Click submit to finish</span>
           </div>
         ) : questionsChecked.length === 0 ? (
           <div className="questions__status-container container-center--border">
@@ -261,11 +271,19 @@ class Questions extends Component {
 
 const mapStateToProps = state => {
   return {
-    questions: state.questionsReducer
+    questions: state.firestore.ordered.questions
   };
 };
 
-export default connect(
-  mapStateToProps,
-  null
+export default compose(
+  connect(
+    mapStateToProps,
+    null
+  ),
+  firestoreConnect([
+    {
+      collection: "questions",
+      orderBy: ["createdAt"]
+    }
+  ])
 )(Questions);

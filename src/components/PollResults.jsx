@@ -3,19 +3,19 @@ import "./polls.css";
 import "./PollQuestions/pollsQuestion.css";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
+import { firestoreConnect } from "react-redux-firebase";
+import { compose } from "redux";
 
 class PollResults extends Component {
   constructor(props) {
     super(props);
     if (localStorage.getItem("results") !== null) {
       this.state = {
-        results: JSON.parse(localStorage.getItem("results")),
-        questions: this.props.questions
+        results: JSON.parse(localStorage.getItem("results"))
       };
     } else {
       this.state = {
-        results: [],
-        questions: []
+        results: []
       };
     }
   }
@@ -37,12 +37,13 @@ class PollResults extends Component {
   };
 
   render() {
-    const { auth } = this.props;
+    const { questions = [], auth } = this.props;
+
     if (!auth.uid) return <Redirect to="/signin" />;
 
     return (
       <>
-        {this.state.results.length === 0 && this.state.questions.length === 0 && (
+        {this.state.results.length === 0 && questions.length === 0 && (
           <div className="container-center container-center--transparent">
             <div className="questions__show-message">
               <span>Poll results list is empty</span>
@@ -67,7 +68,7 @@ class PollResults extends Component {
                       : "questions__results--hide"
                   }
                 >
-                  {this.state.questions.map((question, index) => {
+                  {questions.map((question, index) => {
                     return (
                       <div
                         key={question.id}
@@ -99,12 +100,20 @@ class PollResults extends Component {
 
 const mapStateToProps = state => {
   return {
-    questions: state.questionsReducer,
+    questions: state.firestore.ordered.questions,
     auth: state.firebase.auth
   };
 };
 
-export default connect(
-  mapStateToProps,
-  null
+export default compose(
+  connect(
+    mapStateToProps,
+    null
+  ),
+  firestoreConnect([
+    {
+      collection: "questions",
+      orderBy: ["createdAt"]
+    }
+  ])
 )(PollResults);
